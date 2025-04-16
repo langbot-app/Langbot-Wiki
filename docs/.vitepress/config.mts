@@ -91,7 +91,19 @@ export default defineConfig({
                   },
                 ],
               },
-              { text: "企业微信", link: "/deploy/platforms/wecom/wecom" },
+              { text: "企业微信", 
+                collapsed: true,
+                items: [
+                  {
+                    text: "内部应用",
+                    link: "/deploy/platforms/wecom/wecom",
+                  },
+                  {
+                    text: "对外客服",
+                    link: "/deploy/platforms/wecom/wecomcs",
+                  },
+                ],
+               },
               { text:"微信公众号",link:"/deploy/platforms/wxoa.md"},
               { text: "飞书", link: "/deploy/platforms/lark" },
               { text:"钉钉",link:"/deploy/platforms/dingtalk.md"},

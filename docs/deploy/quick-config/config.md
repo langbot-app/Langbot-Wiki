@@ -221,7 +221,7 @@
 
 ## 钉钉适配器
 
-具体用法请查看[配置钉钉机器人](/deploy/platforms/dingtalk.md)
+具体用法请查看[配置钉钉机器人](/deploy/platforms/dingtalk.md)。
 
 ```json
 {
@@ -259,6 +259,22 @@
     "bot_token":"",
     "signing_secret":"",
     "port":2288
+}
+```
+
+### 企业微信客服号
+
+具体用法请查看[配置企业微信客服号](/deploy/platforms/wecomcs.md)
+
+```json
+{
+        "adapter": "wecomcs",
+        "enable": false,
+        "port": 2289,
+        "corpid": "",
+        "secret": "",
+        "token": "",
+        "EncodingAESKey": ""
 }
 ```
 
