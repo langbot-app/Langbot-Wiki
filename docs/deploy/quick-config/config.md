@@ -264,7 +264,7 @@
 
 ### 企业微信客服号
 
-具体用法请查看[配置企业微信客服号](/deploy/platforms/wecomcs.md)
+具体用法请查看[配置企业微信客服号](/deploy/platforms/wecom/wecomcs.md)
 
 ```json
 {
