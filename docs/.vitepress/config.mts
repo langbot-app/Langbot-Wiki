@@ -10,7 +10,7 @@ export default defineConfig({
     logo: "/langbot-logo-0.5x.png",
 
     nav: [
-      { text: "首页", link: "/" },
+      { text: "首页", link: "https://langbot.app" },
       { text: "概述", link: "/insight/guide" },
       { text: "部署", link: "/deploy/langbot/manual" },
       { text: "插件", link: "/plugin/plugin-intro" },
