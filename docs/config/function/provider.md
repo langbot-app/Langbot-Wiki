@@ -68,7 +68,7 @@
 - `bailian`: 阿里云百炼模型接口密钥组
 - `volcark`: 火山方舟模型、应用接口密钥组
 - `modelscope`: 魔搭社区接口密钥组
-
+- `ppio`：[PPIO](https://ppinfra.com/user/register?invited_by=QJKFYD&utm_source=github_langbot) （派欧云）的密钥组
 
 ## 大模型请求器 requester
 
@@ -137,6 +137,7 @@
 - `bailian-chat-completions`：[阿里云百炼](https://bailian.console.aliyun.com/) 请求器，仅支持模型，应用请使用下方百炼平台运行器
 - `volcark-chat-completions`：[火山方舟](https://console.volcengine.com/ark/region:ark+cn-beijing/model?vendor=Bytedance&view=LIST_VIEW) 请求器，默认为模型调用接口，应用(Bots)调用接口请在`base-url`后方添加`/bots`
 - `modelscope-chat-completions`：[魔搭社区](https://modelscope.cn/) 请求器，使用魔搭社区的接口，需要确保账户以绑定阿里云账户
+- `ppio-chat-completions`：[PPIO](https://ppinfra.com/user/register?invited_by=QJKFYD&utm_source=github_langbot) 请求器
 
 `base-url`：设置接口地址。
 

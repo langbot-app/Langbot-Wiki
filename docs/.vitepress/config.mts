@@ -216,6 +216,10 @@ export default defineConfig({
           {
             text: "在 LangBot 接入完整 MCP 生态",
             link: "/workshop/mcp-details"
+          },
+          {
+            text: "接入 PPIO API",
+            link: "/workshop/ppio-integration"
           }
         ],
       },

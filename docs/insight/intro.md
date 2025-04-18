@@ -9,6 +9,7 @@
 - Anthropic：Claude 系列
 - [OneAPI](https://github.com/songquanpeng/one-api)接口聚合平台：Google Gemini Pro / Azure / Anthropic Claude / 智谱 ChatGLM / 百度文心一言 / 讯飞星火认知 / 阿里通义千问 / 360 智脑等市面上所有 LLM 官方接口
 - [free-one-api](https://github.com/RockChinQ/free-one-api)逆向工程库聚合平台：ChatGPT / Claude / Google Bard / gpt4free / 通义千问
+- [PPIO 派欧云 API](https://ppinfra.com/user/register?invited_by=QJKFYD&utm_source=github_langbot)：低价开源模型供应商，支持最新的 Llama、DeepSeek、通义千问、智谱等系列模型
 
 ## 功能点列举
 
