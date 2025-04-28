@@ -32,7 +32,7 @@
 将如下权限添加进去:
 ![事件权限](/assets/image/slack_04.jpg)
 
-上述操作都完成之后，将 `signing_secret` 和 `bot token` 填写入[Slack适配器中](/deploy/quick-config/config.md#slack)。
+上述操作都完成之后，将 `signing_secret` 和 `bot token` 填写入[Slack适配器中](/deploy/quick-config/config.md#slack)，并且将 `enable` 设置为 `true` 。
 
 ## 启动机器人
 

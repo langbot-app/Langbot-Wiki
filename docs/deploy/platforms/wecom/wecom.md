@@ -41,7 +41,7 @@
 ![机器人secret](/assets/image/wecom4.png)
 
 至此，已经获得了三个配置项，分别是 corpid（企业ID），secret（机器人 secret），contacts_secret（通讯录同步 secret）。
-将他们填写入[企业微信适配器](/deploy/quick-config/config.md#企业微信适配器)
+将他们填写入[企业微信适配器](/deploy/quick-config/config.md#企业微信适配器)，并且将    `enable` 设置为 `true` 。
 
 ### 配置回调地址
 

@@ -30,7 +30,7 @@
 
 ## 填写适配器
 
-将上文获取的 `AppID` , `Token` , `AppSecret` 填写入 [配置信息](/deploy/quick-config/config.md) 中的 qqofficial适配器（使用webhook方式）中。<br>
+将上文获取的 `AppID` , `Token` , `AppSecret` 填写入 [配置信息](/deploy/quick-config/config.md) 中的 qqofficial适配器（使用webhook方式）中，并且将 `enable` 设置为 `true` 。<br>
 **配置项内容：**
 ```json
 {
