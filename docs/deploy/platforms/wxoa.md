@@ -43,7 +43,7 @@
 至此，将获取到的四个配置项( AppID , AppSecret , token , EncodingAESKey )填入[微信公众号配置项](/deploy/quick-config/config.md#微信公众号适配器)。<br>
 
 在配置项中，`Mode`选项为选择的接入模式，其中默认为`drop`，`drop` 为传统收发消息模式，`passive` 为发送任意文字获取回复模式。<br>
-`LoadingMessage`选项为加载信息，可以更改为其他内容，仅在模式为`passive`下有效。
+`LoadingMessage`选项为加载信息，可以更改为其他内容，仅在模式为`passive`下有效。将 `enable` 设置为 `true` 。
 
 填写成功后，**启动 LangBot 。**<br>
 

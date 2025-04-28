@@ -30,7 +30,7 @@
 点击`凭证与基础信息`，记录`Client ID` 和 `Client Secret`，
 点击`应用能力`，`机器人`，记录下 RobotCode 和 机器人名称。
 `markdown_card` 为是否启用 Markdown 形式的回复。
-将以上配置项填写入[钉钉机器人配置项](/deploy/quick-config/config.md#钉钉适配器)。<br>
+将以上配置项填写入[钉钉机器人配置项](/deploy/quick-config/config.md#钉钉适配器)，并且将  `enable` 设置为 `true` 。<br>
 **启动 LangBot** 。
 
 ## 添加机器人
