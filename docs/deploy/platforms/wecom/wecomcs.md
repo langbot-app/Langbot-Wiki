@@ -19,7 +19,7 @@
 ```json
 {
     "adapter": "wecomcs",
-    "enable": false,
+    "enable": true,
     "port": 2289,
     "corpid": "",
     "secret": "",
