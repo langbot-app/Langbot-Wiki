@@ -10,10 +10,8 @@ export default defineConfig({
     logo: "/langbot-logo-0.5x.png",
 
     nav: [
-      { text: "首页", link: "https://langbot.app" },
-      { text: "概述", link: "/insight/guide" },
-      { text: "部署", link: "/deploy/langbot/manual" },
-      { text: "插件", link: "/plugin/plugin-intro" },
+      { text: "主页", link: "https://langbot.app" },
+      { text: "路线图", link: "https://langbot.featurebase.app/roadmap" },      
     ],
 
     sidebar: [
@@ -225,7 +223,10 @@ export default defineConfig({
       },
       {
         text: "开发",
-        items: [{ text: "组件架构", link: "/develop/comp-arch" }],
+        items: [
+          { text: "开发配置", link: "/develop/dev-config" },
+          { text: "组件架构", link: "/develop/comp-arch" },
+        ],
       },
     ],
 
