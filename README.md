@@ -2,6 +2,7 @@
 
 > 此仓库是 LangBot 的文档仓库，代码仓库：  
 > [LangBot 代码仓库](https://github.com/RockChinQ/LangBot)  
+> 这是 LangBot 4.0 的文档，3.0 文档请见 `v3` 分支
 
 ## 参与编写
 
