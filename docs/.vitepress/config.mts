@@ -153,7 +153,6 @@ export default defineConfig({
                   { text: "基础教程", link: "/zh/plugin/dev/tutor" },
                   { text: "消息平台实体", link: "/zh/plugin/dev/messages" },
                   { text: "API 参考", link: "/zh/plugin/dev/api-ref" },
-                  { text: "组件扩展", link: "/zh/plugin/dev/extension" },
                 ],
               },
             ],

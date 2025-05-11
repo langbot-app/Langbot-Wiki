@@ -1,43 +1,20 @@
 # 实现一个消息平台适配器
 
-:::info
-请先阅读 插件开发 -> 组件扩展 章节，了解 LangBot 的组件扩展机制。
-:::
-
 本文章将以`aiocqhttp`适配器为例，讲解如何为 LangBot 实现一个新的消息平台适配器，以便接入 WhatsApp、Discord 等新的消息平台协议。
 
-- 文中代码以 `v3.4.1.5` 版本为例。
-
 ## 注册
-
-首先查看组件扩展页的说明：
 
 ```text
 新增一个消息平台适配器，例如：接入 WhatsApp、Discord 等。
 
 - 基类：`pkg.platform.adapter.MessageSourceAdapter`
 - 装饰器：`pkg.platform.adapter.adapter_class(name: str)`
-- 参考实现：`pkg.platform.adapters/`
-- 使用方式：`data/config/platform.json`的`platform-adapters`中各个配置信息，将在初始化时自动根据`adapter`名称查找对应的适配器实现，并将配置传递给适配器以进行初始化。消息平台适配器实现复杂，建议多参考现有的实现。
+- 参考实现：`pkg.platform.sources/`
 ```
 
 我们实现一个消息平台适配器，本质上就是实现一个继承于`基类`的类，并使用`装饰器`进行注册。最后在运行阶段供用户选择并使用。
 
-### 写到插件中
-
-在插件目录下新建一个 `aiocqhttp.py` 文件：
-
-```python
-import pkg.platform.adapter
-
-@pkg.platform.adapter.adapter_class("aiocqhttp")
-class AiocqhttpAdapter(pkg.platform.adapter.MessageSourceAdapter):
-    pass
-```
-
-启动时，LangBot 的插件加载器会自动加载此模块（文件），并注册到消息平台适配器列表。
-
-### 直接贡献到主仓库
+### 贡献到主仓库
 
 在 `pkg/platform/sources/` 目录下新建一个 `aiocqhttp.py` 文件：
 
@@ -54,6 +31,8 @@ class AiocqhttpAdapter(adapter.MessageSourceAdapter):
 ```python
         from .sources import nakuru, aiocqhttp, qqbotpy
 ```
+
+最后参考其他适配器的清单文件，编写自己的清单文件。
 
 ## 事件、消息转换器
 
