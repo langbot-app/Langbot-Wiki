@@ -59,7 +59,7 @@ export default defineConfig({
                 link: "/zh/deploy/platforms/readme",
                 items: [
                   {
-                    text: "QQ 个人号",
+                    text: "OneBot v11",
                     collapsed: true,
                     items: [
                       {
@@ -73,10 +73,6 @@ export default defineConfig({
                       {
                         text: "llonebot",
                         link: "/zh/deploy/platforms/qq/aiocqhttp/llonebot",
-                      },
-                      {
-                        text: "go-cqhttp",
-                        link: "/zh/deploy/platforms/qq/gocq",
                       },
                     ],
                   },
