@@ -19,8 +19,6 @@ LangBot 还支持组件扩展，可以不局限于监听预定事件，做到整
 
 ## 💻 快速开始
 
-按照文档部署此项目，并使其正常运行。  
-
 使用[HelloPlugin](https://github.com/langbot-app/HelloPlugin)作为模板生成插件代码仓库，然后将仓库代码克隆到`plugins`目录下。
 
 修改插件的 README.md 文件中需要修改的部分。
@@ -37,8 +35,6 @@ from pkg.plugin.events import *  # 导入事件类
 """
 
 
-# 注册插件
-@register(name="Hello", description="hello world", version="0.1", author="RockChinQ")
 class HelloPlugin(BasePlugin):
 
     # 插件加载时触发
@@ -85,13 +81,12 @@ class HelloPlugin(BasePlugin):
 
 ```
 
-此插件将实现：私聊收到`hello`消息时回复`hello, <发送者QQ号>!`，群聊收到`hello`消息时回复`hello, everyone!`
+:::info
 
-### 解读此插件程序
+解读此插件程序
 
 - `import pkg.plugin.context`导入`register(用于注册插件类)`, `handler(用于注册事件监听器)`, `llm_func(用于注册内容函数)`,`BasePlugin(插件基类)`, `APIHost(API宿主)`, `EventContext(事件上下文类)`等内容
 - `import pkg.plugin.events`导入所有支持的事件类
-- `@register`将类`HelloPlugin`标记为一个插件类，声明插件名称为`Hello`以及插件简介、版本、作者
 - 声明类`HelloPlugin`继承于`BasePlugin`，此类可以随意命名，插件名称只与`register`调用时的参数有关
 - 声明此类的`__init__`方法，此方法是可选的，其中的代码将在主程序启动时加载插件的时候被执行
 - 插件类中还支持添加一个异步方法`async def initialize(self)`用于异步初始化
@@ -102,7 +97,81 @@ class HelloPlugin(BasePlugin):
     - 每个事件支持的返回值请查看`pkg.plugin.events`中的每个事件的注释
 - 用相似的程序注册`GroupNormalMessageReceived`事件处理群消息
 
-编写完毕保存后，重新启动主程序，向机器人发送`!plugin`命令，若有`Hello`插件则说明插件加载成功
+编写完毕保存后，重新启动主程序，前往 WebUI 插件页即可看到插件
+:::
+
+此插件将实现：私聊收到`hello`消息时回复`hello, <发送者QQ号>!`，群聊收到`hello`消息时回复`hello, everyone!`
+
+### 编写清单文件
+
+从 LangBot 4.0 开始，将使用清单文件来注册插件。  
+请在 main.py 同目录下新建文件 `manifest.yaml`。如果已经存在了，请按照下方格式修改。
+
+```yaml
+apiVersion: v1  # 不要改动
+kind: Plugin  # 不要改动
+metadata:
+  # author 和 name 唯一确定一个插件
+  author: langbot  # 插件作者，修改为你的名称
+  name: Hello  # 插件名称，修改为你的插件名称
+  repository: 'https://github.com/langbot-app/HelloPlugin'  # 插件仓库地址，修改为你的插件 GitHub 仓库地址
+  version: 0.1.0  # 插件版本，修改为你的插件版本
+  description:  # 插件简介，修改为你的插件简介，支持多语言。语言代码采用 RFC 1766 标准。
+    en_US: Plugin for sending hello
+    zh_CN: 示例插件
+  label:  # 插件显示名称，支持多语言。在 WebUI 上会显示对应语言的 label。语言代码采用 RFC 1766 标准。
+    en_US: Hello
+    zh_CN: Hello
+spec:
+  # 插件配置（可选），可配置多项
+  config:
+    - name: github_token  # 配置项名称
+      label:  # 配置项显示名称，支持多语言。语言代码采用 RFC 1766 标准。
+        en_US: Github Token
+        zh_CN: Github Token
+      description:  # 配置项描述，支持多语言。可选。
+        en_US: Image downloading requires a Github token
+        zh_CN: 如果不填的话，图片可能会下载失败
+      type: string  # 配置项类型，支持 string, integer, float, boolean 等
+      default: ''  # 配置项默认值
+      required: false  # 配置项是否必填
+execution:
+  python:
+    path: main.py  # 插件主程序路径，必须与上方插件入口代码的文件名相同
+    attr: HelloPlugin  # 插件类名，必须与上方代码中声明的类名相同
+```
+
+:::info
+配置项支持类型：
+
+- string: 字符串
+- integer: 整数
+- float: 浮点数
+- boolean: 布尔值
+- array[string]: 字符串数组
+- select: 下拉框，可从多个选项中选择一个
+    - 需要配置 options 选项，表示下拉框的选项
+
+    ```yaml
+    - name: mode
+      label:
+        en_US: Mode
+        zh_CN: 模式
+      type: select
+      options:
+        - name: mode1
+          label:
+            en_US: Mode 1
+            zh_CN: 模式 1
+        - name: mode2
+          label:
+            en_US: Mode 2
+            zh_CN: 模式 2
+    ```
+- prompt-editor: 提示词编辑器。
+- llm-model-selector: LLM模型选择器。
+:::
+
 
 ## ❗ 规范(重要)
 
@@ -130,8 +199,6 @@ class HelloPlugin(BasePlugin):
 
 ```python
 
-# 注册插件
-@register(name="Hello", description="hello world", version="0.1", author="RockChinQ")
 class HelloPlugin(Plugin):
 
     # 插件加载时触发
@@ -194,7 +261,7 @@ async def access_web(self, query, url: str):
 #### 请注意：
 
 - 函数的注释必须严格按照要求的格式进行书写，具体格式请查看[此文档](https://github.com/RockChinQ/CallingGPT/wiki/1.-Function-Format#function-format)
-- 内容函数和`以 @handler 装饰的事件监听器`可以同时存在于同一个插件，并同时受到`plugins/plugins.json`中的插件开关的控制
+- 内容函数和`以 @handler 装饰的事件监听器`可以同时存在于同一个插件，并同时受到插件开关的控制
 - 务必确保您使用的模型支持函数调用功能
 
 3️⃣ 现在您的程序已具备网络访问功能，重启程序，询问机器人有关在线的内容或直接发送文章链接请求其总结。
