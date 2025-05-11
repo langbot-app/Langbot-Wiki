@@ -14,7 +14,7 @@ LangBot 的消息平台实体是基于 [YiriMirai](https://github.com/YiriMiraiP
 
 消息平台的`消息`不同于用于 AI 交互的消息，消息平台的消息以`消息链`的形式描述，QQ 上展示的每一个独立的消息就是一条消息链，消息链中可以包含`文字`、`图片`、`@组件`等多种`消息链组件`，例如：
 
-![](/assets/image/plugin_dev_messages_01.png)
+![](/assets/image/zh/plugin/dev/plugin_dev_messages_01.png)
 
 这就是一个消息链，包含 一个 Plain 组件（Hello World）和 一个 Image 组件（乌萨奇）
 

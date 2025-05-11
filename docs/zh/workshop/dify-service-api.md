@@ -11,9 +11,9 @@ LangBot 目前支持`聊天助手`（含Chatflow）、`Agent`、`工作流`三�
 
 发布应用后，在应用的 `访问API` 页面，生成 API 密钥。
 
-![Dify 应用 API 密钥](/assets/image/dify_sv_api_01.png)
+![Dify 应用 API 密钥](/assets/image/zh/workshop/dify-service-api/dify_sv_api_01.png)
 
-保存 API 服务器和 API 密钥，在 LangBot 的 `provider.json` 文件中配置。
+保存 API 服务器和 API 密钥，在 LangBot 的流水线的`AI 能力`配置。
 
 :::info
 以上为 Dify 云服务版本的示例，若您使用本地自部署的社区版本，请使用 LangBot 访问你自己 Dify 服务的地址作为 `base-url`，后方需要添加 `/v1` 作为路径。
@@ -24,4 +24,6 @@ LangBot 目前支持`聊天助手`（含Chatflow）、`Agent`、`工作流`三�
 
 ## 配置 LangBot
 
-参考 [Dify Service API 配置](../config/function/provider#dify-service-api-%E9%85%8D%E7%BD%AE-dify-service-api) 文档，配置 LangBot 的 `provider.json` 文件。
+打开 LangBot Webui 页面，添加一个新的流水线
+
+![设置开发项](/assets/image/zh/deploy/pipelines/dify/dify01.png)

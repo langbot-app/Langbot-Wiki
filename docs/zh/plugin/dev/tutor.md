@@ -1,6 +1,6 @@
 # 插件开发教程
 
-> 请先阅读[插件介绍页](/plugin/plugin-intro)  
+> 请先阅读[插件介绍页](/zh/plugin/plugin-intro)  
 > 建议先阅读本项目源码，了解项目架构
 
 > 问题、需求请到仓库issue发起  
@@ -205,7 +205,7 @@ async def access_web(self, query, url: str):
 
 当你的插件开发完成后，请上传到 GitHub，并在 [LangBot 仓库提出 issue](https://github.com/RockChinQ/LangBot/issues/new?assignees=&labels=%E7%8B%AC%E7%AB%8B%E6%8F%92%E4%BB%B6&projects=&template=submit-plugin.yml&title=%5BPlugin%5D%3A+%E8%AF%B7%E6%B1%82%E7%99%BB%E8%AE%B0%E6%96%B0%E6%8F%92%E4%BB%B6) ，待审核后将会添加到插件市场，约半个小时后会在 LangBot WebUI 插件页的插件市场上可见。
 
-![](/assets/image/plugin_dev_tutor_01.png)
+![](/assets/image/zh/plugin/dev/plugin_dev_tutor_01.png)
 
 ## 📄 名词解释
 

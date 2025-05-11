@@ -24,11 +24,11 @@ Lagrange 是一个 QQNT 协议逆向工程框架，轻便且相对稳定。通�
 
 看图进行下载:
 
-![图片1](/assets/image/dl_lgr_1.png)
+![图片1](/assets/image/zh/deploy/bots/qq/onebot/lagrange/dl_lgr_1.png)
 
-![图片2](/assets/image/dl_lgr_2.png)
+![图片2](/assets/image/zh/deploy/bots/qq/onebot/lagrange/dl_lgr_2.png)
 
-![图片3](/assets/image/dl_lgr_3.png)
+![图片3](/assets/image/zh/deploy/bots/qq/onebot/lagrange/dl_lgr_3.png)
 
 ### 尾声
 
@@ -46,11 +46,18 @@ Lagrange 是一个 QQNT 协议逆向工程框架，轻便且相对稳定。通�
 
 需要配置 Lagrange 以让其连接上 LangBot，请编辑 Lagrange 的配置文件 appsettings.json，确保 Implementations 中的连接配置符合下图内容：
 
-![配置连接](/assets/image/config_lgr.png)
+![配置连接](/assets/image/zh/deploy/bots/qq/onebot/lagrange/config_lgr.png)
 
 其中 Type 必须为 `ReverseWebSocket`;  
 Host 为 LangBot 运行的主机 IP，若在同一主机上，可以写 `127.0.0.1`；   
 Suffix 必须为 `/ws`；  
-Port 必须与 LangBot 消息平台配置中的 aiocqhttp 适配器监听的端口相同。
 
-接下来请阅读[填写配置信息](/deploy/quick-config/config)。
+## Lagrange 对接
+
+接下来打开 LangBot 配置页面
+
+点击机器人，点击添加
+
+`平台/适配器选择`为`OneBot v11`
+
+![napcat_webui_03](/assets/image/zh/deploy/bots/qq/onebot/napcat/napcat_webui_03.png)

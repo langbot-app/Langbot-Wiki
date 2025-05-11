@@ -86,11 +86,11 @@ docker run -itd --network langbot-network -v /root/temp:/root/temp -p 2531:2531 
 
 LangBot 启动后，会显示一个二维码，请使用个人微信扫描该二维码进行登录。
 
-![alt text](/assets/image/gewechat_01.png)
+![alt text](/assets/image/zh/deploy/bots/gewechat/gewechat_01.png)
 
 成功登录后，会显示登录信息，并开始监听个人微信消息。
 
-![alt text](/assets/image/gewechat_02.png)
+![alt text](/assets/image/zh/deploy/bots/gewechat/gewechat_02.png)
 
 :::info
 登录后会将`app_id`和`token`保存到配置文件中，下次启动时不需要再次扫码登录。

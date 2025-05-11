@@ -61,7 +61,7 @@ class AiocqhttpAdapter(adapter.MessageSourceAdapter):
 
 下图展示了两种情况的处理模式：消息平台协议无 SDK、有成熟 SDK。第一种情况我们需要根据消息平台协议的文档，自行实现连接管理、网络格式数据转换成 LB 消息 Python 对象。第二种情况，消息平台有成熟的 SDK，我们只需要根据 SDK 的文档，调用 SDK 的 API 创建连接，注册事件监听器，并实现消息转换器。
 
-![alt text](/assets/image/workshop_impl_platform_adapter_01.png)
+![alt text](/assets/image/zh/workshop/impl-platform-adapter/workshop_impl_platform_adapter_01.png)
 
 在`pkg.platform.sources.aiocqhttp`文件里，我们可以看到不只有`AiocqhttpAdapter`，还有`class AiocqhttpMessageConverter(adapter.MessageConverter):` 和 `class AiocqhttpEventConverter(adapter.EventConverter):`。
 

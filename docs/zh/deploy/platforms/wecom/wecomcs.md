@@ -10,23 +10,11 @@
 
 ## 效果图
 
-![效果图](/assets/image/wecomcs_01.jpg)
+![效果图](/assets/image/zh/deploy/bots/wecom/wecomcs/wecomcs_01.jpg)
 
-## 部署指南
+## 对接 LangBot
 
-企业微信客服号需要四个配置项，如下：
-
-```json
-{
-    "adapter": "wecomcs",
-    "enable": true,
-    "port": 2289,
-    "corpid": "",
-    "secret": "",
-    "token": "",
-    "EncodingAESKey": ""
-}
-```
+![对接 LangBot](/assets/image/zh/deploy/bots/wecom/wecom/connect_to_langbot.png)
 
 后续的配置方式和配置项和[企业微信内部应用](wecom.md)一样，只是不需要 `contacts_secret`。
 

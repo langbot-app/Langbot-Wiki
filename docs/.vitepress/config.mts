@@ -162,14 +162,6 @@ export default defineConfig({
                 link: "/zh/workshop/dify-service-api",
               },
               {
-                text: "如何接入 OneAPI、LinkAI 等第三方 OpenAI 格式接口？",
-                link: "/zh/workshop/one-api",
-              },
-              {
-                text: "如何使用 Ollama 接入本地模型",
-                link: "/zh/workshop/ollama"
-              },
-              {
                 text: "如何实现一个消息平台适配器？",
                 link: "/zh/workshop/impl-platform-adapter",
               },
@@ -178,13 +170,13 @@ export default defineConfig({
                 link: "/zh/workshop/mcp-details"
               },
               {
-                text: "使用 PPIO 提供的模型",
-                link: "/zh/workshop/ppio-integration"
-              },
-              {
                 text: "容器网络配置详解",
                 link: "/zh/workshop/network-details",
               },
+              {
+                text: "接入 PPIO API",
+                link: "/zh/workshop/ppio-integration"
+              }
             ],
           },
           {

@@ -18,7 +18,7 @@
 
 ## 可扩展的组件
 
-![组件扩展图](/assets/image/develop_comp_arch_1.png)
+![组件扩展图](/assets/image/zh/plugin/dev/develop_comp_arch_1.png)
 
 扩展一个组件的方法，新建一个类，继承于组件的基类，然后在类上使用对应的装饰器，再根据使用方式来配置使用该实现的组件。
 

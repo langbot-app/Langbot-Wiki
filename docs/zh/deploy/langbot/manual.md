@@ -10,7 +10,7 @@
 
 1. 前往[Release](https://github.com/RockChinQ/LangBot/releases)页面下载最新版本的压缩包（推荐）`langbot-xxx-all.zip`（请勿下载 Source Code，因为其中不包含 WebUI）。解压，在解压目录打开命令行（终端）
 
-![下载Release](/assets/image/dl_release.png)
+![下载Release](/assets/image/zh/deploy/langbot/manual/dl_release.png)
 
 :::info
 
@@ -91,7 +91,7 @@ python main.py
 - data/scenario/default.json
 ```
 
-接下来可以使用 Ctrl+C 退出程序，继续查看[部署消息平台](/deploy/platforms/readme)页。
+接下来可以使用 Ctrl+C 退出程序，继续查看[部署消息平台](/zh/deploy/platforms/readme)页。
 
 当你部署消息平台和填写配置文件后，再次运行
 ```bash

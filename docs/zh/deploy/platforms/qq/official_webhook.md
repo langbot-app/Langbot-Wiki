@@ -8,7 +8,7 @@
 
 前往 [QQ开放平台](https://q.qq.com/#/) ，找到下方的 `应用管理` ，点击创建机器人，填写基本信息之后，进入机器人页面，如图：
 
-![机器人主页面](/assets/image/qqofficial1.png)
+![机器人主页面](/assets/image/zh/deploy/bots/qq/official/qqofficial1.png)
 
 `首页` 选项中的 `发布流程` 即为上线机器人的步骤。由于部署的是测试版机器人，所以只需要进行其中的 `资料` 和 `沙箱配置` 。<br>
 
@@ -24,29 +24,25 @@
 
 点击 `开发管理` 。
 
-![开发管理页面](/assets/image/qqofficial2.png)
+![开发管理页面](/assets/image/zh/deploy/bots/qq/official/qqofficial2.png)
 
 记录其中的 `AppID` , `Token` , `AppSecret` ,并将 LangBot 所在服务器的IP地址填写到IP白名单中。
 
-## 填写适配器
+## 对接 LangBot
 
-将上文获取的 `AppID` , `Token` , `AppSecret` 填写入 [配置信息](/deploy/quick-config/config.md) 中的 qqofficial适配器（使用webhook方式）中，并且将 `enable` 设置为 `true` 。<br>
-**配置项内容：**
-```json
-{
-    "adapter": "qqofficial",
-    "enable": true,
-    "appid": "",
-    "secret": "",
-    "port": 2284,
-    "token": ""
-},
-```
+接下来打开 LangBot 配置页面
+
+点击机器人，点击添加
+
+`平台/适配器选择`为`OneBot v11`
+
+![QQ 官方 Bot 对接 LangBot](/assets/image/zh/deploy/bots/qq/official/qqofficial3.png)
 
 
 ## 配置回调地址
 
-由于QQ官方机器人必须要求回调地址是 https 请求，但 LangBot 仅提供 http 方式，所以需要自行配置反向代理。<br>
+由于QQ官方机器人必须要求回调地址是 https 请求，但 LangBot 仅提供 http 方式，所以需要自行配置反向代理。
+
 本文建议使用 [Caddy](https://caddy2.dengxiaolong.com/docs/) 反向代理，操作流程如下文。
 
 ### 操作caddy流程
@@ -100,10 +96,11 @@ sudo systemctl status caddy
 ### 设置管理端回调地址
 
 
-首先 **启动 LangBot** 。<br>
+首先 **启动 LangBot** 。
 
-点击 机器人管理端网页中的 `回调配置`，勾选下面 `添加事件` 中的所有事件。 在请求地址中填写 Caddyfile 中设置的域名，后缀为/callback/command。<br>
-比如域名为 testlb.com，那么请求地址中填写 testlb.com/callback/command ，点击确定配置。如果回调地址保存成功，那么意味着部署成功。若出现 `校验失败` 字样，请认真检查上述配置项是否填写正确。
+点击 机器人管理端网页中的 `回调配置`，勾选下面 `添加事件` 中的所有事件。 在请求地址中填写 Caddyfile 中设置的域名，后缀为`/callback/command`。
+
+比如域名为 `testlb.com`，那么请求地址中填写 `testlb.com/callback/command` ，点击确定配置。如果回调地址保存成功，那么意味着部署成功。若出现 `校验失败` 字样，请认真检查上述配置项是否填写正确。
 
 ## 发布方式
 
