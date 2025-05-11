@@ -35,7 +35,7 @@ npm run docs:dev
 
 ### 部署细节
 
-现在使用 Cloudflare Pages 托管，提交后 @RockChinQ 更新分支进行自动部署。
+现在使用 Cloudflare Pages 托管，提交后 [@RockChinQ](https://github.com/RockChinQ) 更新分支进行自动部署。
 
 ### 一些规范化标准
 

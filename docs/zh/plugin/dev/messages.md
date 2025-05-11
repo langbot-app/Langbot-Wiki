@@ -64,7 +64,15 @@ msg_chain = MessageChain([
 
 ## 消息平台事件
 
-这些事件不同于 LangBot 插件事件，是消息平台系统独立的一套事件系统。这些事件是 LangBot 插件事件的源事件，可以从每个 Query.message_event 取得。
+这些事件不同于 LangBot 插件事件，是消息平台系统独立的一套事件系统。这些事件是 LangBot 消息的源事件，可以从每个 Query.message_event 取得。
+
+```python
+    # 例如在插件中
+    @handler(GroupMessageReceived)
+    async def _(self, ctx: EventContext):
+        # 取得消息平台事件
+        message_event = ctx.query.message_event
+```
 
 消息平台事件定义位于`pkg/platform/types/events.py`中。
 
@@ -80,3 +88,34 @@ msg_chain = MessageChain([
 - `import mirai` 改为 `import pkg.platform.types as mirai`
     - 不建议直接改成 `as mirai`，建议使用 `import pkg.platform.types as platform_types` 并将插件代码中对应的 `mirai.xxx` 替换为 `platform_types.xxx`
 - `from mirai import *` 改为 `from pkg.platform.types import *`
+
+## 访问消息平台底层 API
+
+为了抹平各个平台的差异，LangBot 在消息平台API之上，提供了一个抽象层，即上方所述的内容，以及`pkg/platform/sources`目录下的各个平台适配器。  
+但由于各个平台的差异较大，抽象层内的实体和 API 封装并不完整，如果您的插件需要访问特定平台的功能，可以按照以下说明访问底层 API。
+
+:::info
+其中的`adapter`为每个适配器的实例化对象，对应 `pkg/platform/sources/` 下各个文件中的 `xxxAdapter(adapter.MessagePlatformAdapter)` 类。可以在插件事件的`query.adapter`中取得，例如：
+
+```python
+    # 例如在插件中
+    @handler(GroupMessageReceived)
+    async def _(self, ctx: EventContext):
+        # 取得适配器对象
+        adapter = ctx.query.adapter
+```
+:::
+
+
+| 平台 | 适配器 | 访问方式 | 说明 |
+| --- | --- | --- | --- |
+| QQ 个人号| aiocqhttp | adapter.bot | bot 对象对应 [aiocqhttp](https://github.com/nonebot/aiocqhttp) 的 CQHttp 对象，详细使用方式请参考 aiocqhttp 文档 |
+| QQ 官方API | qqofficial | adapter.bot | bot 对象为 libs/qq_official_api 下的 SDK 对象，详细使用方式可以参考 libs/qq_official_api/api.py 中`QQOfficialClient`中的`send_group_text_msg`方法发起 HTTP 请求的方式，具体接口文档请查看 QQ 官方 API 文档|
+| 个人微信 | gewechat | adapter.bot | bot 对象为 [hanfangyuan4396/gewechat-client](https://github.com/hanfangyuan4396/gewechat-python) 的 GewechatClient 对象，详细使用方式可以参考文档 |
+| 企业微信 | wecom | adapter.bot | 参考 libs/wecom_api/api.py 中`WecomClient`中的`send_image`方法发起 HTTP 请求的方式，具体接口文档请查看企业微信 API 文档 |
+| 微信公众号 | officialaccount | - | 请参考微信公众号的 API 文档中的接口文档信息，相关的凭据信息可以在 adapter.bot 中取得 |
+| 飞书 | lark | adapter.api_client | 飞书 SDK 的 API Client 对象，具体请参考[oapi-sdk-python](https://github.com/larksuite/oapi-sdk-python) |
+| 钉钉 | dingtalk | - | 请参考钉钉 API 文档，相关的凭据信息可以在 adapter.bot 中取得 |
+| Discord | discord | adapter.bot | bot 对象为 [Rapptz/discord.py](https://github.com/Rapptz/discord.py) 的 Discord 对象，详细使用方式请参考文档 |
+| Telegram | telegram | adapter.bot | bot 对象为 [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) 的 Telegram 对象，详细使用方式请参考文档 |
+| Slack | slack | adapter.bot | bot 对象 libs/slack_api/api.py 中的对象，详细使用方式请参考其代码以及 Slack SDK |

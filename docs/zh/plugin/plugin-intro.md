@@ -43,7 +43,7 @@ GPT将会回复一个对`access_the_web`的函数调用请求，LangBot将调用
 
 例如安装`hello_plugin`插件
 ```
-!plugin get https://github.com/RockChinQ/hello_plugin
+!plugin get https://github.com/langbot-app/HelloPlugin
 ```
 
 安装完成后重启程序。
@@ -102,10 +102,10 @@ GPT将会回复一个对`access_the_web`的函数调用请求，LangBot将调用
 
 以下是部分插件列表，所有插件请查看[RockChinQ的Star集](https://github.com/stars/RockChinQ/lists/qchatgpt-%E6%8F%92%E4%BB%B6)
 
+- [ElvisChenML/Waifu](https://github.com/ElvisChenML/Waifu) - 一个LangBot的插件，旨在利用程式逻辑搭配LLM创建真实感聊天机器人，探索真实的聊天体验。
 - [WebwlkrPlugin](https://github.com/RockChinQ/WebwlkrPlugin) - 让机器人能联网！！
 - [https://github.com/the-lazy-me/NewChatVoice](https://github.com/the-lazy-me/miHoYoVoice) - LangBot语音插件，可利用多个TTS平台实现语音聊天
 - [Yuumi0221/URLMaskerPlugin](https://github.com/Yuumi0221/URLMaskerPlugin) - 用于掩码（替换）URL，以应对QQ官方机器人API对消息中URL的限制
-- [ElvisChenML/Waifu](https://github.com/ElvisChenML/Waifu) - 一个LangBot的插件，旨在利用程式逻辑搭配LLM创建真实感聊天机器人，探索真实的聊天体验。
 - [Pevernow/LangBot_Plugin_Emoticon_v3](https://github.com/Pevernow/QChatGPT_Plugin_Emoticon_v3) - LangBot v3可用，基于在线api的表情包插件。
 - [https://github.com/kirifujinagisa/RussianRoulette](https://github.com/kirifujinagisa/RussianRoulette) - 一个 LangBot 俄罗斯轮盘赌的游戏插件
 -  [https://github.com/kirifujinagisa/FileSender](https://github.com/kirifujinagisa/FileSender) - 基于 LangBot 的将本机指定文件发送给申请人的插件

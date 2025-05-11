@@ -8,6 +8,7 @@
 
 ## 消息平台适配器 platform-adapters
 
+以下只列举部分适配器配置。
 ```json
 "platform-adapters": [
     {
@@ -34,12 +35,31 @@
             "public_guild_messages",
             "direct_message"
         ]
-    }
+    },
+    {
+        "adapter": "qqofficial",
+        "enable": false,
+        "appid": "",
+        "secret": "",
+        "port": 2284,
+        "token": ""
+    },
+    {
+        "adapter": "wecom",
+        "enable": false,
+        "host": "0.0.0.0",
+        "port": 2290,
+        "corpid": "",
+        "secret": "",
+        "token": "",
+        "EncodingAESKey": "",
+        "contacts_secret": ""
+    },
 ],
 ```
 
-目前支持 `go-cqhttp`、`aiocqhttp`、`qq-botpy` 四种消息平台适配器，也可以同时启用多个同种类或不同种类的平台适配器。  
-各个消息平台的配置方式请查看部署文档。
+目前支持 `go-cqhttp`、`aiocqhttp`、`qq-botpy`、`qqofficial`、 `wecom`  等多种消息平台适配器，也可以同时启用多个同种类或不同种类的平台适配器。  
+各个消息平台的配置方式请查看[部署文档](/deploy/quick-config/config.html#platform-json)。
 
 ### 多开示例
 

@@ -1,7 +1,8 @@
-# 手动部署(推荐，可以在所有平台上使用)
+# 手动部署
 
 :::warning
 1. 请使用Python 3.10.1（不包含3.10.0）及以上版本，推荐3.10.14版本，没有Python的需自行安装。
+2. 不推荐此方式，后续可能不再支持手动部署，请考虑使用 Docker 部署。
 ::: 
 
 
@@ -16,14 +17,27 @@
 您也可以使用以下命令克隆最新代码（有可能包含不稳定的代码）并使用：
 
 ```bash
+# 克隆主仓库
 git clone https://github.com/RockChinQ/LangBot
 cd LangBot
+```
 
+若您位于中国大陆境内，可以从 [GitCode 镜像](https://gitcode.com/RockChinQ/LangBot) 克隆：
+
+```bash
+git clone https://gitcode.com/RockChinQ/LangBot
+cd LangBot
+```
+
+接下来手动构建前端：
+
+```bash
 # 构建前端，需要 NodeJS >= 22
 cd web
 npm install && npm run build
 cd ..
 ```
+
 :::
 
 2. （建议）创建虚拟环境
@@ -47,7 +61,7 @@ pip install -r requirements.txt
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple 
 ```
 
-3. 运行一次主程序，生成配置文件
+4. 运行一次主程序，生成配置文件
 
 ```bash
 python main.py
@@ -77,7 +91,7 @@ python main.py
 - data/scenario/default.json
 ```
 
-接下来可以使用 Ctrl+C 退出程序，继续查看[部署消息平台](/deploy/platforms/aiocqhttp/napcat.html)页。
+接下来可以使用 Ctrl+C 退出程序，继续查看[部署消息平台](/deploy/platforms/readme)页。
 
 当你部署消息平台和填写配置文件后，再次运行
 ```bash

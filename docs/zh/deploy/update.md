@@ -2,7 +2,13 @@
 
 ## 使用 Docker（或基于 Docker 的一键部署）
 
-直接拉取最新的镜像即可。
+请在 `docker-compose.yaml` 目录下执行：
+
+```bash
+docker compose up --force-recreate --pull always -d
+```
+
+此命令将拉取最新的 LangBot 镜像并重建容器。
 
 ## 手动部署
 

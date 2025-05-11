@@ -2,11 +2,17 @@
 
 使用[宝塔面板](https://www.bt.cn/new/download.html?r=dk_LangBot)一键部署 LangBot。
 
-## 安装宝塔
-
 :::warning
-如果你已经安装了宝塔，请更新到 **9.2.0** 及以上
+- 除非您打算使用 Discord、飞书等无需额外容器的消息平台，或您熟悉宝塔面板上 Docker 容器间的网络连接，否则不建议使用宝塔面板一键部署，请考虑使用[Docker部署](/deploy/langbot/docker)。
+- 如果你已经安装了宝塔，请更新到 **9.2.0** 及以上
 :::
+
+
+:::info
+使用[阿里云，服务器价格低至 38 元一年，更可以享受8折优惠](https://www.aliyun.com/minisite/goods?userCode=ys4ad8gs)，一键安装宝塔更方便
+:::
+
+## 安装宝塔
 
 > 服务器系统推荐(来自宝塔)：Debian 12，Ubuntu 22等
 >
@@ -48,4 +54,4 @@
 
 如果你更偏好于直接修改json配置文件，你可以看上图的查看本地映射目录，进入安装目录，`data`文件夹用于存储配置文件，`plugins`文件夹用于存储插件相关。
 
-接下来请继续阅读[部署消息平台](/deploy/platforms/aiocqhttp/napcat.html)页。
+接下来请继续阅读[部署消息平台](/deploy/platforms/readme)页。

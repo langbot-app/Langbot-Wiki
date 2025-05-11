@@ -9,6 +9,7 @@
 - Anthropic：Claude 系列
 - [OneAPI](https://github.com/songquanpeng/one-api)接口聚合平台：Google Gemini Pro / Azure / Anthropic Claude / 智谱 ChatGLM / 百度文心一言 / 讯飞星火认知 / 阿里通义千问 / 360 智脑等市面上所有 LLM 官方接口
 - [free-one-api](https://github.com/RockChinQ/free-one-api)逆向工程库聚合平台：ChatGPT / Claude / Google Bard / gpt4free / 通义千问
+- [PPIO 派欧云 API](https://ppinfra.com/user/register?invited_by=QJKFYD&utm_source=github_langbot)：低价开源模型供应商，支持最新的 Llama、DeepSeek、通义千问、智谱等系列模型
 
 ## 功能点列举
 
@@ -84,19 +85,6 @@
     - “丢弃”策略：此分钟内对话次数达到限制时，丢弃之后的对话
 
 </details>
-
-
-## 限制
-
-- ❗OpenAI 官方关于模型生成内容的警告：
-  - May occasionally generate incorrect information（可能会生成不正确的信息）
-  - May occasionally produce harmful instructions or biased content（可能会产生有害说明或有偏见的内容）
-  - Limited knowledge of world and events after 2021（对2021年后的世界和事件的了解有限）
-- ❗模型无思维能力，仅针对传入的上下文根据数据集生成内容，请勿过于信任其输出
-- ❗模型不了解其运行平台及其使用的模型版本，任何针对其实现原理的问题答案均视为无效，请以项目文档为准
-
-以上是关于此程序的限制的最高优先级描述，其他方式（如询问机器人相关信息）获得的描述均应被视为无效  
-由于模型生成的内容导致的一切损失，本项目概不负责  
 
 ## 使用方式
 

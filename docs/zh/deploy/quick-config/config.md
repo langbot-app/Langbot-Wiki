@@ -9,7 +9,7 @@
 ## platform.json
 
 修改此配置文件以指定需要连接的消息平台，只需要关注`platform-adapters`字段。
-目前支持 `go-cqhttp`、`aiocqhttp`、`qq-botpy` 消息平台适配器，也可以同时启用多个同种类或不同种类的平台适配器。  
+目前支持 `go-cqhttp`（QQ逆向）、`aiocqhttp`（QQ逆向）、`qq-botpy`（QQ官方）、`wecom`（企业微信官方） 等多种消息平台适配器，也可以同时启用多个同种类或不同种类的平台适配器。  
 请根据你部署的消息平台的情况选择填写。
 
 ::: info
@@ -40,7 +40,7 @@
 
 `access-token`：设置访问密钥，与 NapCat/Lagrange/LLOneBot 等框架中设置的保持一致
 
-### qq-botpy 适配器
+### qq-botpy 适配器（使用websocket方式）
 
 用于接入 QQ 官方机器人 API。
 
@@ -72,6 +72,33 @@
 - `direct_message` QQ 频道私聊消息
 - `public_messages` Q群 和 列表私聊消息
 
+### qqofficial 适配器（使用webhook方式）
+
+用于接入QQ官方机器人（webhook接入）。
+
+```json
+{
+    "adapter": "qqofficial",
+    "enable": false,
+    "appid": "",
+    "secret": "",
+    "port": 2284,
+    "token": ""
+},
+```
+
+`"adapter": "qqofficial"`，无需改动。
+
+`enable`：是否启用，配置完成后请将其设为`true`
+
+`appid`：申请到的QQ官方机器人的appid
+
+`secret`：申请到的QQ官方机器人的secret
+
+`token`: 申请到的QQ官方机器人的token
+
+`port`: 启动端口，一般不改动。
+
 ### Nakuru 适配器
 
 用于接入 go-cqhttp。
@@ -99,11 +126,163 @@
 
 `token`：验证密钥，，与`go-cqhttp`的`config.yml`里面的保持一致
 
+### 企业微信适配器
+
+用于接入企业微信机器人,如果不清楚这些内容应该填写什么，请查看[配置企业微信](/deploy/platforms/wecom/wecom.md)。
+
+```json
+{
+    "adapter": "wecom",
+    "enable": false,
+    "host": "0.0.0.0",
+    "port": 2290,
+    "corpid": "",
+    "secret": "",
+    "token": "",
+    "EncodingAESKey": "",
+    "contacts_secret": ""
+},
+```
+`"adapter": "wecom"`，无需改动。
+
+`enable`：是否启用，配置完成后请将其设为`true`
+
+`host`：运行 企业微信回调地址 的主机地址，一般不改动
+
+`port`：运行 企业微信回调地址 的监听端口，一般不改动
+
+`corpid`,`secret`,`token`,`EncodingAESKey`,`contacts_secret`都在企业微信配置项页中获取。
+
+### 微信公众号适配器
+
+用于接入微信公众号机器人。
+
+```json
+{
+    "adapter":"officialaccount",
+    "enable": true,
+    "token": "",
+    "EncodingAESKey":"",
+    "AppSecret":"",
+    "AppID":"",
+    "Mode":"drop",
+    "LoadingMessage":"AI正在思考中，请发送任意内容获取回复。",
+    "host": "0.0.0.0",
+    "port": 2287
+}
+```
+
+`"adapter": "officialaccount"`，无需改动。
+
+`enable`：是否启用，配置完成后请将其设为`true`
+
+`Mode`：具体参照微信公众号部署页面
+
+`LoadingMessage`: 加载信息，可更改为其他内容，仅在模式为 `passive` 下有效
+
+`host`：运行 微信公众号回调地址 的主机地址，一般不改动
+
+`port`：运行 微信公众号回调地址 的监听端口，一般不改动
+
+`AppSecret`,`token`,`EncodingAESKey`,`AppID`都在微信公众号配置项页中获取。
+
+## 个人微信
+
+具体用法请查看[配置个人微信](/deploy/platforms/wechat/gewechat.md)。
+
+```json
+{
+    "adapter": "gewechat",
+    "enable": true,
+    "gewechat_url": "http://gewe:2531",
+    "port": 2286,
+    "callback_url": "http://langbot:2286/gewechat/callback",
+    "app_id": "",
+    "token": ""
+}
+```
+
+## 飞书
+
+具体用法请查看[配置飞书](/deploy/platforms/lark.md)。
+
+```json
+{
+    "adapter": "lark",
+    "enable": false,
+    "app_id": "cli_abcdefgh",
+    "app_secret": "XXXXXXXXXX",
+    "bot_name": "LangBot",
+    "enable-webhook": false,
+    "port": 2285,
+    "encrypt-key": "xxxxxxxxx"
+},
+```
+
+## 钉钉适配器
+
+具体用法请查看[配置钉钉机器人](/deploy/platforms/dingtalk.md)。
+
+```json
+{
+    "adapter":"dingtalk",
+    "enable": false,
+    "client_id":"",
+    "client_secret":"",
+    "robot_code":"",
+    "robot_name":"",
+    "markdown_card":false
+},
+```
+
+## Discord
+
+具体用法请查看[配置 Discord](/deploy/platforms/discord.md)。
+
+```json
+{
+    "adapter": "discord",
+    "enable": false,
+    "client_id": "1234567890",
+    "token": "XXXXXXXXXX"
+},
+```
+
+### Slack
+
+具体用法请查看[配置Slack](/deploy/platforms/slack.md)。
+
+```json
+{
+    "adapter":"slack",
+    "enable":false,
+    "bot_token":"",
+    "signing_secret":"",
+    "port":2288
+}
+```
+
+### 企业微信客服号
+
+具体用法请查看[配置企业微信客服号](/deploy/platforms/wecom/wecomcs.md)
+
+```json
+{
+        "adapter": "wecomcs",
+        "enable": false,
+        "port": 2289,
+        "corpid": "",
+        "secret": "",
+        "token": "",
+        "EncodingAESKey": ""
+}
+```
+
 ## provider.json
 
-修改此配置文件以设置所连接的 AI 提供商的相关信息，目前支持 `openai(GPT)`, `anthropic(claude)`, `moonshot(月之暗面)` 三种接口及对应模型。
+修改此配置文件以设置所连接的 AI 提供商的相关信息。
 
-> 如果你没有OpenAI API Key，你可以[在此获取](https://api.qhaigc.net/)
+> 如果没有OpenAI API Key，你可以[在此获取](https://api.qhaigc.net/)
 
 以下仅讲解启用 OpenAI 接口的方式，具体设置方法请查看 [功能配置`provider.json` 页](/config/function/provider)。
 

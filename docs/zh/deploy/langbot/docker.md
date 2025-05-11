@@ -1,4 +1,4 @@
-# Docker部署(仅推荐在Linux上使用)
+# Docker部署
 
 :::warning 
 请**确保**您具有以下能力：  
@@ -9,7 +9,8 @@
 ::: 
 
 :::info
-请先确保 Git、 Docker 和 Docker Compose 已安装
+- 请先确保 Git、 Docker 和 Docker Compose 已安装
+- 推荐使用[阿里云，服务器价格低至 38 元一年，更可以享受8折优惠](https://www.aliyun.com/minisite/goods?userCode=ys4ad8gs)
 :::
 
 Git 克隆本项目：
@@ -28,7 +29,7 @@ docker compose up
 首次启动会输出创建配置文件的提示，请继续按照文件配置。
 
 容器会映射`5300`端口供 WebUI 使用，您可以访问`http://127.0.0.1:5300`查看 WebUI。  
-还会映射`2280-2290`端口供使用 OneBot 协议的消息平台适配器反向连接，请继续阅读[消息平台接入文档](/deploy/platforms/aiocqhttp/napcat)。
+还会映射`2280-2290`端口供使用 OneBot 协议的消息平台适配器反向连接，请继续阅读[消息平台接入文档](/deploy/platforms/readme)。
 
 ## 注意
 
