@@ -21,6 +21,6 @@
 
 ## 配置 MCP Server
 
-查看 [配置文档](/config/function/provider.html#mcp-%E9%85%8D%E7%BD%AE-mcp)
+查看 [系统设置文档](/zh/deploy/settings.html)
 
 配置完成后即可在聊天中通过`!func`命令查看已经注册的 MCP 工具，在与支持 Function Calling 的模型对话时，LangBot 会自动调用 MCP 工具。

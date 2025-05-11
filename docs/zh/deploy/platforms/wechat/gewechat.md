@@ -1,7 +1,7 @@
 # 通过 Gewechat 接入个人微信
 
 :::warning 
-LangBot接入gewechat，仅供娱乐，请勿用于违法违规行为，否则后果自负。
+Gewechat 项目已停止维护，请勿使用。
 :::
 
 **本教程要求 LangBot 以 Docker 容器部署**，请根据 LangBot 部署文档将 LangBot 部署到 Docker 中。
@@ -49,8 +49,6 @@ docker run -itd --network langbot-network -v /root/temp:/root/temp -p 2531:2531 
 请查看 [Gewechat 文档](https://github.com/Devo919/Gewechat) 执行到 `启动服务` 步骤。
 
 ## 在 LangBot 中填写信息并启动
-
-根据[填写配置信息](/deploy/quick-config/config)中的个人微信适配器配置，填写 LangBot 相关配置信息。
 
 ```json
         {

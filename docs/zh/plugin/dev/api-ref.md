@@ -68,7 +68,7 @@ ctx.add_return(name: str, value: Any)
 ctx.event.query.set_variable(key: str, value: typing.Any)
 ```
 
-请求变量是与此次 Query 绑定的一个 `dict`，其中包含了一些程序上下文信息。如果使用的是 Dify 或者 阿里云百炼 等 LLMOps 的runner，[这些变量将被传入对应平台的 API 作为变量](/zh/config/function/provider.html#%E8%AF%B7%E6%B1%82%E5%8F%98%E9%87%8F)。  
+请求变量是与此次 Query 绑定的一个 `dict`，其中包含了一些程序上下文信息。如果使用的是 Dify 或者 阿里云百炼 等 LLMOps 的runner，[这些变量将被传入对应平台的 API 作为变量](/zh/deploy/pipelines/readme.html#%E5%AF%B9%E8%AF%9D%E5%8F%98%E9%87%8F)。  
 如果您需要使用插件设置变量，建议在`PromptPreProcessing`事件时处理。
 
 - `key`：该变量的名称

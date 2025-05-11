@@ -28,22 +28,21 @@ AI 能力主要分为两个部分，选择运行器和配置运行器参数。
 
 <img width="400px" src="/assets/image/zh/deploy/pipelines/more_runner.png" alt="more_runner" />
 
-## 消息触发条件
+- 接入 Dify 的详细步骤可以[参考教程](/zh/workshop/dify-service-api.html)。
 
-- 群消息响应规则
-- 机器人黑/白名单
-- 消息忽略规则
+### 对话变量
 
-## 消息过滤
+当使用 Dify 或者阿里云百炼时，LangBot 会显式传入以下参数，您可以自行在 Dify 工作流的开始节点中添加：
 
-- 内容过滤：敏感词检查配置
-- 消息速率管理
+- `user_message_text`：用户消息的纯文本
+- `session_id`：用户会话id，私聊为 `person_<id>`，群聊为 `group_<id>`
+- `conversation_id`：字符串，用户会话id，由 LangBot 生成。用户重置会话后，会重新生成
+- `msg_create_time`：数字类型，收到此消息的时间戳（秒）
 
-## 消息输出处理
+您可以[通过插件自定义任何变量](/zh/plugin/dev/api-ref.html#%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%8F%98%E9%87%8F)。
 
-- 长文本处理规则
-- 回复随机延迟
-- 是否@用户
-- 是否输出异常信息
-- 是否引用原消息
-- 是否跟踪函数调用
+![Dify 工作流开始节点配置](/assets/image/zh/workshop/dify-service-api/dify_workflow_var.png)
+
+## 其他配置
+
+请参考配置表单中的描述信息。

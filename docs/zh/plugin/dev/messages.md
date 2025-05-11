@@ -81,14 +81,6 @@ msg_chain = MessageChain([
 除了上述实体之外，还有`好友 Friend`和`群 Group`等实体，这些实体的定义位于`pkg/platform/types/entities.py`中。
 他们一般被包含于上述事件对象中，可以从中取得一些未被包含在插件事件中的信息。
 
-## 向后兼容性
-
-以 3.x 版本为基础开发的插件，均可以无缝适配 3.4 版本。但 `import mirai` 在新版本已经不受支持，开发插件时编辑器会报错。请做如下修改：
-
-- `import mirai` 改为 `import pkg.platform.types as mirai`
-    - 不建议直接改成 `as mirai`，建议使用 `import pkg.platform.types as platform_types` 并将插件代码中对应的 `mirai.xxx` 替换为 `platform_types.xxx`
-- `from mirai import *` 改为 `from pkg.platform.types import *`
-
 ## 访问消息平台底层 API
 
 为了抹平各个平台的差异，LangBot 在消息平台API之上，提供了一个抽象层，即上方所述的内容，以及`pkg/platform/sources`目录下的各个平台适配器。  
@@ -109,7 +101,7 @@ msg_chain = MessageChain([
 
 | 平台 | 适配器 | 访问方式 | 说明 |
 | --- | --- | --- | --- |
-| QQ 个人号| aiocqhttp | adapter.bot | bot 对象对应 [aiocqhttp](https://github.com/nonebot/aiocqhttp) 的 CQHttp 对象，详细使用方式请参考 aiocqhttp 文档 |
+| OneBot v11| aiocqhttp | adapter.bot | bot 对象对应 [aiocqhttp](https://github.com/nonebot/aiocqhttp) 的 CQHttp 对象，详细使用方式请参考 aiocqhttp 文档 |
 | QQ 官方API | qqofficial | adapter.bot | bot 对象为 libs/qq_official_api 下的 SDK 对象，详细使用方式可以参考 libs/qq_official_api/api.py 中`QQOfficialClient`中的`send_group_text_msg`方法发起 HTTP 请求的方式，具体接口文档请查看 QQ 官方 API 文档|
 | 个人微信 | gewechat | adapter.bot | bot 对象为 [hanfangyuan4396/gewechat-client](https://github.com/hanfangyuan4396/gewechat-python) 的 GewechatClient 对象，详细使用方式可以参考文档 |
 | 企业微信 | wecom | adapter.bot | 参考 libs/wecom_api/api.py 中`WecomClient`中的`send_image`方法发起 HTTP 请求的方式，具体接口文档请查看企业微信 API 文档 |

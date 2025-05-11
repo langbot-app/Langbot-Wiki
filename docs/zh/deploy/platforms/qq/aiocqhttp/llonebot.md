@@ -21,3 +21,7 @@
 `平台/适配器选择`为`OneBot v11`
 
 ![napcat_webui_03](/assets/image/zh/deploy/bots/qq/onebot/napcat/napcat_webui_03.png)
+
+::: info
+注意，如果涉及多个 docker 容器的网络连接问题，请参考[网络配置详解](/zh/workshop/network-details)
+:::

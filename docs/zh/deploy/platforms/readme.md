@@ -7,7 +7,7 @@
 
 | 平台 | 状态 | 备注  |教程 |
 | ------ | ---- | ---- | ---- |
-| QQ 个人号 | ✅ | 使用普通的 QQ 号作为机器人，需要使用独立的协议端，支持 OneBot v11 和 go-cqhttp 协议 | [NapCat](/zh/deploy/platforms/qq/aiocqhttp/napcat) <br> [Lagrange](/zh/deploy/platforms/qq/aiocqhttp/lagrange) <br> [LiteLoaderQQNT](/zh/deploy/platforms/qq/aiocqhttp/llonebot) |
+| OneBot v11 | ✅ | 使用普通的 QQ 号作为机器人，需要使用独立的协议端，支持 OneBot v11 | [NapCat](/zh/deploy/platforms/qq/aiocqhttp/napcat) <br> [Lagrange](/zh/deploy/platforms/qq/aiocqhttp/lagrange) <br> [LiteLoaderQQNT](/zh/deploy/platforms/qq/aiocqhttp/llonebot) |
 | QQ 官方机器人 | ✅ | 接入 QQ 开放平台的机器人 API | [教程](/zh/deploy/platforms/qq/official_webhook) |
 | 企业微信 | ✅ | 企业内部机器人 | [教程](/zh/deploy/platforms/wecom/wecom) |
 | 企业微信客服 | ✅ | 企业对外机器人 | [教程](/zh/deploy/platforms/wecom/wecomcs) |
