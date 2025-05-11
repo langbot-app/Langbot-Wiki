@@ -170,6 +170,8 @@ execution:
     ```
 - prompt-editor: 提示词编辑器。
 - llm-model-selector: LLM模型选择器。
+
+用户通过 WebUI 修改配置项后，插件可以在 self.config 中获取到配置项的值。
 :::
 
 
