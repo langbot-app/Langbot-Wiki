@@ -132,6 +132,10 @@ export default defineConfig({
                 link: "/zh/deploy/pipelines/readme",
               },
               {
+                text: "系统环境设置",
+                link: "/zh/deploy/settings",
+              },
+              {
                 text: "更新 LangBot",
                 link: "/zh/deploy/update",
               },

@@ -1,26 +1,18 @@
-# 快速开始
+# 欢迎来到 LangBot 文档中心
 
-> 两种方式快速开始：
->
-> - 使用社区资源的简化版教程（见左侧）
-> - 阅读文档自行部署（下述为快速开始的方法）
+LangBot 是一个开源的大语言模型（LLM）原生即时通信机器人平台，支持多种消息平台和模型供应商。提供对 Dify、阿里云百炼等 LLMOps 平台的支持。并提供 WebUI 供用户快速部署和使用。
 
-## 1. 部署 LangBot
+## 文档结构
 
-阅读左侧 **部署 LangBot** 部分，选择部署 LangBot 的方式
+文档分为以下几个部分：
 
-部署完成后，打开`http://127.0.0.1:5300`或者`http://服务器公网IP:5300`
+- 部署和使用（必读）：部署和使用 LangBot 的详细步骤
+- 插件：插件使用和开发相关信息
+- 实践：许多不错的 LangBot 使用案例
+- 开发：参与 LangBot 开发的相关信息
 
-进行初始化，填入邮箱和密码并记录保存下来
+## 使用效果
 
-## 2. 配置机器人
+![private_chat](/assets/image/insight/private_chat.png)
 
-查看左侧的[配置机器人](/zh/deploy/platforms/readme)
-
-## 3. 配置模型
-
-查看左侧[配置对话模型](/zh/deploy/models/readme)
-
-<br>
-
-完成以上两步后即可使用，如果需要更多功能的配置，可在[流水线](/zh/deploy/pipelines/readme)中设置
+![group_chat](/assets/image/insight/group_chat.png)
