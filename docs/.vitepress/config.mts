@@ -136,6 +136,10 @@ export default defineConfig({
                 link: "/zh/deploy/settings",
               },
               {
+                text: "对话命令",
+                link: "/zh/deploy/command",
+              },
+              {
                 text: "更新 LangBot",
                 link: "/zh/deploy/update",
               },
