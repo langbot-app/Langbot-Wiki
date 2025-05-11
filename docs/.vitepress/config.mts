@@ -19,19 +19,19 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
 
         nav: [
-          { text: "首页", link: "/zh-cn/" },
-          { text: "概述", link: "/zh-cn/insight/guide" },
-          { text: "部署", link: "/zh-cn/deploy/langbot/manual" },
-          { text: "插件", link: "/zh-cn/plugin/plugin-intro" },
+          { text: "首页", link: "/zh/" },
+          { text: "概述", link: "/zh/insight/guide" },
+          { text: "部署", link: "/zh/deploy/langbot/manual" },
+          { text: "插件", link: "/zh/plugin/plugin-intro" },
         ],
 
         sidebar: [
           {
             text: "概述",
             items: [
-              { text: "新手指引（必看）", link: "/zh-cn/insight/guide" },
-              { text: "项目介绍", link: "/zh-cn/insight/intro" },
-              { text: "社区资源", link: "/zh-cn/insight/community" },
+              { text: "新手指引（必看）", link: "/zh/insight/guide" },
+              { text: "项目介绍", link: "/zh/insight/intro" },
+              { text: "社区资源", link: "/zh/insight/community" },
             ],
           },
           {
@@ -41,84 +41,66 @@ export default defineConfig({
                 text: "部署 LangBot",
                 collapsed: true,
                 items: [
-                  // { text: "一键部署",
-                  //   items: [
-                  //     { text: "宝塔面板(推荐)", link: "/zh-cn/deploy/langbot/one-click/bt" },
-                  //   ],
-                  // },
                   {
                     text: "宝塔面板部署",
-                    link: "/zh-cn/deploy/langbot/one-click/bt",
+                    link: "/zh/deploy/langbot/one-click/bt",
                   },
-                  { text: "Docker部署", link: "/zh-cn/deploy/langbot/docker" },
-                  { text: "手动部署", link: "/zh-cn/deploy/langbot/manual" },
+                  { text: "Docker部署", link: "/zh/deploy/langbot/docker" },
+                  { text: "手动部署", link: "/zh/deploy/langbot/manual" },
                 ],
               },
               {
                 text: "部署消息平台",
                 collapsed: true,
-                // link: "/zh-cn/deploy/platforms/",
                 items: [
                   {
                     text: "aiocqhttp(推荐)",
                     collapsed: true,
-                    // link: "/zh-cn/deploy/platforms/aiocqhttp/",
                     items: [
                       {
                         text: "NapCat",
-                        link: "/zh-cn/deploy/platforms/aiocqhttp/napcat",
+                        link: "/zh/deploy/platforms/aiocqhttp/napcat",
                       },
                       {
                         text: "Lagrange",
-                        link: "/zh-cn/deploy/platforms/aiocqhttp/lagrange",
+                        link: "/zh/deploy/platforms/aiocqhttp/lagrange",
                       },
                       {
                         text: "llonebot",
-                        link: "/zh-cn/deploy/platforms/aiocqhttp/llonebot",
+                        link: "/zh/deploy/platforms/aiocqhttp/llonebot",
                       },
                       {
                         text: "shamrock",
-                        link: "/zh-cn/deploy/platforms/aiocqhttp/shamrock",
+                        link: "/zh/deploy/platforms/aiocqhttp/shamrock",
                       },
                     ],
                   },
-                  // {
-                  //   text: "mirai",
-                  //   link: "/zh-cn/deploy/platforms/mirai",
-                  // },
                   {
                     text: "go-cqhttp",
-                    link: "/zh-cn/deploy/platforms/gocq",
+                    link: "/zh/deploy/platforms/gocq",
                   },
                   {
                     text: "QQ官方",
-                    link: "/zh-cn/deploy/platforms/official",
+                    link: "/zh/deploy/platforms/official",
                   },
                 ],
               },
-              { text: "填写配置信息", link: "/zh-cn/deploy/quick-config/config" },
+              { text: "填写配置信息", link: "/zh/deploy/quick-config/config" },
               {
                 text: "网络配置详解",
-                link: "/zh-cn/deploy/network-details",
-                // collapsed: true,
-                // items: [
-                //   { text: "LangBot和消息平台均Docker", link: "/zh-cn/deploy/network/langbot-platform-docker" },
-                //   { text: "仅LangBot Docker", link: "/zh-cn/deploy/network/langbot-docker" },
-                //   { text: "仅消息平台 Docker（不建议）", link: "/zh-cn/deploy/network/platform-docker" },
-                //   { text: "LangBot和消息平台均非Docker", link: "/zh-cn/deploy/network/langbot-platform-manual" },
-                // ],
+                link: "/zh/deploy/network-details",
               },
               {
                 text: "更新 LangBot",
-                link: "/zh-cn/deploy/update",
+                link: "/zh/deploy/update",
               },
             ],
           },
           {
             text: "使用",
             items: [
-              { text: "命令用法", link: "/zh-cn/usage/command" },
-              { text: "常见问题", link: "/zh-cn/usage/faq" },
+              { text: "命令用法", link: "/zh/usage/command" },
+              { text: "常见问题", link: "/zh/usage/faq" },
             ],
           },
           {
@@ -130,18 +112,18 @@ export default defineConfig({
                 items: [
                   {
                     text: "platform.json",
-                    link: "/zh-cn/config/function/platform",
+                    link: "/zh/config/function/platform",
                   },
                   {
                     text: "pipeline.json",
-                    link: "/zh-cn/config/function/pipeline",
+                    link: "/zh/config/function/pipeline",
                   },
                   {
                     text: "provider.json",
-                    link: "/zh-cn/config/function/provider",
+                    link: "/zh/config/function/provider",
                   },
-                  { text: "command.json", link: "/zh-cn/config/function/command" },
-                  { text: "system.json", link: "/zh-cn/config/function/system" },
+                  { text: "command.json", link: "/zh/config/function/command" },
+                  { text: "system.json", link: "/zh/config/function/system" },
                 ],
               },
               {
@@ -150,15 +132,15 @@ export default defineConfig({
                 items: [
                   {
                     text: "敏感词sensitive-words.json",
-                    link: "/zh-cn/config/metadata/sensitive-words",
+                    link: "/zh/config/metadata/sensitive-words",
                   },
                   {
                     text: "模型列表llm-models.json",
-                    link: "/zh-cn/config/metadata/llm-models",
+                    link: "/zh/config/metadata/llm-models",
                   },
                   {
                     text: "qq-botpy ID 映射 adapter-qq-botpy.json",
-                    link: "/zh-cn/config/metadata/adapter-qq-botpy",
+                    link: "/zh/config/metadata/adapter-qq-botpy",
                   },
                 ],
               },
@@ -168,63 +150,52 @@ export default defineConfig({
             text: "插件",
             // collapsed: true,
             items: [
-              { text: "插件介绍", link: "/zh-cn/plugin/plugin-intro" },
+              { text: "插件介绍", link: "/zh/plugin/plugin-intro" },
               {
                 text: "插件开发",
                 collapsed: true,
                 items: [
-                  { text: "基础教程", link: "/zh-cn/plugin/dev/tutor" },
-                  { text: "消息平台实体", link: "/zh-cn/plugin/dev/messages" },
-                  { text: "API 参考", link: "/zh-cn/plugin/dev/api-ref" },
-                  { text: "组件扩展", link: "/zh-cn/plugin/dev/extension" },
+                  { text: "基础教程", link: "/zh/plugin/dev/tutor" },
+                  { text: "消息平台实体", link: "/zh/plugin/dev/messages" },
+                  { text: "API 参考", link: "/zh/plugin/dev/api-ref" },
+                  { text: "组件扩展", link: "/zh/plugin/dev/extension" },
                 ],
               },
-              // { text: "技术信息", link: "/zh-cn/plugin/tech-info" },
             ],
           },
           {
             text: "管理面板（Beta测试）",
             items: [
-              { text: "介绍 & 使用", link: "/zh-cn/webui/intro" },
-              { text: "系统操作", link: "/zh-cn/webui/system" },
-              { text: "设置项管理", link: "/zh-cn/webui/settings" },
+              { text: "介绍 & 使用", link: "/zh/webui/intro" },
+              { text: "系统操作", link: "/zh/webui/system" },
+              { text: "设置项管理", link: "/zh/webui/settings" },
             ],
           },
-          // {
-          //   text: "规模化和商用",
-          //   // collapsed: true,
-          //   // link: "/zh-cn/tob/",
-          //   items: [
-          //     { text: "消息平台误导性", link: "/zh-cn/tob/platform" },
-          //     { text: "AI内容合规性", link: "/zh-cn/tob/provider" },
-          //     { text: "咨询方式", link: "/zh-cn/tob/contact" },
-          //   ],
-          // },
 
           {
             text: "实践",
             items: [
               {
                 text: "如何接入 Dify？",
-                link: "/zh-cn/workshop/dify-service-api",
+                link: "/zh/workshop/dify-service-api",
               },
               {
                 text: "如何接入 Dify？ - NewAPI 中转方案",
-                link: "/zh-cn/workshop/dify-integration",
+                link: "/zh/workshop/dify-integration",
               },
               {
                 text: "如何接入 OneAPI、LinkAI 等第三方 OpenAI 格式接口？",
-                link: "/zh-cn/workshop/one-api",
+                link: "/zh/workshop/one-api",
               },
               {
                 text: "如何实现一个消息平台适配器？",
-                link: "/zh-cn/workshop/impl-platform-adapter",
+                link: "/zh/workshop/impl-platform-adapter",
               },
             ],
           },
           {
             text: "开发",
-            items: [{ text: "组件架构", link: "/zh-cn/develop/comp-arch" }],
+            items: [{ text: "组件架构", link: "/zh/develop/comp-arch" }],
           },
         ],
 

@@ -5,14 +5,14 @@ layout: home
 hero:
   name: "LangBot"
   image:
-    src: /zh-cn/public/langbot-logo-block.png
+    src: /zh/public/langbot-logo-block.png
     alt: LangBot-logo
   text: ""
   tagline: "原名 QChatGPT；😎高稳定、🧩支持插件、🦄多模态的 LLM QQ / QQ频道 / OneBot 机器人 / Agent 平台"
   actions:
     - theme: brand
       text: 查看文档
-      link: /zh-cn/insight/guide
+      link: /zh/insight/guide
     - theme: alt
       text: 代码仓库
       link: https://github.com/RockChinQ/LangBot
