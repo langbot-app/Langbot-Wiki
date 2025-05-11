@@ -14,7 +14,7 @@ export default defineConfig({
     root: {
       label: "简体中文",
       lang: "zh",
-      link: "/zh-cn/",
+      link: "/zh/",
       themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
 
