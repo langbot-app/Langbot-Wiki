@@ -81,14 +81,7 @@ python main.py
 
 以下文件不存在，已自动生成，请按需修改配置文件后重启：
 - plugins/__init__.py
-- plugins/plugins.json
-- data/config/command.json
-- data/config/pipeline.json
-- data/config/platform.json
-- data/config/provider.json
-- data/config/system.json
-- data/config/sensitive-words.json
-- data/scenario/default.json
+...
 ```
 
 接下来可以使用 Ctrl+C 退出程序，继续查看[部署消息平台](/zh/deploy/platforms/readme)页。
