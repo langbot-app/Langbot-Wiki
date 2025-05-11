@@ -5,227 +5,6 @@ export default defineConfig({
   themeConfig: {
     logo: "/langbot-logo-0.5x.png",
 
-    nav: [
-      { text: "主页", link: "https://langbot.app" },
-      { text: "路线图", link: "https://langbot.featurebase.app/roadmap" },      
-    ],
-
-    sidebar: [
-      {
-        text: "概述",
-        items: [
-          { text: "新手指引（必看）", link: "/insight/guide" },
-          { text: "项目介绍", link: "/insight/intro" },
-          { text: "社区资源", link: "/insight/community" },
-        ],
-      },
-      {
-        text: "部署",
-        items: [
-          {
-            text: "部署 LangBot",
-            collapsed: true,
-            items: [
-              { text: "Docker部署", link: "/deploy/langbot/docker" },
-              { text: "宝塔面板部署", link: "/deploy/langbot/one-click/bt" },
-              { text: "手动部署", link: "/deploy/langbot/manual" },
-            ],
-          },
-          {
-            text: "连接消息平台",
-            collapsed: true,
-            items: [
-              {
-                text: "消息平台说明",
-                link: "/deploy/platforms/readme",
-              },
-              {
-                text: "QQ 个人号",
-                collapsed: true,
-                items: [
-                  {
-                    text: "NapCat",
-                    link: "/deploy/platforms/qq/aiocqhttp/napcat",
-                  },
-                  {
-                    text: "Lagrange",
-                    link: "/deploy/platforms/qq/aiocqhttp/lagrange",
-                  },
-                  {
-                    text: "llonebot",
-                    link: "/deploy/platforms/qq/aiocqhttp/llonebot",
-                  },
-                  {
-                    text: "go-cqhttp",
-                    link: "/deploy/platforms/qq/gocq",
-                  },
-                ],
-              },
-              {
-                text: "QQ 官方机器人",
-                // link: "/deploy/platforms/qq/official",
-                collapsed: true,
-                items: [
-                  {
-                    text: "Webhook 方式",
-                    link: "/deploy/platforms/qq/official_webhook",
-                  },
-                  {
-                    text: "WebSocket 方式",
-                    link: "/deploy/platforms/qq/official",
-                  },
-                ],
-              },
-              { text: "个人微信", 
-                collapsed: true,
-                items: [
-                  {
-                    text: "Gewechat",
-                    link: "/deploy/platforms/wechat/gewechat",
-                  },
-                ],
-              },
-              { text: "企业微信", 
-                collapsed: true,
-                items: [
-                  {
-                    text: "内部应用",
-                    link: "/deploy/platforms/wecom/wecom",
-                  },
-                  {
-                    text: "对外客服",
-                    link: "/deploy/platforms/wecom/wecomcs",
-                  },
-                ],
-               },
-              { text:"微信公众号",link:"/deploy/platforms/wxoa.md"},
-              { text: "飞书", link: "/deploy/platforms/lark" },
-              { text:"钉钉",link:"/deploy/platforms/dingtalk.md"},
-              { text: "Discord", link: "/deploy/platforms/discord" },
-              { text: "Telegram", link: "/deploy/platforms/telegram" },
-              { text:"Slack", link: "/deploy/platforms/slack"},
-            ],
-          },
-          { text: "填写配置信息", link: "/deploy/quick-config/config" },
-          {
-            text: "网络配置详解",
-            link: "/deploy/network-details",
-          },
-          {
-            text: "更新 LangBot",
-            link: "/deploy/update",
-          },
-        ],
-      },
-      {
-        text: "使用",
-        items: [
-          { text: "命令用法", link: "/usage/command" },
-          { text: "常见问题", link: "/usage/faq" },
-        ],
-      },
-      {
-        text: "配置",
-        items: [
-          {
-            text: "功能配置",
-            collapsed: true,
-            items: [
-              { text: "platform.json", link: "/config/function/platform" },
-              { text: "pipeline.json", link: "/config/function/pipeline" },
-              { text: "provider.json", link: "/config/function/provider" },
-              { text: "command.json", link: "/config/function/command" },
-              { text: "system.json", link: "/config/function/system" },
-            ],
-          },
-          {
-            text: "元数据配置",
-            collapsed: true,
-            items: [
-              {
-                text: "敏感词sensitive-words.json",
-                link: "/config/metadata/sensitive-words",
-              },
-              {
-                text: "模型列表llm-models.json",
-                link: "/config/metadata/llm-models",
-              },
-              {
-                text: "qq-botpy ID 映射 adapter-qq-botpy.json",
-                link: "/config/metadata/adapter-qq-botpy",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: "插件",
-        // collapsed: true,
-        items: [
-          { text: "插件介绍", link: "/plugin/plugin-intro" },
-          {
-            text: "插件开发",
-            collapsed: true,
-            items: [
-              { text: "基础教程", link: "/plugin/dev/tutor" },
-              { text: "消息平台实体", link: "/plugin/dev/messages" },
-              { text: "API 参考", link: "/plugin/dev/api-ref" },
-              { text: "组件扩展", link: "/plugin/dev/extension" },
-            ],
-          },
-          // { text: "技术信息", link: "/plugin/tech-info" },
-        ],
-      },
-      {
-        text: "管理面板（Beta测试）",
-        items: [
-          { text: "介绍 & 使用", link: "/webui/intro" },
-          { text: "系统操作", link: "/webui/system" },
-          { text: "设置项管理", link: "/webui/settings" },
-        ],
-      },
-      {
-        text: "实践",
-        items: [
-          {
-            text: "如何接入 Dify？",
-            link: "/workshop/dify-service-api",
-          },
-          {
-            text: "如何接入 Dify？ - NewAPI 中转方案",
-            link: "/workshop/dify-integration",
-          },
-          {
-            text: "如何接入 OneAPI、LinkAI 等第三方 OpenAI 格式接口？",
-            link: "/workshop/one-api",
-          },
-          {
-            text:"如何使用 Ollama 接入本地模型",
-            link:"/workshop/ollama"
-          },
-          {
-            text: "如何实现一个消息平台适配器？",
-            link: "/workshop/impl-platform-adapter",
-          },
-          {
-            text: "在 LangBot 接入完整 MCP 生态",
-            link: "/workshop/mcp-details"
-          },
-          {
-            text: "接入 PPIO API",
-            link: "/workshop/ppio-integration"
-          }
-        ],
-      },
-      {
-        text: "开发",
-        items: [
-          { text: "开发配置", link: "/develop/dev-config" },
-          { text: "组件架构", link: "/develop/comp-arch" },
-        ],
-      },
-    ],
-
     // 编辑链接
     editLink: {
       pattern:
@@ -240,17 +19,15 @@ export default defineConfig({
 
   locales: {
     root: {
+      title: "LangBot 文档",
       label: "简体中文",
       lang: "zh",
       link: "/zh/",
       themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-
         nav: [
-          { text: "首页", link: "/zh/" },
-          { text: "概述", link: "/zh/insight/guide" },
-          { text: "部署", link: "/zh/deploy/langbot/manual" },
-          { text: "插件", link: "/zh/plugin/plugin-intro" },
+          { text: "主页", link: "https://langbot.app" },
+          { text: "路线图", link: "https://langbot.featurebase.app/roadmap" },
         ],
 
         sidebar: [
@@ -258,119 +35,109 @@ export default defineConfig({
             text: "概述",
             items: [
               { text: "新手指引（必看）", link: "/zh/insight/guide" },
-              { text: "项目介绍", link: "/zh/insight/intro" },
               { text: "社区资源", link: "/zh/insight/community" },
             ],
           },
           {
-            text: "部署",
+            text: "部署和使用",
             items: [
               {
                 text: "部署 LangBot",
                 collapsed: true,
                 items: [
+                  { text: "Docker部署", link: "/zh/deploy/langbot/docker" },
                   {
                     text: "宝塔面板部署",
                     link: "/zh/deploy/langbot/one-click/bt",
                   },
-                  { text: "Docker部署", link: "/zh/deploy/langbot/docker" },
                   { text: "手动部署", link: "/zh/deploy/langbot/manual" },
                 ],
               },
               {
-                text: "部署消息平台",
+                text: "配置机器人",
                 collapsed: true,
+                link: "/zh/deploy/platforms/readme",
                 items: [
                   {
-                    text: "aiocqhttp(推荐)",
+                    text: "QQ 个人号",
                     collapsed: true,
                     items: [
                       {
                         text: "NapCat",
-                        link: "/zh/deploy/platforms/aiocqhttp/napcat",
+                        link: "/zh/deploy/platforms/qq/aiocqhttp/napcat",
                       },
                       {
                         text: "Lagrange",
-                        link: "/zh/deploy/platforms/aiocqhttp/lagrange",
+                        link: "/zh/deploy/platforms/qq/aiocqhttp/lagrange",
                       },
                       {
                         text: "llonebot",
-                        link: "/zh/deploy/platforms/aiocqhttp/llonebot",
+                        link: "/zh/deploy/platforms/qq/aiocqhttp/llonebot",
                       },
                       {
-                        text: "shamrock",
-                        link: "/zh/deploy/platforms/aiocqhttp/shamrock",
+                        text: "go-cqhttp",
+                        link: "/zh/deploy/platforms/qq/gocq",
                       },
                     ],
                   },
                   {
-                    text: "go-cqhttp",
-                    link: "/zh/deploy/platforms/gocq",
+                    text: "QQ 官方机器人",
+                    // link: "/deploy/platforms/qq/official",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "Webhook 方式",
+                        link: "/zh/deploy/platforms/qq/official_webhook",
+                      },
+                      {
+                        text: "WebSocket 方式",
+                        link: "/zh/deploy/platforms/qq/official",
+                      },
+                    ],
                   },
                   {
-                    text: "QQ官方",
-                    link: "/zh/deploy/platforms/official",
+                    text: "个人微信",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "Gewechat",
+                        link: "/zh/deploy/platforms/wechat/gewechat",
+                      },
+                    ],
                   },
+                  {
+                    text: "企业微信",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "内部应用",
+                        link: "/zh/deploy/platforms/wecom/wecom",
+                      },
+                      {
+                        text: "对外客服",
+                        link: "/zh/deploy/platforms/wecom/wecomcs",
+                      },
+                    ],
+                  },
+                  { text: "微信公众号", link: "/zh/deploy/platforms/wxoa.md" },
+                  { text: "飞书", link: "/zh/deploy/platforms/lark" },
+                  { text: "钉钉", link: "/zh/deploy/platforms/dingtalk.md" },
+                  { text: "Discord", link: "/zh/deploy/platforms/discord" },
+                  { text: "Telegram", link: "/zh/deploy/platforms/telegram" },
+                  { text: "Slack", link: "/zh/deploy/platforms/slack" },
                 ],
               },
-              { text: "填写配置信息", link: "/zh/deploy/quick-config/config" },
               {
-                text: "网络配置详解",
-                link: "/zh/deploy/network-details",
+                text: "配置对话模型",
+                link: "/zh/deploy/models/readme",
+              },
+              {
+                text: "修改对话流水线",
+                link: "/zh/deploy/pipelines/readme",
               },
               {
                 text: "更新 LangBot",
                 link: "/zh/deploy/update",
-              },
-            ],
-          },
-          {
-            text: "使用",
-            items: [
-              { text: "命令用法", link: "/zh/usage/command" },
-              { text: "常见问题", link: "/zh/usage/faq" },
-            ],
-          },
-          {
-            text: "配置",
-            items: [
-              {
-                text: "功能配置",
-                collapsed: true,
-                items: [
-                  {
-                    text: "platform.json",
-                    link: "/zh/config/function/platform",
-                  },
-                  {
-                    text: "pipeline.json",
-                    link: "/zh/config/function/pipeline",
-                  },
-                  {
-                    text: "provider.json",
-                    link: "/zh/config/function/provider",
-                  },
-                  { text: "command.json", link: "/zh/config/function/command" },
-                  { text: "system.json", link: "/zh/config/function/system" },
-                ],
-              },
-              {
-                text: "元数据配置",
-                collapsed: true,
-                items: [
-                  {
-                    text: "敏感词sensitive-words.json",
-                    link: "/zh/config/metadata/sensitive-words",
-                  },
-                  {
-                    text: "模型列表llm-models.json",
-                    link: "/zh/config/metadata/llm-models",
-                  },
-                  {
-                    text: "qq-botpy ID 映射 adapter-qq-botpy.json",
-                    link: "/zh/config/metadata/adapter-qq-botpy",
-                  },
-                ],
               },
             ],
           },
@@ -392,15 +159,6 @@ export default defineConfig({
             ],
           },
           {
-            text: "管理面板（Beta测试）",
-            items: [
-              { text: "介绍 & 使用", link: "/zh/webui/intro" },
-              { text: "系统操作", link: "/zh/webui/system" },
-              { text: "设置项管理", link: "/zh/webui/settings" },
-            ],
-          },
-
-          {
             text: "实践",
             items: [
               {
@@ -408,22 +166,37 @@ export default defineConfig({
                 link: "/zh/workshop/dify-service-api",
               },
               {
-                text: "如何接入 Dify？ - NewAPI 中转方案",
-                link: "/zh/workshop/dify-integration",
-              },
-              {
                 text: "如何接入 OneAPI、LinkAI 等第三方 OpenAI 格式接口？",
                 link: "/zh/workshop/one-api",
+              },
+              {
+                text: "如何使用 Ollama 接入本地模型",
+                link: "/zh/workshop/ollama"
               },
               {
                 text: "如何实现一个消息平台适配器？",
                 link: "/zh/workshop/impl-platform-adapter",
               },
+              {
+                text: "在 LangBot 接入完整 MCP 生态",
+                link: "/zh/workshop/mcp-details"
+              },
+              {
+                text: "使用 PPIO 提供的模型",
+                link: "/zh/workshop/ppio-integration"
+              },
+              {
+                text: "容器网络配置详解",
+                link: "/zh/workshop/network-details",
+              },
             ],
           },
           {
             text: "开发",
-            items: [{ text: "组件架构", link: "/zh/develop/comp-arch" }],
+            items: [
+              { text: "开发配置", link: "/zh/develop/dev-config" },
+              { text: "组件架构", link: "/zh/develop/comp-arch" },
+            ],
           },
         ],
 
@@ -437,7 +210,7 @@ export default defineConfig({
         socialLinks: [
           {
             icon: "github",
-            link: "https://github.com/the-lazy-me/QChatGPT-Wiki",
+            link: "https://github.com/RockChinQ/LangBot",
           },
         ],
       },
