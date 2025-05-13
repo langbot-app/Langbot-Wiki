@@ -1,338 +1,113 @@
 # Message Platform Entities
 
-This document describes the message platform entities used in LangBot, which are important for plugin development.
+:::info Table of Contents
+[[toc]]
+:::
 
-## Message
+LangBot supports multiple messaging platforms, but the `message entity` format of each platform is different. To shield these differences, LangBot has a unified standard. Plugin developers only need to master and use the message entities described on this page in their plugins, and LangBot's internal message processing logic can automatically complete the parsing and conversion of messages.
 
-The `Message` class represents a message in LangBot.
+:::info
+LangBot's message platform entities are modified based on the implementation of [YiriMirai](https://github.com/YiriMiraiProject/YiriMirai).
+:::
 
-```python
-class Message:
-    """
-    Represents a message in LangBot.
-    """
-    
-    def __init__(self, source, content, message_id=None, sender=None, time=None, **kwargs):
-        """
-        Initialize a message.
-        
-        Args:
-            source: The source of the message
-            content: The content of the message
-            message_id: The ID of the message
-            sender: The sender of the message
-            time: The time the message was sent
-            **kwargs: Additional arguments
-        """
-        self.source = source
-        self.content = content
-        self.message_id = message_id
-        self.sender = sender
-        self.time = time
-        self.kwargs = kwargs
-```
+## Message Chain
 
-### Properties
+The `message` of a message platform is different from the message used for AI interaction. The message of a message platform is described in the form of a `message chain`. Each independent message displayed on QQ is a message chain, which can contain multiple `message chain components` such as `text`, `image`, `@ component`, for example:
 
-- `source`: The source of the message (where it was sent from)
-- `content`: The content of the message
-- `message_id`: The ID of the message
-- `sender`: The sender of the message
-- `time`: The time the message was sent
-- `kwargs`: Additional arguments
+![](/assets/image/zh/plugin/dev/plugin_dev_messages_01.png)
 
-## Source
+This is a message chain, containing one Plain component (Hello World) and one Image component (Usagi)
 
-The `Source` class represents the source of a message.
+The definitions of message chain and message chain components are located in `pkg/platform/types/messages.py`.
+
+### Constructing Message Chain
+
+Please import the `pkg.platform.types` package first to use the message components.  
 
 ```python
-class Source:
-    """
-    Represents the source of a message.
-    """
-    
-    def __init__(self, platform, identity, **kwargs):
-        """
-        Initialize a source.
-        
-        Args:
-            platform: The platform of the source
-            identity: The identity of the source
-            **kwargs: Additional arguments
-        """
-        self.platform = platform
-        self.identity = identity
-        self.kwargs = kwargs
+from pkg.platform.types import *
+
+# Build a message containing the text Hello LangBot and an image (from URL)
+msg_chain = MessageChain([
+    Plain("Hello LangBot"),
+    Image(url='https://qchatgpt.rockchin.top/langbot-logo.png')
+])
+
+# Build a message containing @all and the text Hello LangBot
+msg_chain = MessageChain([
+    AtAll(),
+    Plain("Hello LangBot")
+])
+
+# Build a message containing @specific member and the text Hello LangBot
+msg_chain = MessageChain([
+    At(123456),
+    Plain("Hello LangBot")
+])
 ```
 
-### Properties
+Currently supported message chain components:
 
-- `platform`: The platform of the source (e.g., "qq", "wechat", "discord")
-- `identity`: The identity of the source (e.g., user ID, group ID)
-- `kwargs`: Additional arguments
+- `Source` Source message chain information, if it is a message received from a message platform, this component will be included at the beginning of the message chain, recording message information
+- `Plain` Plain text message
+- `Quote` Quote message
+- `Image` Image message
+- `AtAll` @all members message
+- `At` @specific member message
+- `Voice` Voice message
+    - Need to check message platform support
+- `Forward` Forward message
+    - Not supported on many platforms, not recommended to use
+- `File` File message
 
-### Types of Sources
+For specific usage, please check the definitions in the source code `pkg/platform/types/messages.py`.
 
-#### Person Source
+## Message Platform Events
 
-Represents a direct message from a person.
+These events are different from LangBot plugin events, they are an independent set of event systems for the message platform system. These events are the source events of LangBot messages, which can be obtained from each Query.message_event.
 
 ```python
-class PersonSource(Source):
-    """
-    Represents a direct message from a person.
-    """
-    
-    def __init__(self, platform, identity, **kwargs):
-        """
-        Initialize a person source.
-        
-        Args:
-            platform: The platform of the source
-            identity: The identity of the person
-            **kwargs: Additional arguments
-        """
-        super().__init__(platform, identity, **kwargs)
+    # For example in a plugin
+    @handler(GroupMessageReceived)
+    async def _(self, ctx: EventContext):
+        # Get the message platform event
+        message_event = ctx.query.message_event
 ```
 
-#### Group Source
+Message platform events are defined in `pkg/platform/types/events.py`.
 
-Represents a message from a group.
+## Other Entities
+
+In addition to the above entities, there are also entities such as `Friend` and `Group`, which are defined in `pkg/platform/types/entities.py`.
+They are generally included in the above event objects, from which you can get some information not included in the plugin events.
+
+## Accessing Message Platform Underlying API
+
+In order to smooth out the differences between various platforms, LangBot provides an abstraction layer on top of the message platform APIs, namely the content described above and the platform adapters in the `pkg/platform/sources` directory.  
+However, due to the large differences between platforms, the entities and API encapsulation in the abstraction layer are not complete. If your plugin needs to access specific platform functions, you can access the underlying API according to the following instructions.
+
+:::info
+The `adapter` here is the instantiated object of each adapter, corresponding to the `xxxAdapter(adapter.MessagePlatformAdapter)` class in each file under `pkg/platform/sources/`. It can be obtained from the plugin event's `query.adapter`, for example:
 
 ```python
-class GroupSource(Source):
-    """
-    Represents a message from a group.
-    """
-    
-    def __init__(self, platform, identity, **kwargs):
-        """
-        Initialize a group source.
-        
-        Args:
-            platform: The platform of the source
-            identity: The identity of the group
-            **kwargs: Additional arguments
-        """
-        super().__init__(platform, identity, **kwargs)
+    # For example in a plugin
+    @handler(GroupMessageReceived)
+    async def _(self, ctx: EventContext):
+        # Get the adapter object
+        adapter = ctx.query.adapter
 ```
+:::
 
-## Sender
 
-The `Sender` class represents the sender of a message.
-
-```python
-class Sender:
-    """
-    Represents the sender of a message.
-    """
-    
-    def __init__(self, identity, name=None, **kwargs):
-        """
-        Initialize a sender.
-        
-        Args:
-            identity: The identity of the sender
-            name: The name of the sender
-            **kwargs: Additional arguments
-        """
-        self.identity = identity
-        self.name = name
-        self.kwargs = kwargs
-```
-
-### Properties
-
-- `identity`: The identity of the sender (e.g., user ID)
-- `name`: The name of the sender
-- `kwargs`: Additional arguments
-
-## Events
-
-LangBot uses events to represent various actions in the system. Here are some common events related to messages:
-
-### PersonNormalMessageReceived
-
-Triggered when a normal message is received from a person.
-
-```python
-class PersonNormalMessageReceived(Event):
-    """
-    Triggered when a normal message is received from a person.
-    """
-    
-    def __init__(self, message):
-        """
-        Initialize the event.
-        
-        Args:
-            message: The received message
-        """
-        super().__init__()
-        self.message = message
-```
-
-### GroupNormalMessageReceived
-
-Triggered when a normal message is received in a group.
-
-```python
-class GroupNormalMessageReceived(Event):
-    """
-    Triggered when a normal message is received in a group.
-    """
-    
-    def __init__(self, message):
-        """
-        Initialize the event.
-        
-        Args:
-            message: The received message
-        """
-        super().__init__()
-        self.message = message
-```
-
-### MessageSent
-
-Triggered when a message is sent.
-
-```python
-class MessageSent(Event):
-    """
-    Triggered when a message is sent.
-    """
-    
-    def __init__(self, message):
-        """
-        Initialize the event.
-        
-        Args:
-            message: The sent message
-        """
-        super().__init__()
-        self.message = message
-```
-
-## Working with Messages in Plugins
-
-### Handling Messages
-
-```python
-from langbot.plugin import Plugin, handler
-from langbot.event import PersonNormalMessageReceived, GroupNormalMessageReceived
-from langbot.api import APIHost
-
-class MessageHandlerPlugin(Plugin):
-    def __init__(self, api_host: APIHost):
-        super().__init__(api_host)
-        self.api = api_host
-        
-    @handler(PersonNormalMessageReceived)
-    def on_person_message(self, ctx):
-        # Get the message
-        message = ctx.event.message
-        
-        # Get the content
-        content = message.content
-        
-        # Get the sender
-        sender = message.sender
-        
-        # Get the source
-        source = message.source
-        
-        # Do something with the message
-        if content == "!hello":
-            self.api.send_message(source, f"Hello, {sender.name}!")
-            
-    @handler(GroupNormalMessageReceived)
-    def on_group_message(self, ctx):
-        # Get the message
-        message = ctx.event.message
-        
-        # Get the content
-        content = message.content
-        
-        # Get the sender
-        sender = message.sender
-        
-        # Get the source
-        source = message.source
-        
-        # Do something with the message
-        if content == "!hello":
-            self.api.send_message(source, f"Hello, {sender.name}!")
-```
-
-### Sending Messages
-
-```python
-# Send a message to a person
-person_source = PersonSource("qq", "12345678")
-self.api.send_message(person_source, "Hello!")
-
-# Send a message to a group
-group_source = GroupSource("qq", "87654321")
-self.api.send_message(group_source, "Hello, everyone!")
-
-# Reply to a message
-self.api.reply_message(message, "This is a reply")
-```
-
-### Creating Messages
-
-```python
-from langbot.message import Message, PersonSource, Sender
-
-# Create a person source
-source = PersonSource("qq", "12345678")
-
-# Create a sender
-sender = Sender("87654321", "John Doe")
-
-# Create a message
-message = Message(
-    source=source,
-    content="Hello, World!",
-    message_id="msg123",
-    sender=sender,
-    time=1234567890
-)
-```
-
-## Platform-Specific Considerations
-
-Different messaging platforms may have different capabilities and limitations. Here are some platform-specific considerations:
-
-### QQ
-
-- Supports text, images, and rich media
-- Group messages can mention specific users
-- Message IDs are platform-specific
-
-### WeChat
-
-- Supports text, images, and rich media
-- Limited API for personal accounts
-- More features available for official accounts
-
-### Discord
-
-- Supports text, images, embeds, and rich formatting
-- Has a robust API with many features
-- Supports slash commands
-
-### Telegram
-
-- Supports text, images, and rich formatting
-- Has a comprehensive API
-- Supports inline bots and commands
-
-## Best Practices
-
-- Always check the platform before using platform-specific features
-- Handle message content carefully, as it may contain special formatting
-- Use the appropriate source type (PersonSource or GroupSource) when sending messages
-- Consider rate limits and message size limits when sending messages
-- Handle errors gracefully, as message sending may fail for various reasons
+| Platform | Adapter | Access Method | Description |
+| --- | --- | --- | --- |
+| OneBot v11| aiocqhttp | adapter.bot | The bot object corresponds to the CQHttp object of [aiocqhttp](https://github.com/nonebot/aiocqhttp), please refer to the aiocqhttp documentation for detailed usage |
+| QQ Official API | qqofficial | adapter.bot | The bot object is the SDK object under libs/qq_official_api, for detailed usage, you can refer to the way of initiating HTTP requests in the `send_group_text_msg` method in `QQOfficialClient` in libs/qq_official_api/api.py, please check the QQ official API documentation for specific interface documentation|
+| Personal WeChat | gewechat | adapter.bot | The bot object is the GewechatClient object of [hanfangyuan4396/gewechat-client](https://github.com/hanfangyuan4396/gewechat-python), please refer to the documentation for detailed usage |
+| WeCom | wecom | adapter.bot | Refer to the way of initiating HTTP requests in the `send_image` method in `WecomClient` in libs/wecom_api/api.py, please check the WeCom API documentation for specific interface documentation |
+| WeChat Official Account | officialaccount | - | Please refer to the interface documentation information in the WeChat Official Account API documentation, the relevant credential information can be obtained from adapter.bot |
+| Feishu | lark | adapter.api_client | Feishu SDK's API Client object, please refer to [oapi-sdk-python](https://github.com/larksuite/oapi-sdk-python) |
+| DingTalk | dingtalk | - | Please refer to the DingTalk API documentation, the relevant credential information can be obtained from adapter.bot |
+| Discord | discord | adapter.bot | The bot object is the Discord object of [Rapptz/discord.py](https://github.com/Rapptz/discord.py), please refer to the documentation for detailed usage |
+| Telegram | telegram | adapter.bot | The bot object is the Telegram object of [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot), please refer to the documentation for detailed usage |
+| Slack | slack | adapter.bot | The bot object is the object in libs/slack_api/api.py, please refer to its code and Slack SDK for detailed usage |
