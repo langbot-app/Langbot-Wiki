@@ -1,113 +1,31 @@
-# Configure Dialogue Models
+# Configure Models (Models)
 
-LangBot supports multiple model providers, including OpenAI, Anthropic, Moonshot, Baichuan, and more.
+Models will be used by pipelines to process messages. The first model you configure will be set as the model for the default pipeline.
 
-## Configuration Methods
+![arch](/assets/image/zh/deploy/models/arch.png)
 
-### Method 1: Configure via WebUI
+You can add multiple models, and then select which model to use in the pipeline.
 
-After deploying LangBot, access the WebUI at `http://your-server-ip:5300` and configure the models in the "Models" section.
+![Model Configuration](/assets/image/zh/deploy/models/model_config.png)
 
-### Method 2: Configure via Configuration File
+Enter these four parameters: `Model Name`, `Model Provider`, `Request URL`, and `API Key`, then submit.
 
-Edit the `data/config.yaml` file and add your model configuration under the `providers` section:
+For model capabilities, please choose according to the specific model characteristics:
 
-```yaml
-providers:
-  - id: openai
-    type: openai
-    config:
-      api_key: "your-api-key"
-      base_url: "https://api.openai.com/v1"
-      models:
-        - gpt-3.5-turbo
-        - gpt-4
-        - gpt-4-turbo
-```
+- Visual Capability: Needs to be enabled to recognize images
 
-## Supported Providers
+- Function Calling: Needs to be enabled to use Agent tools in conversations
 
-### OpenAI
+:::info
 
-```yaml
-providers:
-  - id: openai
-    type: openai
-    config:
-      api_key: "your-api-key"
-      base_url: "https://api.openai.com/v1"
-      models:
-        - gpt-3.5-turbo
-        - gpt-4
-        - gpt-4-turbo
-```
+*If you don't have an API Key, you can [get one from this relay station](https://api.qhaigc.net/)*
 
-### Anthropic
+If you need to use third-party API relays or other model providers,
 
-```yaml
-providers:
-  - id: anthropic
-    type: anthropic
-    config:
-      api_key: "your-api-key"
-      models:
-        - claude-3-opus-20240229
-        - claude-3-sonnet-20240229
-        - claude-3-haiku-20240307
-```
+Select `OpenAI`
 
-### Moonshot
+Fill in the relay's Base URL for the Request URL, for example:
 
-```yaml
-providers:
-  - id: moonshot
-    type: openai
-    config:
-      api_key: "your-api-key"
-      base_url: "https://api.moonshot.cn/v1"
-      models:
-        - moonshot-v1-8k
-        - moonshot-v1-32k
-        - moonshot-v1-128k
-```
+![Model Configuration](/assets/image/zh/deploy/models/other_provider.png)
 
-### OneAPI
-
-```yaml
-providers:
-  - id: oneapi
-    type: openai
-    config:
-      api_key: "your-api-key"
-      base_url: "https://your-oneapi-url/v1"
-      models:
-        - gpt-3.5-turbo
-        - gpt-4
-        - claude-3-opus-20240229
-```
-
-## Default Model Configuration
-
-You can set the default model in the `data/config.yaml` file:
-
-```yaml
-system:
-  default_provider: openai
-  default_model: gpt-3.5-turbo
-```
-
-## Testing Your Configuration
-
-After configuring your models, you can test them by sending a message to your bot:
-
-```
-!model list
-```
-
-This command will list all available models.
-
-To switch to a specific model:
-
-```
-!model use gpt-4
-```
+:::
