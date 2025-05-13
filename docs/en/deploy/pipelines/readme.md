@@ -1,148 +1,48 @@
-# Modify Dialogue Pipeline
+# Modify Dialogue Pipeline Configuration (Pipelines)
 
-The dialogue pipeline is the core processing flow of LangBot, which handles user messages and generates responses.
+The pipeline controls the processing flow after receiving a message, as well as the information exchange with the large language model. Each bot can be bound to one pipeline, and the same pipeline can be bound to multiple bots.
 
-## Pipeline Structure
+LangBot automatically creates a default pipeline when first started. When creating a bot, it is automatically bound to the default pipeline. When creating the first model, it is automatically set as the model for the default pipeline.
 
-![pipeline](/assets/image/zh/deploy/bots/arch.png)
+![arch](/assets/image/zh/deploy/pipelines/arch.png)
 
-The pipeline consists of the following components:
+You can create multiple pipelines for different bots to adapt to different scenarios.
 
-1. **Trigger**: Determines whether to process a message
-2. **Moderation**: Filters and processes messages before sending to the model
-3. **AI**: Sends the message to the LLM and receives a response
-4. **Output**: Processes the model's response before sending it back to the user
 
-## Configuration Methods
 
-### Method 1: Configure via WebUI
+The current pipeline can be configured with the following features:
 
-After deploying LangBot, access the WebUI at `http://your-server-ip:5300` and configure the pipeline in the "Pipeline" section.
+## AI Capabilities
 
-### Method 2: Configure via Configuration File
+You can choose to use: regular large language model `Built-in Agent`, [`Dify`](https://dify.ai/), [`Alibaba Cloud Bailian`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs)
 
-Edit the `data/config.yaml` file and modify the `pipelines` section:
+AI capabilities are mainly divided into two parts: selecting the runner and configuring runner parameters.
 
-```yaml
-pipelines:
-  - id: default
-    components:
-      - id: trigger
-        type: trigger
-        config:
-          # Trigger configuration
-      - id: moderation
-        type: moderation
-        config:
-          # Moderation configuration
-      - id: ai
-        type: ai
-        config:
-          # AI configuration
-      - id: output
-        type: output
-        config:
-          # Output configuration
-```
+The runner defines how to schedule the large model to process messages. The default is `Built-in Agent`, which is a multi-round Agent strategy implemented by LangBot. Only when this runner is selected will the models and tools configured internally in LangBot be used.
 
-## Component Configuration
+*<!-- ![edit_pipeline](/assets/image/zh/deploy/pipelines/edit_pipeline_ai.png) -->*
 
-### Trigger Component
+<img width="400px" src="/assets/image/zh/deploy/pipelines/edit_pipeline_ai.png" alt="edit_pipeline" />
 
-The trigger component determines whether a message should be processed by the pipeline.
+You can also choose to use external LLMOps platforms such as `Dify`, [`Alibaba Cloud Bailian`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs). In this case, the models, prompts, tools, and other resources used will be provided by the LLMOps platform.
 
-```yaml
-- id: trigger
-  type: trigger
-  config:
-    # Whether to respond to messages that start with a command prefix
-    command_prefix: true
-    # Command prefixes (characters that trigger the bot)
-    command_prefixes:
-      - "!"
-      - "！"
-    # Whether to respond to messages that mention the bot
-    at: true
-    # Whether to respond to private messages
-    private: true
-    # Whether to respond to group messages without being triggered by command prefix or mention
-    group_chat: false
-```
+<img width="400px" src="/assets/image/zh/deploy/pipelines/more_runner.png" alt="more_runner" />
 
-### Moderation Component
+- For detailed steps on connecting to Dify, you can [refer to the tutorial](/en/workshop/dify-service-api.html).
 
-The moderation component filters and processes messages before sending them to the model.
+### Conversation Variables
 
-```yaml
-- id: moderation
-  type: moderation
-  config:
-    # Whether to enable sensitive word filtering
-    sensitive_word_filter: true
-    # Whether to enable rate limiting
-    rate_limit: true
-    # Rate limit configuration
-    rate_limit_config:
-      # Number of messages allowed per time period
-      count: 10
-      # Time period in seconds
-      period: 60
-    # Whether to enable context management
-    context: true
-    # Context configuration
-    context_config:
-      # Maximum number of messages to include in the context
-      max_count: 10
-      # Maximum context length in tokens
-      max_tokens: 4000
-```
+When using Dify or Alibaba Cloud Bailian, LangBot explicitly passes the following parameters, which you can add to the start node of the Dify workflow:
 
-### AI Component
+- `user_message_text`: The plain text of the user message
+- `session_id`: User session ID, `person_<id>` for private chat, `group_<id>` for group chat
+- `conversation_id`: String, user session ID, generated by LangBot. It will be regenerated after the user resets the session
+- `msg_create_time`: Numeric type, timestamp (seconds) when this message was received
 
-The AI component sends the message to the LLM and receives a response.
+You can [customize any variable through plugins](/en/plugin/dev/api-ref.html#%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%8F%98%E9%87%8F).
 
-```yaml
-- id: ai
-  type: ai
-  config:
-    # System prompt
-    system_prompt: "You are LangBot, a helpful assistant."
-    # Whether to enable function calling
-    function_call: true
-    # Whether to enable streaming responses
-    stream: true
-```
+![Dify Workflow Start Node Configuration](/assets/image/zh/workshop/dify-service-api/dify_workflow_var.png)
 
-### Output Component
+## Other Configurations
 
-The output component processes the model's response before sending it back to the user.
-
-```yaml
-- id: output
-  type: output
-  config:
-    # Whether to enable message splitting for long responses
-    split: true
-    # Maximum length of a single message
-    max_length: 1000
-```
-
-## Multiple Pipelines
-
-You can configure multiple pipelines for different scenarios:
-
-```yaml
-pipelines:
-  - id: default
-    # Default pipeline configuration
-  - id: image-generation
-    # Pipeline for image generation
-  - id: code-assistant
-    # Pipeline for code assistance
-```
-
-To switch between pipelines, use the following command:
-
-```
-!pipeline use image-generation
-```
+Please refer to the descriptions in the configuration form.

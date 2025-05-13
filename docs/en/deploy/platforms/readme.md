@@ -1,4 +1,4 @@
-# Configure Bots
+# Configure Bots (Bots)
 
 Bots are used to receive message events from messaging platforms and call pipelines to process messages.
 
