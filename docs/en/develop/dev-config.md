@@ -1,160 +1,41 @@
 # Development Configuration
 
-This guide explains how to set up a development environment for LangBot and contribute to the project.
+> This document is based on LangBot version 4.0
 
-## Prerequisites
+LangBot is divided into frontend and backend. The frontend is developed using Next.js + shadcn, and the backend is developed using Quart (an asynchronous version of Flask).
 
-Before you start, make sure you have the following installed:
+## Backend
 
-- Python 3.10 or higher
-- Git
-- Node.js 16 or higher (for WebUI development)
-- A code editor (VS Code recommended)
+The code is located in the `pkg` directory and is started by the `main.py` file in the root directory.
 
-## Setting Up the Development Environment
-
-1. Fork the LangBot repository on GitHub
-2. Clone your fork:
-
-```bash
-git clone https://github.com/your-username/LangBot.git
-cd LangBot
-```
-
-3. Create a virtual environment:
-
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-4. Install dependencies:
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
-pip install -r requirements-dev.txt
 ```
 
-5. Set up pre-commit hooks:
+Start the backend
 
 ```bash
-pre-commit install
+python main.py
 ```
 
-## Project Structure
+At this point, the configuration file will be automatically generated in the `data/config.yaml` file.
 
-The LangBot project is organized as follows:
+## Frontend
 
-```
-LangBot/
-├── data/                  # Data directory (configs, plugins, etc.)
-├── langbot/               # Core package
-│   ├── bot/               # Bot implementations
-│   ├── pipeline/          # Pipeline components
-│   ├── model/             # Model providers
-│   ├── plugin/            # Plugin system
-│   ├── webui/             # WebUI backend
-│   └── utils/             # Utility functions
-├── tests/                 # Test cases
-├── web/                   # WebUI frontend
-├── main.py                # Entry point
-└── requirements.txt       # Dependencies
-```
+The code is located in the `web` directory and requires Node.js.
 
-## Running LangBot in Development Mode
-
-To run LangBot in development mode:
-
-```bash
-python main.py --debug
-```
-
-This will start LangBot with debug logging enabled.
-
-## WebUI Development
-
-To develop the WebUI:
-
-1. Navigate to the web directory:
-
-```bash
-cd web
-```
-
-2. Install dependencies:
+Install dependencies
 
 ```bash
 npm install
 ```
 
-3. Start the development server:
+Go to the `web/src/app/infra/http/HttpClient.ts` file and change `export const httpClient = new HttpClient('/');` at the bottom to `export const httpClient = new HttpClient('http://localhost:5300');` to ensure the frontend can access the standalone backend.
+
+Start debugging
 
 ```bash
 npm run dev
 ```
-
-4. In another terminal, start LangBot with the WebUI enabled:
-
-```bash
-python main.py --webui
-```
-
-## Testing
-
-LangBot uses pytest for testing. To run the tests:
-
-```bash
-pytest
-```
-
-To run a specific test:
-
-```bash
-pytest tests/test_file.py::test_function
-```
-
-## Code Style
-
-LangBot follows the PEP 8 style guide with some modifications. We use black for code formatting and isort for import sorting.
-
-To format your code:
-
-```bash
-black langbot tests
-isort langbot tests
-```
-
-## Creating a Pull Request
-
-1. Create a new branch for your feature or bugfix:
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-2. Make your changes and commit them:
-
-```bash
-git add .
-git commit -m "Add your feature or fix"
-```
-
-3. Push your branch to GitHub:
-
-```bash
-git push origin feature/your-feature-name
-```
-
-4. Create a pull request on GitHub
-
-## Documentation
-
-When adding new features, make sure to update the documentation. The documentation is written in Markdown and is located in the [QChatGPT-Wiki](https://github.com/RockChinQ/QChatGPT-Wiki) repository.
-
-## Getting Help
-
-If you need help with development, you can:
-
-- Join the [community chat](https://qm.qq.com/q/Nnz7Vbj8OU)
-- Open an issue on [GitHub](https://github.com/RockChinQ/LangBot/issues)
-- Check the existing documentation and code for examples
