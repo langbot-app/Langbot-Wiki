@@ -12,7 +12,7 @@ The documentation is divided into the following sections:
 
 - Deployment and Usage (Must Read): Detailed steps for deploying and using LangBot
 - Plugins: Information related to plugin usage and development
-- Workshops: Many excellent use cases for LangBot
+- Practice: Many excellent use cases for LangBot
 - Development: Information related to participating in LangBot development
 
 ## Usage Examples
@@ -20,6 +20,7 @@ The documentation is divided into the following sections:
 ![private_chat](/assets/image/insight/private_chat.png)
 
 ![group_chat](/assets/image/insight/group_chat.png)
+
 
 ## Quick Start Guide
 
