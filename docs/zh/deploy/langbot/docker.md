@@ -25,6 +25,10 @@ cd LangBot
 docker compose up
 ```
 
+:::info
+如果你的主机位于中国大陆，可以考虑把 `docker-compose.yaml` 文件中的镜像名称改为`docker.langbot.app/langbot-public/rockchin/langbot:latest`以使用我们提供的镜像源。
+:::
+
 首次启动会输出创建配置文件的提示，请继续按照文件配置。
 
 容器会映射`5300`端口供 WebUI 使用，您可以访问`http://127.0.0.1:5300`查看 WebUI。  
