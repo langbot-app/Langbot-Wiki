@@ -1,298 +1,308 @@
 # Plugin Development Tutorial
 
-This tutorial will guide you through the process of developing a plugin for LangBot.
+> Please read the [Plugin Introduction page](/en/plugin/plugin-intro) first  
+> It is recommended to read the source code of this project first to understand the project architecture
 
-## Plugin Structure
+> For questions and requirements, please open an issue in the repository  
+> **Try to solve problems on your own before asking** 
 
-A LangBot plugin consists of the following components:
+:::info Table of Contents
+[[toc]]
+:::
 
-1. A main Python file that contains the plugin logic
-2. A `manifest.yaml` file that describes the plugin
-3. Optional additional files for resources, templates, etc.
+## 💬 Introduction
 
-## Creating a Basic Plugin
+This page explains the steps for developing a regular plugin. Plugins have two methods: event listeners and content functions.  
+Event listeners can respond to certain events when triggered and change behavior. Content functions can be called by large language models, please check the plugin introduction page for details.
 
-Let's create a simple "Hello World" plugin that responds to a specific command.
+## 💻 Quick Start
 
-### Step 1: Create the Plugin Directory
+Use [HelloPlugin](https://github.com/langbot-app/HelloPlugin) as a template to generate a plugin code repository, then clone the repository code to the `plugins` directory.
 
-Create a directory for your plugin in the `data/plugins` directory:
+Modify the parts that need to be changed in the plugin's README.md file.
 
-```bash
-mkdir -p data/plugins/hello-plugin
+Edit `main.py` and enter the following content:
+
+```Python
+from pkg.plugin.context import register, handler, llm_func, BasePlugin, APIHost, EventContext
+from pkg.plugin.events import *  # Import event classes
+
+
+"""
+When receiving a private chat or group chat message "hello", reply with "hello, <sender id>!" or "hello, everyone!"
+"""
+
+
+class HelloPlugin(BasePlugin):
+
+    # Triggered when the plugin is loaded
+    def __init__(self, host: APIHost):
+        pass
+
+    # Asynchronous initialization
+    async def initialize(self):
+        pass
+
+    # Triggered when a personal message is received
+    @handler(PersonNormalMessageReceived)
+    async def person_normal_message_received(self, ctx: EventContext):
+        msg = ctx.event.text_message  # Here event is the PersonNormalMessageReceived object
+        if msg == "hello":  # If the message is hello
+
+            # Output debug information
+            self.ap.logger.debug("hello, {}".format(ctx.event.sender_id))
+
+            # Reply with message "hello, <sender id>!"
+            ctx.add_return("reply", ["hello, {}!".format(ctx.event.sender_id)])
+
+            # Prevent the default behavior of this event (getting a reply from the API)
+            ctx.prevent_default()
+
+    # Triggered when a group message is received
+    @handler(GroupNormalMessageReceived)
+    async def group_normal_message_received(self, ctx: EventContext):
+        msg = ctx.event.text_message  # Here event is the GroupNormalMessageReceived object
+        if msg == "hello":  # If the message is hello
+
+            # Output debug information
+            self.ap.logger.debug("hello, {}".format(ctx.event.sender_id))
+
+            # Reply with message "hello, everyone!"
+            ctx.add_return("reply", ["hello, everyone!"])
+
+            # Prevent the default behavior of this event (getting a reply from the API)
+            ctx.prevent_default()
+
+    # Triggered when the plugin is unloaded
+    def __del__(self):
+        pass
+
 ```
 
-### Step 2: Create the Manifest File
+:::info
 
-Create a `manifest.yaml` file in your plugin directory:
+Interpreting this plugin program
+
+- `import pkg.plugin.context` imports `register (used to register plugin classes)`, `handler (used to register event listeners)`, `llm_func (used to register content functions)`, `BasePlugin (plugin base class)`, `APIHost (API host)`, `EventContext (event context class)` and other content
+- `import pkg.plugin.events` imports all supported event classes
+- Declare class `HelloPlugin` inheriting from `BasePlugin`, this class can be named arbitrarily, the plugin name is only related to the parameter when calling `register`
+- Declare the `__init__` method of this class, this method is optional, the code in it will be executed when the main program loads the plugin at startup
+- The plugin class also supports adding an asynchronous method `async def initialize(self)` for asynchronous initialization
+- `@handler` marks the method `person_normal_message_received` as an event listener, handling the `PersonNormalMessageReceived` (triggered when a private chat message is received and before getting an OpenAI reply) event, this method can be named arbitrarily, the bound event is only related to the parameter in `handler`, more supported events can be found in the `pkg.plugin.events` file or check the `API` section below
+- Output debug information through the `self.ap.logger` logger, the `ap` object in the plugin class parent class is the context object of the entire program, you can access all objects in the program through this object
+- The event listener method gets a second parameter `ctx` which is the context of this event, the `event` in it is the event object of this event, you can extract related parameters from it, for specific parameters that can be obtained from each event, please check the comments of each event class in the `pkg.plugin.events` file
+- The event listener method extracts the `text_message` parameter from the parameters, checks if it is `hello`, if so, sets the return value `reply` to `["hello, {}!".format(ctx.event.sender_id)]`, then calls the `ctx.prevent_default()` method to prevent the original program's default behavior
+    - For return values supported by each event, please check the comments of each event in `pkg.plugin.events`
+- Register the `GroupNormalMessageReceived` event with similar code to handle group messages
+
+After writing and saving, restart the main program, go to the WebUI plugin page to see the plugin
+:::
+
+This plugin will implement: replying with `hello, <sender QQ number>!` when receiving a `hello` message in private chat, and replying with `hello, everyone!` when receiving a `hello` message in group chat.
+
+### Writing the Manifest File
+
+Starting from LangBot 4.0, manifest files will be used to register plugins.  
+Please create a new file `manifest.yaml` in the same directory as main.py. If it already exists, please modify it according to the format below.
 
 ```yaml
-name: HelloPlugin
-version: 1.0.0
-description: A simple hello world plugin
-author: Your Name
-entry: hello.py
-requirements:
-  - requests>=2.28.0
+apiVersion: v1  # Do not change
+kind: Plugin  # Do not change
+metadata:
+  # author and name uniquely identify a plugin
+  author: langbot  # Plugin author, change to your name
+  name: Hello  # Plugin name, change to your plugin name
+  repository: 'https://github.com/langbot-app/HelloPlugin'  # Plugin repository address, change to your plugin GitHub repository address
+  version: 0.1.0  # Plugin version, change to your plugin version
+  description:  # Plugin description, change to your plugin description, supports multiple languages. Language codes follow the RFC 1766 standard.
+    en_US: Plugin for sending hello
+    zh_CN: 示例插件
+  label:  # Plugin display name, supports multiple languages. The WebUI will display the label in the corresponding language. Language codes follow the RFC 1766 standard.
+    en_US: Hello
+    zh_CN: Hello
+spec:
+  # Plugin configuration (optional), can configure multiple items
+  config:
+    - name: github_token  # Configuration item name
+      label:  # Configuration item display name, supports multiple languages. Language codes follow the RFC 1766 standard.
+        en_US: Github Token
+        zh_CN: Github Token
+      description:  # Configuration item description, supports multiple languages. Optional.
+        en_US: Image downloading requires a Github token
+        zh_CN: If not filled in, image download may fail
+      type: string  # Configuration item type, supports string, integer, float, boolean, etc.
+      default: ''  # Configuration item default value
+      required: false  # Whether the configuration item is required
+execution:
+  python:
+    path: main.py  # Plugin main program path, must be the same as the file name of the plugin entry code above
+    attr: HelloPlugin  # Plugin class name, must be the same as the class name declared in the code above
 ```
 
-### Step 3: Create the Plugin Code
+:::info
+Configuration item supported types:
 
-Create a `hello.py` file in your plugin directory:
+- string: String
+- integer: Integer
+- float: Floating point number
+- boolean: Boolean value
+- array[string]: String array
+- select: Dropdown box, can select one option from multiple options
+    - Need to configure the options option, indicating the options in the dropdown box
+
+    ```yaml
+    - name: mode
+      label:
+        en_US: Mode
+        zh_CN: Mode
+      type: select
+      options:
+        - name: mode1
+          label:
+            en_US: Mode 1
+            zh_CN: Mode 1
+        - name: mode2
+          label:
+            en_US: Mode 2
+            zh_CN: Mode 2
+    ```
+- prompt-editor: Prompt editor.
+- llm-model-selector: LLM model selector.
+
+After the user modifies the configuration items through the WebUI, the plugin can get the values of the configuration items in self.config.
+:::
+
+
+## ❗ Standards (Important)
+
+- Please keep each plugin in a separate directory for management, it is recommended to create a repository on Github to store a single plugin for easy retrieval and updates
+- Naming conventions (important):
+    - Plugin author: Use English, case insensitive, such as `RockChinQ`
+    - Plugin name: Use `PascalCase`, such as `Hello`, `ExamplePlugin`, `ChineseCommands`, etc.
+    - Plugin repository: Please use PascalCase, it is recommended to be the same as the plugin name, such as `HelloPlugin`
+    - Plugin description: It is recommended to include the phrase `LangBot Plugin`
+- Multiple Python program files can be stored in one directory to separate the various functions of the plugin for easy management by developers, but it is not recommended to register multiple plugins in one directory
+- Please specify the dependencies required by the plugin in the `requirements.txt` file in the plugin directory, the program will automatically install the dependencies when obtaining this plugin from the repository
+
+## 🪝 Content Functions
+
+`Content functions` implemented through [GPT's Function Calling capability](https://platform.openai.com/docs/guides/gpt/function-calling), which is a function embedded in the conversation and automatically called by GPT.
+
+> Your plugin does not necessarily have to include content functions, please check the content function page to understand this feature first
+
+### Content Function Writing Steps
+
+1️⃣ Please first follow the steps above to write your plugin's basic structure, now please delete (of course you can also keep them, just for simplicity) the various class functions decorated by `@handler` in the above plugin content
+
+<details>
+<summary>Class structure after deletion</summary>
 
 ```python
-from langbot.plugin import Plugin, handler
-from langbot.event import PersonNormalMessageReceived
-from langbot.api import APIHost
 
 class HelloPlugin(Plugin):
-    def __init__(self, api_host: APIHost):
-        super().__init__(api_host)
-        self.api = api_host
-        
-    @handler(PersonNormalMessageReceived)
-    def on_person_message(self, ctx):
-        # Get the message content
-        message = ctx.event.message.content
-        
-        # Check if the message is the command we want to handle
-        if message == "!hello":
-            # Prevent the default handling (don't send to LLM)
-            ctx.prevent_default()
-            
-            # Send a response
-            self.api.send_message(
-                ctx.event.message.source,
-                "Hello, World! This is my first LangBot plugin."
-            )
+
+    # Triggered when the plugin is loaded
+    def __init__(self, plugin_host: APIHost):
+        pass
+
+    # Triggered when the plugin is unloaded
+    def __del__(self):
+        pass
 ```
 
-### Step 4: Install and Test the Plugin
+</details>
 
-1. Restart LangBot or use the `!plugin reload` command
-2. Send the `!hello` command to your bot
-3. The bot should respond with "Hello, World! This is my first LangBot plugin."
+2️⃣ Now we add the following function to the position of the functions we just deleted (as a class method)
 
-## Event Handling
+```Python
 
-LangBot uses an event-driven architecture. Plugins can register handlers for various events:
+# Function to add
+@llm_func(name="access_the_web")  # Set function name
+async def access_web(self, query, url: str):
+    """Call this function to search about the question before you answer any questions.
+    - Do not search through baidu.com at any time.
+    - If you need to search somthing, visit https://www.google.com/search?q=xxx.
+    - If user ask you to open a url (start with http:// or https://), visit it directly.
+    - Summary the plain content result by yourself, DO NOT directly output anything in the result you got.
 
-```python
-@handler(PersonNormalMessageReceived)
-def on_person_message(self, ctx):
-    # Handle the event
-    pass
-```
+    Args:
+        url(str): url to visit
 
-Common events include:
+    Returns:
+        str: plain text content of the web page
+    """
+    import requests
+    from bs4 import BeautifulSoup
+    # You need to first use
+    # pip install beautifulsoup4
+    # to install dependencies
 
-- `PersonNormalMessageReceived`: Received a message from a person
-- `GroupNormalMessageReceived`: Received a message in a group
-- `GroupInvitationReceived`: Received an invitation to join a group
-- `FriendRequestReceived`: Received a friend request
+    r = requests.get(
+        url,
+        timeout=10,
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.183"
+        }
+    )
+    soup = BeautifulSoup(r.text, 'html.parser')
 
-The `ctx` parameter provides access to:
+    s = soup.get_text()
 
-- `ctx.event`: The event that triggered the handler
-- `ctx.prevent_default()`: Prevents the default handling of the event
-- `ctx.add_return(key, value)`: Adds a return value to the event
+    # Remove extra blank lines or lines with only \t and spaces
+    s = re.sub(r'\n\s*\n', '\n', s)
 
-## API Access
+    if len(s) >= 512:  # Truncate the first 512 characters of the plain text content of the web page
+        return s[:512]
 
-The `APIHost` provides access to LangBot's API:
-
-```python
-# Send a message
-self.api.send_message(source, content)
-
-# Get user information
-user_info = self.api.get_user_info(user_id)
-
-# Get group information
-group_info = self.api.get_group_info(group_id)
-
-# Call the LLM
-response = self.api.call_llm(prompt, model="gpt-3.5-turbo")
-```
-
-## LLM Function Registration
-
-Plugins can register functions that can be called by the LLM during conversations:
-
-```python
-import requests
-from langbot.plugin import Plugin, llm_func
-from langbot.api import APIHost
-
-class WebSearchPlugin(Plugin):
-    def __init__(self, api_host: APIHost):
-        super().__init__(api_host)
-        self.api = api_host
-        
-    @llm_func(name="search_the_web")
-    def search_web(self, query: str) -> str:
-        """
-        Search the web for information.
-        
-        Args:
-            query: The search query
-            
-        Returns:
-            The search results
-        """
-        # Implement web search logic
-        response = requests.get(
-            "https://api.search.com/search",
-            params={"q": query}
-        )
-        return response.json()["results"]
-```
-
-The LLM can then call this function during conversations:
+    return s
 
 ```
-User: What's the weather in New York?
-Bot: Let me check that for you.
-[Function call: search_the_web("weather in New York")]
-The current weather in New York is 72°F and sunny.
-```
 
-## Configuration
+#### Please note:
 
-Plugins can have configuration options that users can set:
+- The function's comments must be strictly written according to the required format, please check [this document](https://github.com/RockChinQ/CallingGPT/wiki/1.-Function-Format#function-format) for the specific format
+- Content functions and `event listeners decorated with @handler` can coexist in the same plugin and are both controlled by the plugin switch
+- Make sure that the model you are using supports the function calling feature
 
-```python
-from langbot.plugin import Plugin, config_field
-from langbot.api import APIHost
+3️⃣ Now your program has web access capability, restart the program, ask the bot about online content or directly send article links requesting summaries.
 
-class WeatherPlugin(Plugin):
-    def __init__(self, api_host: APIHost):
-        super().__init__(api_host)
-        self.api = api_host
-        
-    @config_field(name="api_key", description="API key for the weather service")
-    def set_api_key(self, api_key: str):
-        self.api_key = api_key
-```
+- This is just an example, for more efficient web access capability support plugin, please check [WebwlkrPlugin](https://github.com/RockChinQ/WebwlkrPlugin)
 
-Users can set these options using the WebUI or the `!plugin config` command:
+## 📦 Publishing to the Plugin Market
 
-```
-!plugin config WeatherPlugin api_key=your-api-key
-```
+When your plugin development is complete, please upload it to GitHub and [open an issue in the LangBot repository](https://github.com/RockChinQ/LangBot/issues/new?assignees=&labels=%E7%8B%AC%E7%AB%8B%E6%8F%92%E4%BB%B6&projects=&template=submit-plugin.yml&title=%5BPlugin%5D%3A+%E8%AF%B7%E6%B1%82%E7%99%BB%E8%AE%B0%E6%96%B0%E6%8F%92%E4%BB%B6). After review, it will be added to the plugin market and will be visible on the LangBot WebUI plugin page's plugin market in about half an hour.
 
-## Persistent Storage
+![](/assets/image/zh/plugin/dev/plugin_dev_tutor_01.png)
 
-Plugins can store data persistently:
+## 📄 Glossary
 
-```python
-# Store data
-self.api.storage.set("key", "value")
+### Description
 
-# Retrieve data
-value = self.api.storage.get("key")
+The `ctx: EventContext` object obtained by the event listener method can be viewed in the `pkg.plugin.context` module for its structure. The `event` attribute of the `ctx` object is the event object of this event, from which you can extract related parameters. For specific parameters that can be obtained from each event, please check the comments of each event class in the `pkg.plugin.events` file.
+Event return values are all **optional**, you can submit return values by calling `ctx.add_return(key: str, ret)`
 
-# Check if a key exists
-exists = self.api.storage.has("key")
+### Events
 
-# Delete a key
-self.api.storage.delete("key")
-```
+If an event is an event in a request (user sending a message), its event object will contain a `query` object, which includes the context data in the processing of this request (i.e., the process of handling a user sending a message, a request process may trigger multiple events).  
+For all supported events, please check the comments of each event class in the `pkg.plugin.events` file.  
+For `message chain components`, please check [Message Platform Entities](./messages)
 
-## Advanced Features
+### BasePlugin Structure
 
-### Command Registration
+#### self.ap
 
-Plugins can register commands that users can use:
+Accessing `self.ap` in the plugin's methods is an object of the `pkg.core.app.Application` class, which contains the context object of the entire program, you can access all objects in the program through this object.
 
-```python
-from langbot.plugin import Plugin, command
-from langbot.api import APIHost
+#### self.host
 
-class EchoPlugin(Plugin):
-    def __init__(self, api_host: APIHost):
-        super().__init__(api_host)
-        self.api = api_host
-        
-    @command(name="echo", description="Echo a message")
-    def echo_command(self, args: str) -> str:
-        """
-        Echo the provided message.
-        
-        Usage: !echo <message>
-        """
-        return args
-```
+Accessing `self.host` in the plugin's methods is an object of the `pkg.plugin.context.APIHost` class, which provides some APIs of the main program, please check its source code for details.
 
-Users can then use the command:
+### API Reference
 
-```
-!echo Hello, World!
-```
+For APIs that plugins can call, please check [API Reference](./api-ref)
 
-### Event Return Values
+### Plugin Development Group
 
-Handlers can add return values to events:
+Plugin development, publishing, and discussion
 
-```python
-@handler(PersonNormalMessageReceived)
-def on_person_message(self, ctx):
-    # Add a return value
-    ctx.add_return("reply", ["This is a reply"])
-```
-
-### Component Extension
-
-Plugins can extend LangBot's core components:
-
-```python
-from langbot.plugin import Plugin, component_extension
-from langbot.api import APIHost
-
-class CustomTriggerPlugin(Plugin):
-    def __init__(self, api_host: APIHost):
-        super().__init__(api_host)
-        self.api = api_host
-        
-    @component_extension("trigger")
-    def custom_trigger(self, component, message):
-        # Implement custom trigger logic
-        if message.content.startswith("custom:"):
-            return True
-        return None  # Let the default trigger handle it
-```
-
-## Publishing Your Plugin
-
-To publish your plugin:
-
-1. Create a GitHub repository for your plugin
-2. Add a README.md file with installation and usage instructions
-3. Add your plugin to the [LangBot Plugin Market](https://plugins.langbot.app)
-
-## Best Practices
-
-- Keep your plugin focused on a specific functionality
-- Handle errors gracefully
-- Provide clear documentation
-- Follow Python best practices
-- Test your plugin thoroughly
-- Keep dependencies minimal
-
-## Example Plugins
-
-Check out these example plugins for inspiration:
-
-- [WebSearch](https://github.com/RockChinQ/WebSearch): Search the web for information
-- [ImageGen](https://github.com/RockChinQ/ImageGen): Generate images using AI
-- [Schedule](https://github.com/RockChinQ/Schedule): Schedule messages to be sent at specific times
-
-## Troubleshooting
-
-If you encounter issues with your plugin:
-
-1. Check the logs for error messages
-2. Verify that your plugin is correctly installed
-3. Make sure your plugin's dependencies are installed
-4. Test your plugin with simple functionality first
-5. Ask for help in the [community chat](https://qm.qq.com/q/Nnz7Vbj8OU)
+- LangBot Plugin Development: 1032327138 ([Link](https://qm.qq.com/q/G7ENGTjeou))  
