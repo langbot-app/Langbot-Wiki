@@ -1,24 +1,25 @@
 # Community Resources
 
-## Official Resources
 
-- [GitHub Repository](https://github.com/RockChinQ/LangBot)
-- [Documentation](https://docs.langbot.app)
-- [Plugin Market](https://plugins.langbot.app)
+## Simplified Tutorials
+> Simplified tutorials: such as video tutorials, simpler text tutorials, suitable for beginners
 
-## Community Resources
+Collected at: https://blog.thelazy.top/tags/langbot
 
-### Deployment Tutorials
+## Project Discussion QQ Groups
 
-- [Simplified Deployment Tutorial](https://www.bilibili.com/video/BV1Uj421y7Gu)
-- [Simplified Deployment Tutorial (Text Version)](https://www.bilibili.com/read/cv31018000)
+> Please read the documentation carefully before joining the group to ask questions, if you cannot solve the problem then join the group to ask
 
-### Community Discussions
+### 🥰 Community Main Groups
 
-- [QQ Group: 1141946368](https://qm.qq.com/q/Nnz7Vbj8OU)
-- [Telegram Group](https://t.me/+Ij8xM9pPToxmNDQ1)
-- [Discord Server](https://discord.gg/Nnz7Vbj8OU)
+Answering various questions
 
-## Contribution
+- LangBot Community (3): 966235608 ([Link](https://qm.qq.com/q/JLi38whHum))  
+- [Full] LangBot Community (2): 1030838208 ([Link](https://qm.qq.com/q/PF9OuQCCcM))  
+- [Full] LangBot Community (1): 619154800 ([Link](https://qm.qq.com/q/1K9GjQuza))  
 
-If you want to contribute to LangBot, please read the [Development Configuration](/en/develop/dev-config) and [Component Architecture](/en/develop/comp-arch) sections.
+### 🧩 Plugin Development Group
+
+Plugin development, publishing, and discussion
+
+- LangBot Plugin Development: 1032327138 ([Link](https://qm.qq.com/q/G7ENGTjeou))  
