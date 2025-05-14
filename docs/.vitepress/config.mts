@@ -210,225 +210,196 @@ export default defineConfig({
         ],
       },
     },
-    // en: {
-    //   label: "English",
-    //   lang: "en",
-    //   link: "/en/",
-    //   themeConfig: {
-    //     // https://vitepress.dev/reference/default-theme-config
+    en: {
+      label: "English",
+      lang: "en",
+      link: "/en/",
+      themeConfig: {
+        // https://vitepress.dev/reference/default-theme-config
 
-    //     nav: [
-    //       { text: "Home", link: "/en/" },
-    //       { text: "Insight", link: "/en/insight/guide" },
-    //       { text: "Deploy", link: "/en/deploy/langbot/manual" },
-    //       { text: "Plugin", link: "/en/plugin/plugin-intro" },
-    //     ],
+        nav: [
+          { text: "Home", link: "https://langbot.app" },
+          { text: "Roadmap", link: "https://langbot.featurebase.app/roadmap" },
+        ],
 
-    //     sidebar: [
-    //       {
-    //         text: "Insight",
-    //         items: [
-    //           { text: "Getting Started", link: "/en/insight/guide" },
-    //           { text: "Introduction", link: "/en/insight/intro" },
-    //           { text: "Community Resources", link: "/en/insight/community" },
-    //         ],
-    //       },
-    //       {
-    //         text: "Deploy",
-    //         items: [
-    //           {
-    //             text: "Deploy LangBot",
-    //             collapsed: true,
-    //             items: [
-    //               {
-    //                 text: "Deploy with Baota Panel",
-    //                 link: "/en/deploy/langbot/one-click/bt",
-    //               },
-    //               {
-    //                 text: "Deploy with Docker",
-    //                 link: "/en/deploy/langbot/docker",
-    //               },
-    //               {
-    //                 text: "Manual Deployment",
-    //                 link: "/en/deploy/langbot/manual",
-    //               },
-    //             ],
-    //           },
-    //           {
-    //             text: "Deploy Message Platforms",
-    //             collapsed: true,
-    //             items: [
-    //               {
-    //                 text: "aiocqhttp",
-    //                 collapsed: true,
-    //                 items: [
-    //                   {
-    //                     text: "NapCat",
-    //                     link: "/en/deploy/platforms/aiocqhttp/napcat",
-    //                   },
-    //                   {
-    //                     text: "Lagrange",
-    //                     link: "/en/deploy/platforms/aiocqhttp/lagrange",
-    //                   },
-    //                   {
-    //                     text: "llonebot",
-    //                     link: "/en/deploy/platforms/aiocqhttp/llonebot",
-    //                   },
-    //                   {
-    //                     text: "shamrock",
-    //                     link: "/en/deploy/platforms/aiocqhttp/shamrock",
-    //                   },
-    //                 ],
-    //               },
-    //               {
-    //                 text: "go-cqhttp",
-    //                 link: "/en/deploy/platforms/gocq",
-    //               },
-    //               {
-    //                 text: "QQ Official",
-    //                 link: "/en/deploy/platforms/official",
-    //               },
-    //             ],
-    //           },
-    //           {
-    //             text: "Fill in the Configuration",
-    //             link: "/en/deploy/quick-config/config",
-    //           },
-    //           {
-    //             text: "Network Configuration",
-    //             link: "/en/deploy/network-details",
-    //           },
-    //           {
-    //             text: "Update LangBot",
-    //             link: "/en/deploy/update",
-    //           },
-    //         ],
-    //       },
+        sidebar: [
+          {
+            text: "Overview",
+            items: [
+              { text: "Getting Started (Must Read)", link: "/en/insight/guide" },
+              { text: "Community Resources", link: "/en/insight/community" },
+            ],
+          },
+          {
+            text: "Deployment and Usage",
+            items: [
+              {
+                text: "Deploy LangBot",
+                collapsed: true,
+                items: [
+                  { text: "Docker Deployment", link: "/en/deploy/langbot/docker" },
+                  {
+                    text: "Baota Panel Deployment",
+                    link: "/en/deploy/langbot/one-click/bt",
+                  },
+                  { text: "Manual Deployment", link: "/en/deploy/langbot/manual" },
+                ],
+              },
+              {
+                text: "Configure Bots",
+                collapsed: true,
+                link: "/en/deploy/platforms/readme",
+                items: [
+                  {
+                    text: "OneBot v11",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "NapCat",
+                        link: "/en/deploy/platforms/qq/aiocqhttp/napcat",
+                      },
+                      {
+                        text: "Lagrange",
+                        link: "/en/deploy/platforms/qq/aiocqhttp/lagrange",
+                      },
+                      {
+                        text: "llonebot",
+                        link: "/en/deploy/platforms/qq/aiocqhttp/llonebot",
+                      },
+                    ],
+                  },
+                  {
+                    text: "QQ Official Bot",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "Webhook Method",
+                        link: "/en/deploy/platforms/qq/official_webhook",
+                      },
+                      {
+                        text: "WebSocket Method",
+                        link: "/en/deploy/platforms/qq/official",
+                      },
+                    ],
+                  },
+                  {
+                    text: "Personal WeChat",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "Gewechat",
+                        link: "/en/deploy/platforms/wechat/gewechat",
+                      },
+                    ],
+                  },
+                  {
+                    text: "WeCom (Enterprise WeChat)",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "Internal Application",
+                        link: "/en/deploy/platforms/wecom/wecom",
+                      },
+                      {
+                        text: "External Customer Service",
+                        link: "/en/deploy/platforms/wecom/wecomcs",
+                      },
+                    ],
+                  },
+                  { text: "WeChat Official Account", link: "/en/deploy/platforms/wxoa" },
+                  { text: "Feishu (Lark)", link: "/en/deploy/platforms/lark" },
+                  { text: "DingTalk", link: "/en/deploy/platforms/dingtalk" },
+                  { text: "Discord", link: "/en/deploy/platforms/discord" },
+                  { text: "Telegram", link: "/en/deploy/platforms/telegram" },
+                  { text: "Slack", link: "/en/deploy/platforms/slack" },
+                ],
+              },
+              {
+                text: "Configure Dialogue Models",
+                link: "/en/deploy/models/readme",
+              },
+              {
+                text: "Modify Dialogue Pipeline",
+                link: "/en/deploy/pipelines/readme",
+              },
+              {
+                text: "System Environment Settings",
+                link: "/en/deploy/settings",
+              },
+              {
+                text: "Dialogue Commands",
+                link: "/en/deploy/command",
+              },
+              {
+                text: "Update LangBot",
+                link: "/en/deploy/update",
+              },
+            ],
+          },
+          {
+            text: "Plugins",
+            items: [
+              { text: "Plugin Introduction", link: "/en/plugin/plugin-intro" },
+              {
+                text: "Plugin Development",
+                collapsed: true,
+                items: [
+                  { text: "Basic Tutorial", link: "/en/plugin/dev/tutor" },
+                  { text: "Message Platform Entities", link: "/en/plugin/dev/messages" },
+                  { text: "API Reference", link: "/en/plugin/dev/api-ref" },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Workshops",
+            items: [
+              {
+                text: "How to Integrate with Dify?",
+                link: "/en/workshop/dify-service-api",
+              },
+              {
+                text: "How to Implement a Message Platform Adapter?",
+                link: "/en/workshop/impl-platform-adapter",
+              },
+              {
+                text: "Integrating Complete MCP Ecosystem in LangBot",
+                link: "/en/workshop/mcp-details"
+              },
+              {
+                text: "Container Network Configuration Details",
+                link: "/en/workshop/network-details",
+              },
+              {
+                text: "Integrating PPIO API",
+                link: "/en/workshop/ppio-integration"
+              }
+            ],
+          },
+          {
+            text: "Development",
+            items: [
+              { text: "Development Configuration", link: "/en/develop/dev-config" },
+              { text: "Component Architecture", link: "/en/develop/comp-arch" },
+            ],
+          },
+        ],
 
-    //       {
-    //         text: "Usage",
-    //         items: [
-    //           { text: "Command Usage", link: "/en/usage/command" },
-    //           { text: "FAQ", link: "/en/usage/faq" },
-    //         ],
-    //       },
-    //       {
-    //         text: "Config",
-    //         items: [
-    //           {
-    //             text: "Function Configuration",
-    //             collapsed: true,
-    //             items: [
-    //               {
-    //                 text: "platform.json",
-    //                 link: "/en/config/function/platform",
-    //               },
-    //               {
-    //                 text: "pipeline.json",
-    //                 link: "/en/config/function/pipeline",
-    //               },
-    //               {
-    //                 text: "provider.json",
-    //                 link: "/en/config/function/provider",
-    //               },
-    //               { text: "command.json", link: "/en/config/function/command" },
-    //               { text: "system.json", link: "/en/config/function/system" },
-    //             ],
-    //           },
-    //           {
-    //             text: "Metadata Configuration",
-    //             collapsed: true,
-    //             items: [
-    //               {
-    //                 text: "sensitive-words.json",
-    //                 link: "/en/config/metadata/sensitive-words",
-    //               },
-    //               {
-    //                 text: "llm-models.json",
-    //                 link: "/en/config/metadata/llm-models",
-    //               },
-    //               {
-    //                 text: "adapter-qq-botpy.json",
-    //                 link: "/en/config/metadata/adapter-qq-botpy",
-    //               },
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //       {
-    //         text: "Plugin",
-    //         items: [
-    //           { text: "Plugin Introduction", link: "/en/plugin/plugin-intro" },
-    //           {
-    //             text: "Plugin Development",
-    //             collapsed: true,
-    //             items: [
-    //               { text: "Basic Tutorial", link: "/en/plugin/dev/tutor" },
-    //               {
-    //                 text: "Message Platform Entity",
-    //                 link: "/en/plugin/dev/messages",
-    //               },
-    //               { text: "API Reference", link: "/en/plugin/dev/api-ref" },
-    //               {
-    //                 text: "Component Extension",
-    //                 link: "/en/plugin/dev/extension",
-    //               },
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //       {
-    //         text: "WebUI (Beta)",
-    //         items: [
-    //           { text: "Introduction & Usage", link: "/en/webui/intro" },
-    //           { text: "System Operation", link: "/en/webui/system" },
-    //           { text: "Settings Management", link: "/en/webui/settings" },
-    //         ],
-    //       },
-    //       {
-    //         text: "Workshop",
-    //         items: [
-    //           {
-    //             text: "How to Access Dify Service API?",
-    //             link: "/en/workshop/dify-service-api",
-    //           },
-    //           {
-    //             text: "How to Access Dify Service API? - NewAPI Intermediate Solution",
-    //             link: "/en/workshop/dify-integration",
-    //           },
-    //           {
-    //             text: "How to Access Third-party OpenAI Format APIs like OneAPI, LinkAI?",
-    //             link: "/en/workshop/one-api",
-    //           },
-    //           {
-    //             text: "How to Implement a Message Platform Adapter?",
-    //             link: "/en/workshop/impl-platform-adapter",
-    //           },
-    //         ],
-    //       },
-    //       {
-    //         text: "Develop",
-    //         items: [
-    //           { text: "Component Architecture", link: "/en/develop/comp-arch" },
-    //         ],
-    //       },
-    //     ],
+        // edit link
+        editLink: {
+          pattern:
+            "https://github.com/the-lazy-me/Langbot-Wiki/edit/main/docs/:path",
+        },
 
-    //     // edit link
-    //     editLink: {
-    //       pattern:
-    //         "https://github.com/the-lazy-me/Langbot-Wiki/edit/main/docs/:path",
-    //     },
-
-    //     // social links in the navbar
-    //     socialLinks: [
-    //       {
-    //         icon: "github",
-    //         link: "https://github.com/the-lazy-me/QChatGPT-Wiki",
-    //       },
-    //     ],
-    //   },
-    // },
+        // social links in the navbar
+        socialLinks: [
+          {
+            icon: "github",
+            link: "https://github.com/RockChinQ/LangBot",
+          },
+        ],
+      },
+    },
   },
 
   // 最后更新时间

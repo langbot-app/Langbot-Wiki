@@ -1,0 +1,3 @@
+---
+redirect: /en/insight/guide
+---
