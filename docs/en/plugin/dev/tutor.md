@@ -114,17 +114,17 @@ metadata:
   name: Hello  # Plugin name, change to your plugin name
   repository: 'https://github.com/langbot-app/HelloPlugin'  # Plugin repository address, change to your plugin GitHub repository address
   version: 0.1.0  # Plugin version, change to your plugin version
-  description:  # Plugin description, change to your plugin description, supports multiple languages. Language codes follow the RFC 1766 standard.
+  description:  # Plugin description, change to your plugin description, supports multiple languages. Language codes follow the RFC 4646 standard.
     en_US: Plugin for sending hello
     zh_Hans: 示例插件
-  label:  # Plugin display name, supports multiple languages. The WebUI will display the label in the corresponding language. Language codes follow the RFC 1766 standard.
+  label:  # Plugin display name, supports multiple languages. The WebUI will display the label in the corresponding language. Language codes follow the RFC 4646 standard.
     en_US: Hello
     zh_Hans: Hello
 spec:
   # Plugin configuration (optional), can configure multiple items
   config:
     - name: github_token  # Configuration item name
-      label:  # Configuration item display name, supports multiple languages. Language codes follow the RFC 1766 standard.
+      label:  # Configuration item display name, supports multiple languages. Language codes follow the RFC 4646 standard.
         en_US: Github Token
         zh_Hans: Github Token
       description:  # Configuration item description, supports multiple languages. Optional.

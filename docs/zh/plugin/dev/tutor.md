@@ -114,17 +114,17 @@ metadata:
   name: Hello  # 插件名称，修改为你的插件名称
   repository: 'https://github.com/langbot-app/HelloPlugin'  # 插件仓库地址，修改为你的插件 GitHub 仓库地址
   version: 0.1.0  # 插件版本，修改为你的插件版本
-  description:  # 插件简介，修改为你的插件简介，支持多语言。语言代码采用 RFC 1766 标准。
+  description:  # 插件简介，修改为你的插件简介，支持多语言。语言代码采用 RFC 4646 标准。
     en_US: Plugin for sending hello
     zh_Hans: 示例插件
-  label:  # 插件显示名称，支持多语言。在 WebUI 上会显示对应语言的 label。语言代码采用 RFC 1766 标准。
+  label:  # 插件显示名称，支持多语言。在 WebUI 上会显示对应语言的 label。语言代码采用 RFC 4646 标准。
     en_US: Hello
     zh_Hans: Hello
 spec:
   # 插件配置（可选），可配置多项
   config:
     - name: github_token  # 配置项名称
-      label:  # 配置项显示名称，支持多语言。语言代码采用 RFC 1766 标准。
+      label:  # 配置项显示名称，支持多语言。语言代码采用 RFC 4646 标准。
         en_US: Github Token
         zh_Hans: Github Token
       description:  # 配置项描述，支持多语言。可选。
