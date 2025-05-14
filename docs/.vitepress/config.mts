@@ -211,6 +211,7 @@ export default defineConfig({
       },
     },
     en: {
+      title: "LangBot Docs",
       label: "English",
       lang: "en",
       link: "/en/",
@@ -315,7 +316,7 @@ export default defineConfig({
                 ],
               },
               {
-                text: "Configure Dialogue Models",
+                text: "Configure Models",
                 link: "/en/deploy/models/readme",
               },
               {
@@ -323,7 +324,7 @@ export default defineConfig({
                 link: "/en/deploy/pipelines/readme",
               },
               {
-                text: "System Environment Settings",
+                text: "System Settings",
                 link: "/en/deploy/settings",
               },
               {

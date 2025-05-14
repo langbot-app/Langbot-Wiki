@@ -1,3 +1,3 @@
----
-redirect: /zh/insight/guide
----
+<script setup>
+  window.location.href = '/zh/insight/guide'
+</script>

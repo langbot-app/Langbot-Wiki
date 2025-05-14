@@ -81,10 +81,10 @@ Message platform events are defined in `pkg/platform/types/events.py`.
 In addition to the above entities, there are also entities such as `Friend` and `Group`, which are defined in `pkg/platform/types/entities.py`.
 They are generally included in the above event objects, from which you can get some information not included in the plugin events.
 
-## Accessing Message Platform Underlying API
+## Accessing Message Platform Low-Level API
 
 In order to smooth out the differences between various platforms, LangBot provides an abstraction layer on top of the message platform APIs, namely the content described above and the platform adapters in the `pkg/platform/sources` directory.  
-However, due to the large differences between platforms, the entities and API encapsulation in the abstraction layer are not complete. If your plugin needs to access specific platform functions, you can access the underlying API according to the following instructions.
+However, due to the large differences between platforms, the entities and API encapsulation in the abstraction layer are not complete. If your plugin needs to access specific platform functions, you can access the low-level API according to the following instructions.
 
 :::info
 The `adapter` here is the instantiated object of each adapter, corresponding to the `xxxAdapter(adapter.MessagePlatformAdapter)` class in each file under `pkg/platform/sources/`. It can be obtained from the plugin event's `query.adapter`, for example:

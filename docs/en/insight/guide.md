@@ -1,10 +1,6 @@
-# Welcome to LangBot Documentation Center
+# Welcome to LangBot Documentation
 
-LangBot is an open-source Large Language Model (LLM) native instant messaging robot platform that supports multiple messaging platforms and model providers. It provides support for LLMOps platforms such as Dify and Alibaba Cloud Bailian. It also offers a WebUI for users to quickly deploy and use.
-
-:::info
-This is the documentation for LangBot 4.0. For 3.0 documentation, please [visit here](https://v3.docs.langbot.app).
-:::
+LangBot is an open-source Large Language Model (LLM) native instant messaging bot platform that supports multiple messaging platforms and model providers. It provides support for LLMOps platforms such as Dify. It also offers a WebUI for users to quickly deploy and use.
 
 ## Documentation Structure
 

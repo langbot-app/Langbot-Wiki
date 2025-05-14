@@ -1,176 +1,42 @@
-# How to Integrate with Dify?
+# Using Dify with LangBot
 
-This guide explains how to integrate LangBot with Dify, a powerful LLMOps platform that allows you to create and deploy AI applications.
+[Dify](https://dify.ai) is an open-source large language model (LLM) application development platform. It combines the concepts of Backend as Service and LLMOps, enabling developers to quickly build production-grade generative AI applications.  
+Dify can create chat assistants (including Chatflow), Agents, text generation applications, workflows, and other types of applications.
 
-## What is Dify?
+LangBot currently supports three types of Dify applications: `Chat Assistant` (including Chatflow), `Agent`, and `Workflow`.
 
-[Dify](https://dify.ai) is an open-source LLMOps platform that helps you build, deploy, and monitor AI applications. It provides a user-friendly interface for creating AI applications without writing code, as well as APIs for integrating with other systems.
+## Creating an Application in Dify
 
-## Integration Methods
+Please follow the [Dify documentation](https://docs.dify.ai) to deploy Dify and create your application.  
 
-There are two ways to integrate LangBot with Dify:
+After publishing your application, go to the `Access API` page of your application to generate an API key.
 
-1. **Service API**: Use Dify's Service API to access applications created in Dify
-2. **Completion API**: Use Dify's Completion API as a model provider in LangBot
+![Dify Application API Key](/assets/image/zh/workshop/dify-service-api/dify_sv_api_01.png)
 
-This guide focuses on the Service API integration, which is the recommended approach for most use cases.
+Save the API server and API key for configuring LangBot's pipeline `AI Capability`.
 
-## Prerequisites
+:::info
+The above is an example for Dify cloud service version. If you are using the self-hosted community version, please use your own Dify service address as the `base-url` in LangBot, and add `/v1` as the path.
 
-Before you begin, you need:
+- If LangBot and Dify are deployed on the same host and both are deployed using Docker, you can refer to the article: [Network Configuration Details](/zh/workshop/network-details.html#langbot-%E5%92%8C%E6%B6%88%E6%81%AF%E5%B9%B3%E5%8F%B0%E5%9D%87%E8%BF%90%E8%A1%8C%E5%9C%A8-docker-%E5%AE%B9%E5%99%A8%E4%B8%AD). In this case, add `langbot-network` to the `networks` of all containers in the docker-compose.yaml file that starts Dify, add the container name `dify-nginx` to the `nginx` container, and finally set `base-url` to `http://dify-nginx/v1` in the LangBot configuration.
+- For other cases, please consult your company's operations team.
+:::
 
-1. A Dify account and a deployed application
-2. The API key for your Dify application
-3. LangBot version 4.0 or higher
+## Configuring LangBot
 
-## Step 1: Create a Dify Application
+Open the LangBot WebUI page, add a new pipeline or switch to the AI capability configuration page in an existing pipeline.
 
-1. Sign up or log in to [Dify](https://dify.ai)
-2. Create a new application or use an existing one
-3. Configure your application with the desired model, prompt, and other settings
-4. Deploy your application
-5. Go to the API Reference section and copy your API key
+![Setting Development Item](/assets/image/zh/deploy/pipelines/dify/dify01.png)
 
-## Step 2: Configure LangBot
+::: info
+### Workflow Output Key
 
-### Method 1: Configure via WebUI
+If you are using a Dify workflow application, please use `summary` as the key to pass the output content.
 
-1. Access the LangBot WebUI at `http://your-server-ip:5300`
-2. Navigate to the "Models" section
-3. Click "Add Provider"
-4. Select "Dify" as the provider type
-5. Enter your Dify API key and application ID
-6. Save the configuration
+![Dify Workflow Application Output Key](/assets/image/zh/workshop/dify-service-api/dify_workflow_output_key.png)
 
-### Method 2: Configure via Configuration File
+## Output Processing
 
-Edit the `data/config.yaml` file and add the Dify provider:
-
-```yaml
-providers:
-  - id: dify
-    type: dify
-    config:
-      api_key: "your-dify-api-key"
-      application_id: "your-dify-application-id"
-      base_url: "https://api.dify.ai/v1"  # Optional, defaults to Dify's official API endpoint
-```
-
-## Step 3: Test the Integration
-
-Send a test message to your bot:
-
-```
-!model use dify
-Hello, how are you?
-```
-
-The bot should respond using your Dify application.
-
-## Advanced Configuration
-
-### Using Multiple Dify Applications
-
-You can configure multiple Dify applications in LangBot:
-
-```yaml
-providers:
-  - id: dify-general
-    type: dify
-    config:
-      api_key: "your-dify-api-key-1"
-      application_id: "your-dify-application-id-1"
-      
-  - id: dify-specialized
-    type: dify
-    config:
-      api_key: "your-dify-api-key-2"
-      application_id: "your-dify-application-id-2"
-```
-
-### Configuring Input Variables
-
-If your Dify application uses input variables, you can configure them in LangBot:
-
-```yaml
-providers:
-  - id: dify
-    type: dify
-    config:
-      api_key: "your-dify-api-key"
-      application_id: "your-dify-application-id"
-      input_variables:
-        - name: "user_name"
-          value: "{sender.name}"
-        - name: "group_name"
-          value: "{group.name}"
-```
-
-### Using Dify's File Capabilities
-
-If your Dify application supports file inputs, you can configure LangBot to handle them:
-
-```yaml
-providers:
-  - id: dify
-    type: dify
-    config:
-      api_key: "your-dify-api-key"
-      application_id: "your-dify-application-id"
-      file_enabled: true
-```
-
-When file support is enabled, users can send files to the bot, and they will be forwarded to Dify:
-
-```
-!model use dify
-[Attach a file]
-Can you analyze this document?
-```
-
-## Troubleshooting
-
-### Connection Issues
-
-If you're having trouble connecting to Dify, check:
-
-1. Your API key is correct
-2. Your application ID is correct
-3. Your Dify application is deployed and active
-4. Your server can access the Dify API endpoint
-
-### Response Format Issues
-
-If the responses from Dify don't look right:
-
-1. Check your Dify application's prompt configuration
-2. Make sure your application is using the correct model
-3. Verify that your application is configured for chat completion (not text completion)
-
-### Rate Limiting
-
-If you're hitting rate limits:
-
-1. Check your Dify plan's rate limits
-2. Consider implementing rate limiting in LangBot
-3. Upgrade your Dify plan if necessary
-
-## Example Use Cases
-
-### Customer Support Bot
-
-Create a Dify application for customer support, with knowledge of your products and services, and integrate it with LangBot to provide automated customer support in your messaging channels.
-
-### Content Creation Assistant
-
-Create a Dify application for content creation, with templates and guidelines for your brand, and integrate it with LangBot to help your team create content more efficiently.
-
-### Data Analysis Bot
-
-Create a Dify application for data analysis, with the ability to interpret and visualize data, and integrate it with LangBot to provide data insights on demand.
-
-## Conclusion
-
-Integrating LangBot with Dify allows you to leverage Dify's powerful LLMOps capabilities while using LangBot's messaging platform integrations. This combination provides a flexible and powerful solution for deploying AI applications across multiple messaging platforms.
-
-For more information, check out the [Dify documentation](https://docs.dify.ai) and the [LangBot documentation](https://docs.langbot.app).
+When using a workflow application or Agent application, if you enable `track-function-calls` in LangBot's pipeline `Output Processing`, a message of `calling function xxx` will be output to the user when Dify executes each tool call.  
+However, if you are using `ChatFlow` under the `chat` application (Chat Assistant -> Workflow Orchestration), it will only output the text returned by the Answer (direct reply) node regardless of the settings.
+:::

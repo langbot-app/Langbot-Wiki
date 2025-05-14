@@ -6,20 +6,6 @@
 
 Collected at: https://blog.thelazy.top/tags/langbot
 
-## Project Discussion QQ Groups
+## 🥰 Community 
 
-> Please read the documentation carefully before joining the group to ask questions, if you cannot solve the problem then join the group to ask
-
-### 🥰 Community Main Groups
-
-Answering various questions
-
-- LangBot Community (3): 966235608 ([Link](https://qm.qq.com/q/JLi38whHum))  
-- [Full] LangBot Community (2): 1030838208 ([Link](https://qm.qq.com/q/PF9OuQCCcM))  
-- [Full] LangBot Community (1): 619154800 ([Link](https://qm.qq.com/q/1K9GjQuza))  
-
-### 🧩 Plugin Development Group
-
-Plugin development, publishing, and discussion
-
-- LangBot Plugin Development: 1032327138 ([Link](https://qm.qq.com/q/G7ENGTjeou))  
+Join our community on Discord: [![Discord](https://img.shields.io/discord/1335141740050649118?logo=discord&labelColor=%20%235462eb&logoColor=%20%23f5f5f5&color=%20%235462eb)](https://discord.gg/wdNEHETs87)
