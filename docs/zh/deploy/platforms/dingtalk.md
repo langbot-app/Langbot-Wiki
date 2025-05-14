@@ -28,8 +28,8 @@
 
 点击`凭证与基础信息`，记录`Client ID` 和 `Client Secret`，
 点击`应用能力`，`机器人`，记录下 RobotCode 和 机器人名称。
-`markdown_card` 为是否启用 Markdown 形式的回复。
-将以上配置项 记录下来，填到 LangBot 机器人配置表单中
+`markdown_card` 为是否启用 Markdown 形式的回复，当此配置项关闭时，`@发送者` 配置开关不会生效。
+将以上配置项 记录下来，填到 LangBot 机器人配置表单中。
 
 ![对接 LangBot](/assets/image/zh/deploy/bots/dingtalk/connect_to_langbot.png)
 
