@@ -8,16 +8,17 @@ LangBot is divided into frontend and backend. The frontend is developed using Ne
 
 The code is located in the `pkg` directory and is started by the `main.py` file in the root directory.
 
-Install dependencies
+Install dependencies, we use uv to manage dependencies.
 
 ```bash
-pip install -r requirements.txt
+pip install uv
+uv sync
 ```
 
 Start the backend
 
 ```bash
-python main.py
+uv run main.py
 ```
 
 At this point, the configuration file will be automatically generated in the `data/config.yaml` file.

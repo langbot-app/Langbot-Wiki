@@ -21,13 +21,6 @@ git clone https://github.com/RockChinQ/LangBot
 cd LangBot
 ```
 
-If you are in mainland China, you can clone from the [GitCode mirror](https://gitcode.com/RockChinQ/LangBot):
-
-```bash
-git clone https://gitcode.com/RockChinQ/LangBot
-cd LangBot
-```
-
 Then manually build the frontend:
 
 ```bash
@@ -39,31 +32,19 @@ cd ..
 
 :::
 
-2. (Recommended) Create a virtual environment
+2. Install dependencies
 
-On some Linux systems that use system package managers to manage Python dependencies, dependency conflicts may occur, so please use venv to create a virtual environment. Windows users can skip this step.
+We use uv to manage dependencies.
 
 ```bash
-python -m venv venv
-source venv/bin/activate
+pip install uv
+uv sync
 ```
 
-3. Install dependencies
+3. Run the main program once to generate configuration files
 
 ```bash
-pip install -r requirements.txt
-```
-
-Or use Tsinghua mirror
-
-```bash
-pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple 
-```
-
-4. Run the main program once to generate configuration files
-
-```bash
-python main.py
+uv run main.py
 ```
 
 You will see the following message:
@@ -83,4 +64,4 @@ The following files do not exist and have been automatically generated. Please m
 ...
 ```
 
-You can now use Ctrl+C to exit the program and continue to the [Deploy Message Platform](/en/deploy/platforms/readme) page.
+You can now use Ctrl+C to exit the program and continue to the [Deploy Bots](/en/deploy/platforms/readme) page.
