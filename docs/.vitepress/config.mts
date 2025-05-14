@@ -96,6 +96,10 @@ export default defineConfig({
                     collapsed: true,
                     items: [
                       {
+                        text: "WeChatPad",
+                        link: "/zh/deploy/platforms/wechat/wechatpad",
+                      },
+                      {
                         text: "Gewechat",
                         link: "/zh/deploy/platforms/wechat/gewechat",
                       },

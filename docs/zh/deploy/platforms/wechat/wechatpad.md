@@ -1,6 +1,6 @@
 # 通过wechatpadpro 接入个人微信
 
-**本教程仅说明docker部署教程，如果可以尽量将wechatpadpro部署到同一网络
+**本教程仅说明docker部署教程，如果可以尽量将wechatpadpro部署到同一网络**
 
 
 ## 拉取wechatpad-docker
@@ -35,9 +35,10 @@ updateApiVersion success
 
 * 然后在本机或者局域网下访问http://serveip:9090进入swagger即可。
 
-2.如果要更改网络与langbot在同一个Docker网络中,以及数据库密码和端口更让该。
+### 二、如果要更改网络与langbot在同一个Docker网络中,以及数据库密码和端口更改。
 
-> 那就修改yaml文件
+那就修改yaml文件，以下是 WeChatPad 的 yaml 文件，容器连接方式可以参考[文档](/zh/workshop/network-details.html)。
+
 ```yaml
 version: "3.3"
 services:
@@ -136,12 +137,9 @@ networks:
 
 ```
 
-
-
-
 ## 如果要手动部署
-请查看[wechatpadpro文档](https://github.com/luolin-ai/WeChatPadPro)
 
+请查看[wechatpadpro文档](https://github.com/luolin-ai/WeChatPadPro)
 
 
 ## 登录微信
@@ -160,10 +158,10 @@ networks:
 
 ## 在langbot的创建机器人中填写信息
 
-wechatpad_key 填写adminKey
-wechatpad_url 填写wechatpadpro的地址
-wechatpad_ws 填写wechatpadpro的ws地址
-wxid 填写该登录账号的的wxid
-wechatpad_token 填写wechatpadpro的token
+- wechatpad_key 填写adminKey
+- wechatpad_url 填写wechatpadpro的地址
+- wechatpad_ws 填写wechatpadpro的ws地址
+- wxid 填写该登录账号的的wxid
+- wechatpad_token 填写wechatpadpro的token
 
 
