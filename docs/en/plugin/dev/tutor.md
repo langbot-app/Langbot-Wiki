@@ -116,20 +116,20 @@ metadata:
   version: 0.1.0  # Plugin version, change to your plugin version
   description:  # Plugin description, change to your plugin description, supports multiple languages. Language codes follow the RFC 1766 standard.
     en_US: Plugin for sending hello
-    zh_CN: 示例插件
+    zh_Hans: 示例插件
   label:  # Plugin display name, supports multiple languages. The WebUI will display the label in the corresponding language. Language codes follow the RFC 1766 standard.
     en_US: Hello
-    zh_CN: Hello
+    zh_Hans: Hello
 spec:
   # Plugin configuration (optional), can configure multiple items
   config:
     - name: github_token  # Configuration item name
       label:  # Configuration item display name, supports multiple languages. Language codes follow the RFC 1766 standard.
         en_US: Github Token
-        zh_CN: Github Token
+        zh_Hans: Github Token
       description:  # Configuration item description, supports multiple languages. Optional.
         en_US: Image downloading requires a Github token
-        zh_CN: If not filled in, image download may fail
+        zh_Hans: 如果未填写，图片下载可能会失败
       type: string  # Configuration item type, supports string, integer, float, boolean, etc.
       default: ''  # Configuration item default value
       required: false  # Whether the configuration item is required
@@ -154,17 +154,17 @@ Configuration item supported types:
     - name: mode
       label:
         en_US: Mode
-        zh_CN: Mode
+        zh_Hans: 模式
       type: select
       options:
         - name: mode1
           label:
             en_US: Mode 1
-            zh_CN: Mode 1
+            zh_Hans: 模式 1
         - name: mode2
           label:
             en_US: Mode 2
-            zh_CN: Mode 2
+            zh_Hans: 模式 2
     ```
 - prompt-editor: Prompt editor.
 - llm-model-selector: LLM model selector.

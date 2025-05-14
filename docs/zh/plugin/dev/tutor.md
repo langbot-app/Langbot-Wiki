@@ -116,20 +116,20 @@ metadata:
   version: 0.1.0  # 插件版本，修改为你的插件版本
   description:  # 插件简介，修改为你的插件简介，支持多语言。语言代码采用 RFC 1766 标准。
     en_US: Plugin for sending hello
-    zh_CN: 示例插件
+    zh_Hans: 示例插件
   label:  # 插件显示名称，支持多语言。在 WebUI 上会显示对应语言的 label。语言代码采用 RFC 1766 标准。
     en_US: Hello
-    zh_CN: Hello
+    zh_Hans: Hello
 spec:
   # 插件配置（可选），可配置多项
   config:
     - name: github_token  # 配置项名称
       label:  # 配置项显示名称，支持多语言。语言代码采用 RFC 1766 标准。
         en_US: Github Token
-        zh_CN: Github Token
+        zh_Hans: Github Token
       description:  # 配置项描述，支持多语言。可选。
         en_US: Image downloading requires a Github token
-        zh_CN: 如果不填的话，图片可能会下载失败
+        zh_Hans: 如果不填的话，图片可能会下载失败
       type: string  # 配置项类型，支持 string, integer, float, boolean 等
       default: ''  # 配置项默认值
       required: false  # 配置项是否必填
@@ -154,17 +154,17 @@ execution:
     - name: mode
       label:
         en_US: Mode
-        zh_CN: 模式
+        zh_Hans: 模式
       type: select
       options:
         - name: mode1
           label:
             en_US: Mode 1
-            zh_CN: 模式 1
+            zh_Hans: 模式 1
         - name: mode2
           label:
             en_US: Mode 2
-            zh_CN: 模式 2
+            zh_Hans: 模式 2
     ```
 - prompt-editor: 提示词编辑器。
 - llm-model-selector: LLM模型选择器。
