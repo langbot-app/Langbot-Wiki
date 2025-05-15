@@ -40,31 +40,26 @@ cd ..
 
 :::
 
-2. （建议）创建虚拟环境
+2. 安装依赖
 
-在一些使用系统包管理器管理 Python 依赖的 Linux 系统上，可能会出现依赖冲突，故请使用 venv 创建虚拟环境。Windows 用户可以跳过此步骤。
-
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-3. 安装依赖
+我们使用 uv 管理依赖。
 
 ```bash
-pip install -r requirements.txt
+pip install uv
+uv sync
 ```
 
 或者使用清华源
 
 ```bash
-pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple 
+pip install uv -i https://pypi.tuna.tsinghua.edu.cn/simple
+uv sync
 ```
 
-4. 运行一次主程序，生成配置文件
+3. 运行一次主程序，生成配置文件
 
 ```bash
-python main.py
+uv run main.py
 ```
 
 提示如下信息
@@ -84,4 +79,4 @@ python main.py
 ...
 ```
 
-接下来可以使用 Ctrl+C 退出程序，继续查看[部署消息平台](/zh/deploy/platforms/readme)页。
+接下来可以使用 Ctrl+C 退出程序，继续查看[部署机器人](/zh/deploy/platforms/readme)页。
