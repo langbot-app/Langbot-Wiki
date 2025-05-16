@@ -1,5 +1,7 @@
 # 通过wechatpadpro 接入个人微信
 
+> 异地警告，没有时s5代理或者本地服务器慎用！！！！！！！
+
 **本教程仅说明docker部署教程，如果可以尽量将wechatpadpro部署到同一网络**
 
 
@@ -38,6 +40,7 @@ updateApiVersion success
 ### 二、如果要更改网络与langbot在同一个Docker网络中,以及数据库密码和端口更改。
 
 那就修改yaml文件，以下是 WeChatPad 的 yaml 文件，容器连接方式可以参考[文档](/zh/workshop/network-details.html)。
+
 
 ```yaml
 version: "3.3"
@@ -80,9 +83,9 @@ services:
     image: redis:alpine
     container_name: redis_wxpad
     restart: unless-stopped
-    command: redis-server --requirepass testredis
+    command: redis-server --requirepass test_redis
     environment:
-      - REDIS_PASSWORD=testredis
+      - REDIS_PASSWORD=test_redis
     volumes:
       - ./redis/data:/data
     ports:
@@ -90,7 +93,7 @@ services:
     networks:
       - langbot-network
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "testredis", "ping"]
+      test: ["CMD", "redis-cli", "-a", "test_redis", "ping"]
       interval: 5s
       timeout: 3s
       retries: 5
@@ -144,24 +147,39 @@ networks:
 
 ## 登录微信
 1. 成功启动wechatpadpro后根据你的serverip:port访问wechatpadpro的swagger
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/page1.png)
 2. 填入adminKey
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/page1.png)
 3. 获取token
 ** try it out /admin/GanAuthKey1接口bady中的days改为365即可
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/gettoken.png)
 等待返回拿到里面的token回填入上面的token
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/sendtoken.png)
 5. 登录微信
 ** try it out /login/GetLoginQrCodeNew接口即可（和服务器是同市或者同省）
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/login1.png)
 ** 如果市云服务器，需要填入Proxy
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/login2.png)
 ** 返回的参数中有登录二维码链接，打开扫码登录即可
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/login3.png)
 
 6. 记录你的adminkey,token,wx地址和访问地址(wxid可以不管)
 
 
 ## 在langbot的创建机器人中填写信息
 
+
 - wechatpad_key 填写adminKey
 - wechatpad_url 填写wechatpadpro的地址
 - wechatpad_ws 填写wechatpadpro的ws地址
 - wxid 填写该登录账号的的wxid
 - wechatpad_token 填写wechatpadpro的token
+![img.png](../../../../assets/image/zh/deploy/platforms/wechat/langbotset.png)
+- 
 
+
+## 详细的api接口文档
+
+如果有想要为该适配器做贡献，或者制作微信相关插件请查看[wechatpadproAPI文档](https://doc.apipost.net/docs/460ada21e884000?locale=zh-cn  )
+里面有相关接口及其参数说明
 
