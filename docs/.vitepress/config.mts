@@ -244,7 +244,7 @@ export default defineConfig({
                 items: [
                   { text: "Docker Deployment", link: "/en/deploy/langbot/docker" },
                   {
-                    text: "Baota Panel Deployment",
+                    text: "aaPanel Deployment",
                     link: "/en/deploy/langbot/one-click/bt",
                   },
                   { text: "Manual Deployment", link: "/en/deploy/langbot/manual" },
@@ -255,6 +255,11 @@ export default defineConfig({
                 collapsed: true,
                 link: "/en/deploy/platforms/readme",
                 items: [
+                  { text: "Discord", link: "/en/deploy/platforms/discord" },
+                  { text: "Telegram", link: "/en/deploy/platforms/telegram" },
+                  { text: "Slack", link: "/en/deploy/platforms/slack" },
+                  { text: "Lark", link: "/en/deploy/platforms/lark" },
+                  { text: "DingTalk", link: "/en/deploy/platforms/dingtalk" },
                   {
                     text: "OneBot v11",
                     collapsed: true,
@@ -312,11 +317,6 @@ export default defineConfig({
                     ],
                   },
                   { text: "WeChat Official Account", link: "/en/deploy/platforms/wxoa" },
-                  { text: "Feishu (Lark)", link: "/en/deploy/platforms/lark" },
-                  { text: "DingTalk", link: "/en/deploy/platforms/dingtalk" },
-                  { text: "Discord", link: "/en/deploy/platforms/discord" },
-                  { text: "Telegram", link: "/en/deploy/platforms/telegram" },
-                  { text: "Slack", link: "/en/deploy/platforms/slack" },
                 ],
               },
               {
