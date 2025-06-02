@@ -80,3 +80,8 @@ uv run main.py
 ```
 
 接下来可以使用 Ctrl+C 退出程序，继续查看[部署机器人](/zh/deploy/platforms/readme)页。
+
+:::info
+LangBot 在每次启动时会检查所有插件的依赖以便确保所有插件都能正常运行。  
+如果由于网络问题导致 LangBot 无法正常检查依赖，可以提供`--skip-plugin-deps-check`参数跳过检查，并自行安装插件依赖：命令行切换目录到`plugins`目录下的每个子文件夹（若已安装插件），然后使用`uv sync`安装依赖。
+:::

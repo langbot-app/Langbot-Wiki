@@ -26,7 +26,8 @@ docker compose up
 ```
 
 :::info
-如果你的主机位于中国大陆，可以考虑把 `docker-compose.yaml` 文件中的镜像名称改为`docker.langbot.app/langbot-public/rockchin/langbot:latest`以使用我们提供的镜像源。
+- 如果你的主机位于中国大陆，可以考虑把 `docker-compose.yaml` 文件中的镜像名称改为`docker.langbot.app/langbot-public/rockchin/langbot:latest`以使用我们提供的镜像源。
+- 推荐[设置 Docker 容器代理](https://yeasy.gitbook.io/docker_practice/advanced_network/http_https_proxy)，以便保证 LangBot 在运行期间的网络访问通畅。
 :::
 
 首次启动会输出创建配置文件的提示，请继续按照文件配置。
