@@ -11,7 +11,7 @@ Please follow the [Dify documentation](https://docs.dify.ai) to deploy Dify and 
 
 After publishing your application, go to the `Access API` page of your application to generate an API key.
 
-![Dify Application API Key](/assets/image/zh/workshop/dify-service-api/dify_sv_api_01.png)
+![Dify Application API Key](/assets/image/zh/deploy/pipelines/dify/dify_sv_api_01.png)
 
 Save the API server and API key for configuring LangBot's pipeline `AI Capability`.
 
@@ -26,14 +26,14 @@ The above is an example for Dify cloud service version. If you are using the sel
 
 Open the LangBot WebUI page, add a new pipeline or switch to the AI capability configuration page in an existing pipeline.
 
-![Setting Development Item](/assets/image/zh/deploy/pipelines/dify/dify01.png)
+![Setting Development Item](/assets/image/zh/deploy/pipelines/dify/dify_sv_api_02.png)
 
 ::: info
 ### Workflow Output Key
 
 If you are using a Dify workflow application, please use `summary` as the key to pass the output content.
 
-![Dify Workflow Application Output Key](/assets/image/zh/workshop/dify-service-api/dify_workflow_output_key.png)
+![Dify Workflow Application Output Key](/assets/image/zh/deploy/pipelines/dify/dify_workflow_output_key.png)
 
 ## Output Processing
 

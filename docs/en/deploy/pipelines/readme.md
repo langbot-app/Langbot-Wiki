@@ -14,7 +14,7 @@ The current pipeline can be configured with the following features:
 
 ## AI Capabilities
 
-You can choose to use: regular large language model `Built-in Agent`, [`Dify`](https://dify.ai/), [`Alibaba Cloud Bailian`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs)
+You can choose to use: `Built-in Agent`, [`Dify`](https://dify.ai/), [`n8n`](https://n8n.io/)
 
 AI capabilities are mainly divided into two parts: selecting the runner and configuring runner parameters.
 
@@ -24,15 +24,15 @@ The runner defines how to schedule the large model to process messages. The defa
 
 <img width="400px" src="/assets/image/zh/deploy/pipelines/edit_pipeline_ai.png" alt="edit_pipeline" />
 
-You can also choose to use external LLMOps platforms such as `Dify`, [`Alibaba Cloud Bailian`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs). In this case, the models, prompts, tools, and other resources used will be provided by the LLMOps platform.
+You can also choose to use external LLMOps platforms such as `Dify`, [`n8n`](https://n8n.io/). In this case, the models, prompts, tools, and other resources used will be provided by the LLMOps platform.
 
 <img width="400px" src="/assets/image/zh/deploy/pipelines/more_runner.png" alt="more_runner" />
 
-- For detailed steps on connecting to Dify, you can [refer to the tutorial](/en/workshop/dify-service-api.html).
+- For detailed steps on connecting to Dify, you can [refer to the tutorial](/en/deploy/pipelines/dify.html).
+- For detailed steps on connecting to n8n, you can [refer to the tutorial](/en/deploy/pipelines/n8n.html).
 
 ### Conversation Variables
-
-When using Dify or Alibaba Cloud Bailian, LangBot explicitly passes the following parameters, which you can add to the start node of the Dify workflow:
+When using external LLMOps platforms, LangBot explicitly passes the following parameters, which you can add to the start node of the LLMOps platform workflow (the image below is an example of Dify):
 
 - `user_message_text`: The plain text of the user message
 - `session_id`: User session ID, `person_<id>` for private chat, `group_<id>` for group chat

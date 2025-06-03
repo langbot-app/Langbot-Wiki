@@ -14,7 +14,7 @@ LangBot 首次启动时会自动创建一个默认的流水线。创建机器人
 
 ## AI 能力
 
-可以选择使用：普通大语言模型`内置 Agent`、[`Dify`](https://dify.ai/)、[`阿里云百炼`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs)
+可以选择使用：`内置 Agent`、[`Dify`](https://dify.ai/)、[`阿里云百炼`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs)、[`n8n`](https://n8n.io/)
 
 AI 能力主要分为两个部分，选择运行器和配置运行器参数。  
 
@@ -24,15 +24,16 @@ AI 能力主要分为两个部分，选择运行器和配置运行器参数。
 
 <img width="400px" src="/assets/image/zh/deploy/pipelines/edit_pipeline_ai.png" alt="edit_pipeline" />
 
-您也可以选择使用 `Dify`、 [`阿里云百炼`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs) 等外部 LLMOps 平台，这种情况下所使用的模型和提示词、工具等资源将由 LLMOps 平台提供。
+您也可以选择使用 `Dify`、 [`n8n`](https://n8n.io/) 等外部 LLMOps 平台，这种情况下所使用的模型和提示词、工具等资源将由 LLMOps 平台提供。
 
 <img width="400px" src="/assets/image/zh/deploy/pipelines/more_runner.png" alt="more_runner" />
 
-- 接入 Dify 的详细步骤可以[参考教程](/zh/workshop/dify-service-api.html)。
+- 接入 Dify 的详细步骤可以[参考教程](/zh/deploy/pipelines/dify.html)。
+- 接入 n8n 的详细步骤可以[参考教程](/zh/deploy/pipelines/n8n.html)。
 
 ### 对话变量
 
-当使用 Dify 或者阿里云百炼时，LangBot 会显式传入以下参数，您可以自行在 Dify 工作流的开始节点中添加：
+当使用外部 LLMOps 平台时，LangBot 会显式传入以下参数，您可以自行在 LLMOps 平台的开始节点中添加（下图以 Dify 为例）：
 
 - `user_message_text`：用户消息的纯文本
 - `session_id`：用户会话id，私聊为 `person_<id>`，群聊为 `group_<id>`
