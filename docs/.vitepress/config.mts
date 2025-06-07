@@ -134,6 +134,11 @@ export default defineConfig({
               {
                 text: "修改对话流水线",
                 link: "/zh/deploy/pipelines/readme",
+                collapsed: true,
+                items: [
+                  { text: "Dify", link: "/zh/deploy/pipelines/dify" },
+                  { text: "n8n", link: "/zh/deploy/pipelines/n8n" },
+                ],
               },
               {
                 text: "系统环境设置",
@@ -168,10 +173,6 @@ export default defineConfig({
           {
             text: "实践",
             items: [
-              {
-                text: "如何接入 Dify？",
-                link: "/zh/workshop/dify-service-api",
-              },
               {
                 text: "如何实现一个消息平台适配器？",
                 link: "/zh/workshop/impl-platform-adapter",
@@ -244,7 +245,7 @@ export default defineConfig({
                 items: [
                   { text: "Docker Deployment", link: "/en/deploy/langbot/docker" },
                   {
-                    text: "Baota Panel Deployment",
+                    text: "aaPanel Deployment",
                     link: "/en/deploy/langbot/one-click/bt",
                   },
                   { text: "Manual Deployment", link: "/en/deploy/langbot/manual" },
@@ -255,6 +256,11 @@ export default defineConfig({
                 collapsed: true,
                 link: "/en/deploy/platforms/readme",
                 items: [
+                  { text: "Discord", link: "/en/deploy/platforms/discord" },
+                  { text: "Telegram", link: "/en/deploy/platforms/telegram" },
+                  { text: "Slack", link: "/en/deploy/platforms/slack" },
+                  { text: "Lark", link: "/en/deploy/platforms/lark" },
+                  { text: "DingTalk", link: "/en/deploy/platforms/dingtalk" },
                   {
                     text: "OneBot v11",
                     collapsed: true,
@@ -312,11 +318,6 @@ export default defineConfig({
                     ],
                   },
                   { text: "WeChat Official Account", link: "/en/deploy/platforms/wxoa" },
-                  { text: "Feishu (Lark)", link: "/en/deploy/platforms/lark" },
-                  { text: "DingTalk", link: "/en/deploy/platforms/dingtalk" },
-                  { text: "Discord", link: "/en/deploy/platforms/discord" },
-                  { text: "Telegram", link: "/en/deploy/platforms/telegram" },
-                  { text: "Slack", link: "/en/deploy/platforms/slack" },
                 ],
               },
               {
@@ -326,6 +327,11 @@ export default defineConfig({
               {
                 text: "Modify Dialogue Pipeline",
                 link: "/en/deploy/pipelines/readme",
+                collapsed: true,
+                items: [
+                  { text: "Dify", link: "/en/deploy/pipelines/dify" },
+                  { text: "n8n", link: "/en/deploy/pipelines/n8n" },
+                ],
               },
               {
                 text: "System Settings",
@@ -359,10 +365,6 @@ export default defineConfig({
           {
             text: "Workshops",
             items: [
-              {
-                text: "How to Integrate with Dify?",
-                link: "/en/workshop/dify-service-api",
-              },
               {
                 text: "How to Implement a Message Platform Adapter?",
                 link: "/en/workshop/impl-platform-adapter",

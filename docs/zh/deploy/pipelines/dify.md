@@ -11,7 +11,7 @@ LangBot 目前支持`聊天助手`（含Chatflow）、`Agent`、`工作流`三�
 
 发布应用后，在应用的 `访问API` 页面，生成 API 密钥。
 
-![Dify 应用 API 密钥](/assets/image/zh/workshop/dify-service-api/dify_sv_api_01.png)
+![Dify 应用 API 密钥](/assets/image/zh/deploy/pipelines/dify/dify_sv_api_01.png)
 
 保存 API 服务器和 API 密钥，在 LangBot 的流水线的`AI 能力`配置。
 
@@ -26,14 +26,14 @@ LangBot 目前支持`聊天助手`（含Chatflow）、`Agent`、`工作流`三�
 
 打开 LangBot WebUI 页面，添加一个新的流水线或在已有流水线中切换到 AI 能力配置页面。
 
-![设置开发项](/assets/image/zh/deploy/pipelines/dify/dify01.png)
+![设置开发项](/assets/image/zh/deploy/pipelines/dify/dify_sv_api_02.png)
 
 ::: info
 ### 工作流输出键
 
 如果使用的是 Dify 的工作流应用，那么请使用 `summary` 作为键传递输出内容。
 
-![Dify 工作流应用的输出键](/assets/image/zh/workshop/dify-service-api/dify_workflow_output_key.png)
+![Dify 工作流应用的输出键](/assets/image/zh/deploy/pipelines/dify/dify_workflow_output_key.png)
 
 ## 输出处理
 
