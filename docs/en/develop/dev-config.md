@@ -33,10 +33,14 @@ Install dependencies
 npm install
 ```
 
-Go to the `web/src/app/infra/http/HttpClient.ts` file and change `export const httpClient = new HttpClient('/');` at the bottom to `export const httpClient = new HttpClient('http://localhost:5300');` to ensure the frontend can access the standalone backend.
-
 Start debugging
 
 ```bash
-npm run dev
+npm run dev:local
 ```
+
+:::info
+When using `dev:local` to start locally, the environment variable `NEXT_PUBLIC_API_BASE_URL` will be automatically used by the frontend to ensure that the frontend can access the `5300` port of the locally running backend. If you need to modify the backend address or port used, please modify the `scripts` in the `web/package.json` file.
+
+In production environments, the frontend will be precompiled into static files and provided by the backend, and the frontend will automatically access the backend address on the same domain.
+:::

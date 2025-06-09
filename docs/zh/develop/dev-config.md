@@ -33,10 +33,14 @@ uv run main.py
 npm install
 ```
 
-去`web/src/app/infra/http/HttpClient.ts`文件中，将最底部的`export const httpClient = new HttpClient('/');`修改为`export const httpClient = new HttpClient('http://localhost:5300');`，以确保前端可以访问到独立的后端。
-
 启动调试
 
 ```bash
-npm run dev
+npm run dev:local
 ```
+
+:::info
+本地使用`dev:local`启动时，会携带环境变量`NEXT_PUBLIC_API_BASE_URL`，该变量会自动被前端使用，以确保前端可以访问到本地启动的后端的`5300`端口。如果您需要修改所使用的后端地址或端口，请到`web/package.json`文件中修改`scripts`中的`dev:local`命令。
+
+生产环境中，前端会被预编译成静态文件，由后端提供服务，前端会自动访问同域的后端地址。
+:::
