@@ -1,5 +1,9 @@
 # 插件开发教程
 
+:::warning
+4.0 插件机制正在重构，请先查看 [3.x 插件开发教程](https://v3.docs.langbot.app/plugin/dev/tutor.html)
+:::
+
 > 请先阅读[插件介绍页](/zh/plugin/plugin-intro)  
 > 建议先阅读本项目源码，了解项目架构
 
