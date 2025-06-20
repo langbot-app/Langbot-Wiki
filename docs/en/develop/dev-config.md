@@ -44,3 +44,7 @@ When using `dev:local` to start locally, the environment variable `NEXT_PUBLIC_A
 
 In production environments, the frontend will be precompiled into static files and provided by the backend, and the frontend will automatically access the backend address on the same domain.
 :::
+
+## API Documentation
+
+We will write API documentation in APIFox before developing each interface. Please refer to [API Documentation(Chinese)](https://ok52vhsenr.apifox.cn/).
