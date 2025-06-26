@@ -13,9 +13,9 @@ The documentation is divided into the following sections:
 
 ## Usage Examples
 
-![private_chat](/assets/image/insight/private_chat.png)
+![private_chat](/assets/image/zh/insight/private_chat.png)
 
-![group_chat](/assets/image/insight/group_chat.png)
+![group_chat](/assets/image/zh/insight/group_chat.png)
 
 
 ## Quick Start Guide
