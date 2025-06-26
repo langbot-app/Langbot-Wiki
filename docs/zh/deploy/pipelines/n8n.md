@@ -4,6 +4,14 @@
 
 LangBot 目前支持通过 n8n 工作流的 `Webhook` 节点，来触发工作流并获取回复。
 
+## 选用 n8n 作为运行器
+
+请打开已有的流水线配置页面，或新建流水线（推荐）并打开配置页面，到 `AI 能力`中选择 `n8n 工作流 API` 作为运行器。
+
+![n8n 作为运行器](/assets/image/zh/deploy/pipelines/n8n/config_runner.png)
+
+并根据下方内容设置并填写其他配置。
+
 ## 配置 n8n 工作流连接
 
 ![n8n 工作流](/assets/image/zh/deploy/pipelines/n8n/create_wf.png)

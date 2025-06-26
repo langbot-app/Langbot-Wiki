@@ -4,6 +4,14 @@
 
 LangBot currently supports triggering workflows and receiving responses through the `Webhook` node in n8n workflows.
 
+## Using n8n as the runner
+
+Please open the configuration page of an existing pipeline or create a new pipeline (recommended) and open the configuration page. Select `n8n Workflow API` as the runner in `AI`.
+
+![n8n as the runner](/assets/image/zh/deploy/pipelines/n8n/config_runner.png)
+
+Then configure and fill in the other settings according to the content below.
+
 ## Configuring n8n Workflow Connection
 
 ![n8n Workflow](/assets/image/zh/deploy/pipelines/n8n/create_wf.png)
