@@ -188,6 +188,10 @@ export default defineConfig({
               {
                 text: "接入 PPIO API",
                 link: "/zh/workshop/ppio-integration"
+              },
+              {
+                text: "接入302 AI",
+                link: "/zh/workshop/302ai-integration"
               }
             ],
           },
@@ -380,6 +384,10 @@ export default defineConfig({
               {
                 text: "Integrating PPIO API",
                 link: "/en/workshop/ppio-integration"
+              },
+              {
+                text: "Integrating 302 AI",
+                link: "/en/workshop/302ai-integration"
               }
             ],
           },
