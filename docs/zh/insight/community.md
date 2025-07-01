@@ -20,6 +20,10 @@
 
 ### 🧩 插件开发群
 
-插件开发、发布、交流
+插件和 LangBot 开发、发布、交流
 
-- LangBot 插件开发：1032327138 ([链接](https://qm.qq.com/q/G7ENGTjeou))  
+:::warning 注意
+此群群友只对开发插件感兴趣，不会解答您的任何其他问题。
+:::
+
+- LangBot 插件&开发：1032327138 ([链接](https://qm.qq.com/q/G7ENGTjeou))  
