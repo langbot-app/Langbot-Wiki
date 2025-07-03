@@ -186,11 +186,11 @@ export default defineConfig({
                 link: "/zh/workshop/network-details",
               },
               {
-                text: "接入 PPIO API",
+                text: "接入 PPIO API 的模型",
                 link: "/zh/workshop/ppio-integration"
               },
               {
-                text: "接入302.AI",
+                text: "接入 302.AI 的模型",
                 link: "/zh/workshop/302ai-integration"
               }
             ],
@@ -382,11 +382,11 @@ export default defineConfig({
                 link: "/en/workshop/network-details",
               },
               {
-                text: "Integrating PPIO API",
+                text: "Integrating PPIO API Model",
                 link: "/en/workshop/ppio-integration"
               },
               {
-                text: "Integrating 302.AI",
+                text: "Integrating 302.AI Models",
                 link: "/en/workshop/302ai-integration"
               }
             ],
