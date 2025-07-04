@@ -200,6 +200,23 @@ export default defineConfig({
             items: [
               { text: "开发配置", link: "/zh/develop/dev-config" },
               { text: "组件架构", link: "/zh/develop/comp-arch" },
+              {
+                text: "适配器开发",
+                collapsed: true,
+                items: [
+                  {
+                    text: "Discord 适配器",
+                    collapsed: true,
+                    items: [
+                      { text: "概述", link: "/zh/develop/adapter/discord/README" },
+                      { text: "快速开始", link: "/zh/develop/adapter/discord/quick_start" },
+                      { text: "架构设计", link: "/zh/develop/adapter/discord/design" },
+                      { text: "API 参考", link: "/zh/develop/adapter/discord/api_reference" },
+                      { text: "故障排除", link: "/zh/develop/adapter/discord/troubleshooting" },
+                    ],
+                  },
+                ],
+              },
             ],
           },
         ],
