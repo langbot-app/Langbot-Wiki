@@ -231,7 +231,7 @@ export default defineConfig({
         socialLinks: [
           {
             icon: "github",
-            link: "https://github.com/RockChinQ/LangBot",
+            link: "https://github.com/langbot-app/LangBot",
           },
         ],
       },
@@ -427,7 +427,7 @@ export default defineConfig({
         socialLinks: [
           {
             icon: "github",
-            link: "https://github.com/RockChinQ/LangBot",
+            link: "https://github.com/langbot-app/LangBot",
           },
         ],
       },

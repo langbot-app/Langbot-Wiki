@@ -12,4 +12,4 @@ docker compose up --force-recreate --pull always -d
 
 ## 手动部署
 
-从 [Releases](https://github.com/RockChinQ/LangBot/releases) 页面下载最新发行版的 Assets 下的 `langbot-<version>-all.zip`，解压到原来部署到目录重启即可。
+从 [Releases](https://github.com/langbot-app/LangBot/releases) 页面下载最新发行版的 Assets 下的 `langbot-<version>-all.zip`，解压到原来部署到目录重启即可。

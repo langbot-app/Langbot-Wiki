@@ -12,4 +12,4 @@ This command will pull the latest LangBot image and rebuild the container.
 
 ## Manual Deployment
 
-Download the latest release's `langbot-<version>-all.zip` from the Assets section on the [Releases](https://github.com/RockChinQ/LangBot/releases) page, extract it to the original deployment directory, and restart.
+Download the latest release's `langbot-<version>-all.zip` from the Assets section on the [Releases](https://github.com/langbot-app/LangBot/releases) page, extract it to the original deployment directory, and restart.

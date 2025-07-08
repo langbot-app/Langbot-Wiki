@@ -8,7 +8,7 @@
 
 ## 安装主程序
 
-1. 前往[Release](https://github.com/RockChinQ/LangBot/releases)页面下载最新版本的压缩包（推荐）`langbot-xxx-all.zip`（请勿下载 Source Code，因为其中不包含 WebUI）。解压，在解压目录打开命令行（终端）
+1. 前往[Release](https://github.com/langbot-app/LangBot/releases)页面下载最新版本的压缩包（推荐）`langbot-xxx-all.zip`（请勿下载 Source Code，因为其中不包含 WebUI）。解压，在解压目录打开命令行（终端）
 
 ![下载Release](/assets/image/zh/deploy/langbot/manual/dl_release.png)
 
@@ -18,14 +18,14 @@
 
 ```bash
 # 克隆主仓库
-git clone https://github.com/RockChinQ/LangBot
+git clone https://github.com/langbot-app/LangBot
 cd LangBot
 ```
 
-若您位于中国大陆境内，可以从 [GitCode 镜像](https://gitcode.com/RockChinQ/LangBot) 克隆：
+若您位于中国大陆境内，可以从 [GitCode 镜像](https://gitcode.com/langbot-app/LangBot) 克隆：
 
 ```bash
-git clone https://gitcode.com/RockChinQ/LangBot
+git clone https://gitcode.com/langbot-app/LangBot
 cd LangBot
 ```
 
@@ -71,7 +71,7 @@ uv run main.py
 |____\__,_|_||_\__, |___/\___/\__|
                |___/              
 
-⭐️开源地址: https://github.com/RockChinQ/LangBot
+⭐️开源地址: https://github.com/langbot-app/LangBot
 📖文档地址: https://docs.langbot.app
 
 以下文件不存在，已自动生成，请按需修改配置文件后重启：

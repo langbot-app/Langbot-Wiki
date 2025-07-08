@@ -14,7 +14,7 @@ It is recommended that you first learn the following:
 Clone the project:
 
 ```bash
-git clone https://github.com/RockChinQ/LangBot
+git clone https://github.com/langbot-app/LangBot
 cd LangBot
 ```
 

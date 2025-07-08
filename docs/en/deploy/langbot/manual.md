@@ -7,7 +7,7 @@
 
 ## Installing the Main Program
 
-1. Go to the [Release](https://github.com/RockChinQ/LangBot/releases) page to download the latest version of the zip package (recommended) `langbot-xxx-all.zip` (do not download Source Code as it does not include WebUI). Extract it and open a command line (terminal) in the extracted directory.
+1. Go to the [Release](https://github.com/langbot-app/LangBot/releases) page to download the latest version of the zip package (recommended) `langbot-xxx-all.zip` (do not download Source Code as it does not include WebUI). Extract it and open a command line (terminal) in the extracted directory.
 
 ![Download Release](/assets/image/zh/deploy/langbot/manual/dl_release.png)
 
@@ -17,7 +17,7 @@ You can also use the following commands to clone the latest code (may contain un
 
 ```bash
 # Clone the main repository
-git clone https://github.com/RockChinQ/LangBot
+git clone https://github.com/langbot-app/LangBot
 cd LangBot
 ```
 
@@ -56,7 +56,7 @@ You will see the following message:
 |____\__,_|_||_\__, |___/\___/\__|
                |___/              
 
-⭐️Open Source: https://github.com/RockChinQ/LangBot
+⭐️Open Source: https://github.com/langbot-app/LangBot
 📖Documentation: https://docs.langbot.app
 
 The following files do not exist and have been automatically generated. Please modify the configuration files as needed and restart:
