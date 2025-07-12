@@ -35,15 +35,11 @@ npm install
 
 启动调试
 
-- linux等环境使用
-
 ```bash
+linux等环境使用
 npm run dev:local
-```
-
-- windows环境使用
-
 ```bash
+windows环境使用
 npm run dev:local:win
 ```
 
