@@ -36,8 +36,8 @@ npm install
 启动调试
 
 ```bash
-npm run dev:local linux等环境使用
-npm run dev:local:win windows环境使用
+npm run dev:local            linux等环境使用
+npm run dev:local:win        windows环境使用
 ```
 
 :::info
