@@ -33,13 +33,15 @@ uv run main.py
 npm install
 ```
 
-- 启动调试（linux等环境使用）
+启动调试
+
+- linux等环境使用
 
 ```bash
 npm run dev:local
 ```
 
-- 启动调试（windows环境使用）
+- windows环境使用
 
 ```bash
 npm run dev:local:win
