@@ -35,9 +35,18 @@ npm install
 
 Start debugging
 
+- Usage in Linux and other environments
+
 ```bash
 npm run dev:local
 ```
+
+- Usage in Windows environments
+
+```bash
+npm run dev:local:win
+```
+
 
 :::info
 When using `dev:local` to start locally, the environment variable `NEXT_PUBLIC_API_BASE_URL` will be automatically used by the frontend to ensure that the frontend can access the `5300` port of the locally running backend. If you need to modify the backend address or port used, please modify the `scripts` in the `web/package.json` file.
