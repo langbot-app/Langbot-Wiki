@@ -1,12 +1,14 @@
 # 配置模型 (Models)
 
-模型将被流水线用于处理消息，您配置的第一个模型将被设置为默认流水线的模型。
+## 对话模型 (LLM Model)
+
+对话模型将被流水线用于处理消息，您配置的第一个模型将被设置为默认流水线的模型。
 
 ![arch](/assets/image/zh/deploy/models/arch.png)
 
 可以添加多个模型，然后再流水线中选择具体使用什么模型
 
-![模型配置](/assets/image/zh/deploy/models/model_config.png)
+<img width="400px" src="/assets/image/zh/deploy/models/model_config.png" alt="model_config" />
 
 填入这四个参数`模型名称`、`模型供应商`、`请求 URL`、`API Key`，然后提交即可
 
@@ -26,6 +28,14 @@
 
 请求 URL 填入中转的 Base URL 即可，例如
 
-![模型配置](/assets/image/zh/deploy/models/other_provider.png)
+<img width="400px" src="/assets/image/zh/deploy/models/other_provider.png" alt="other_provider" />
 
 :::
+
+## 嵌入模型 (Embedding Model)
+
+嵌入模型将被用于计算消息的向量，若您需要使用知识库，请配置此模型。
+
+<img width="400px" src="/assets/image/zh/deploy/models/embedding_model.png" alt="embedding_model" />
+
+填入这四个参数`模型名称`、`模型供应商`、`请求 URL`、`API Key`，然后提交即可，之后请在知识库中配置使用此模型。

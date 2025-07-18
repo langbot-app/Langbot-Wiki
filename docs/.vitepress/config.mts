@@ -128,7 +128,7 @@ export default defineConfig({
                 ],
               },
               {
-                text: "配置对话模型",
+                text: "配置模型",
                 link: "/zh/deploy/models/readme",
               },
               {
@@ -139,6 +139,10 @@ export default defineConfig({
                   { text: "Dify", link: "/zh/deploy/pipelines/dify" },
                   { text: "n8n", link: "/zh/deploy/pipelines/n8n" },
                 ],
+              },
+              {
+                text: "使用知识库",
+                link: "/zh/deploy/knowledge/readme",
               },
               {
                 text: "系统环境设置",
@@ -353,6 +357,10 @@ export default defineConfig({
                   { text: "Dify", link: "/en/deploy/pipelines/dify" },
                   { text: "n8n", link: "/en/deploy/pipelines/n8n" },
                 ],
+              },
+              {
+                text: "Using Knowledge Base",
+                link: "/en/deploy/knowledge/readme",
               },
               {
                 text: "System Settings",
