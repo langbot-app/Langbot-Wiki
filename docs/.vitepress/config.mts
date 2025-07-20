@@ -36,6 +36,7 @@ export default defineConfig({
             items: [
               { text: "新手指引（必看）", link: "/zh/insight/guide" },
               { text: "社区资源", link: "/zh/insight/community" },
+              { text: "特性规格", link: "/zh/insight/features" },
             ],
           },
           {
@@ -259,6 +260,7 @@ export default defineConfig({
             items: [
               { text: "Getting Started (Must Read)", link: "/en/insight/guide" },
               { text: "Community Resources", link: "/en/insight/community" },
+              { text: "Features", link: "/en/insight/features" },
             ],
           },
           {

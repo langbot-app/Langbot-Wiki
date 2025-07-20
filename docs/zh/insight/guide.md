@@ -15,13 +15,6 @@ LangBot 是一个开源的大语言模型（LLM）原生即时通信机器人平
 - 实践：许多不错的 LangBot 使用案例
 - 开发：参与 LangBot 开发的相关信息
 
-## 使用效果
-
-![private_chat](/assets/image/zh/insight/private_chat.png)
-
-![group_chat](/assets/image/zh/insight/group_chat.png)
-
-
 
 ## 快速开始指南
 
