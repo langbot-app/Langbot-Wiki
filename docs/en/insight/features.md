@@ -10,7 +10,6 @@ LangBot is an open-source LLM native instant messaging robot development platfor
 | QQ Official API | ✅ |  |
 | WeCom | ✅ |  |
 | WeComCS | ✅ |  |
-| Personal WeChat | ✅ |  |
 | Lark | ✅ |  |
 | DingTalk | ✅ |  |
 | Discord | ✅ |  |

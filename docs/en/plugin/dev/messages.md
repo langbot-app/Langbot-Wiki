@@ -103,7 +103,6 @@ The `adapter` here is the instantiated object of each adapter, corresponding to 
 | --- | --- | --- | --- |
 | OneBot v11| aiocqhttp | adapter.bot | The bot object corresponds to the CQHttp object of [aiocqhttp](https://github.com/nonebot/aiocqhttp), please refer to the aiocqhttp documentation for detailed usage |
 | QQ Official API | qqofficial | adapter.bot | The bot object is the SDK object under libs/qq_official_api, for detailed usage, you can refer to the way of initiating HTTP requests in the `send_group_text_msg` method in `QQOfficialClient` in libs/qq_official_api/api.py, please check the QQ official API documentation for specific interface documentation|
-| Personal WeChat | gewechat | adapter.bot | The bot object is the GewechatClient object of [hanfangyuan4396/gewechat-client](https://github.com/hanfangyuan4396/gewechat-python), please refer to the documentation for detailed usage |
 | WeCom | wecom | adapter.bot | Refer to the way of initiating HTTP requests in the `send_image` method in `WecomClient` in libs/wecom_api/api.py, please check the WeCom API documentation for specific interface documentation |
 | WeChat Official Account | officialaccount | - | Please refer to the interface documentation information in the WeChat Official Account API documentation, the relevant credential information can be obtained from adapter.bot |
 | Feishu | lark | adapter.api_client | Feishu SDK's API Client object, please refer to [oapi-sdk-python](https://github.com/larksuite/oapi-sdk-python) |

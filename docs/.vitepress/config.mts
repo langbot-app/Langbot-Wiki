@@ -93,20 +93,6 @@ export default defineConfig({
                     ],
                   },
                   {
-                    text: "个人微信",
-                    collapsed: true,
-                    items: [
-                      {
-                        text: "WeChatPad",
-                        link: "/zh/deploy/platforms/wechat/wechatpad",
-                      },
-                      {
-                        text: "Gewechat",
-                        link: "/zh/deploy/platforms/wechat/gewechat",
-                      },
-                    ],
-                  },
-                  {
                     text: "企业微信",
                     collapsed: true,
                     items: [
@@ -317,16 +303,6 @@ export default defineConfig({
                       {
                         text: "WebSocket Method",
                         link: "/en/deploy/platforms/qq/official",
-                      },
-                    ],
-                  },
-                  {
-                    text: "Personal WeChat",
-                    collapsed: true,
-                    items: [
-                      {
-                        text: "Gewechat",
-                        link: "/en/deploy/platforms/wechat/gewechat",
                       },
                     ],
                   },

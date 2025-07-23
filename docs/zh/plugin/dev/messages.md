@@ -103,7 +103,6 @@ msg_chain = MessageChain([
 | --- | --- | --- | --- |
 | OneBot v11| aiocqhttp | adapter.bot | bot 对象对应 [aiocqhttp](https://github.com/nonebot/aiocqhttp) 的 CQHttp 对象，详细使用方式请参考 aiocqhttp 文档 |
 | QQ 官方API | qqofficial | adapter.bot | bot 对象为 libs/qq_official_api 下的 SDK 对象，详细使用方式可以参考 libs/qq_official_api/api.py 中`QQOfficialClient`中的`send_group_text_msg`方法发起 HTTP 请求的方式，具体接口文档请查看 QQ 官方 API 文档|
-| 个人微信 | gewechat | adapter.bot | bot 对象为 [hanfangyuan4396/gewechat-client](https://github.com/hanfangyuan4396/gewechat-python) 的 GewechatClient 对象，详细使用方式可以参考文档 |
 | 企业微信 | wecom | adapter.bot | 参考 libs/wecom_api/api.py 中`WecomClient`中的`send_image`方法发起 HTTP 请求的方式，具体接口文档请查看企业微信 API 文档 |
 | 微信公众号 | officialaccount | - | 请参考微信公众号的 API 文档中的接口文档信息，相关的凭据信息可以在 adapter.bot 中取得 |
 | 飞书 | lark | adapter.api_client | 飞书 SDK 的 API Client 对象，具体请参考[oapi-sdk-python](https://github.com/larksuite/oapi-sdk-python) |
