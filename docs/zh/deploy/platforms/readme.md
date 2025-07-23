@@ -12,7 +12,6 @@
 | 企业微信 | ✅ | 企业内部机器人 | [教程](/zh/deploy/platforms/wecom/wecom) |
 | 企业微信客服 | ✅ | 企业对外机器人 | [教程](/zh/deploy/platforms/wecom/wecomcs) |
 | 微信公众号 | ✅ | 微信公众平台机器人 | [教程](/zh/deploy/platforms/wxoa.md) |
-| 个人微信 | ✅ | 个人微信机器人 | [WeChatPad](/zh/deploy/platforms/wechat/wechatpad) |
 | 飞书 | ✅ |  | [教程](/zh/deploy/platforms/lark) |
 | 钉钉 | ✅ |  | [教程](/zh/deploy/platforms/dingtalk) |
 | Discord | ✅ |  | [教程](/zh/deploy/platforms/discord) |
