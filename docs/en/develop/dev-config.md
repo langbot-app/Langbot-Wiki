@@ -27,29 +27,21 @@ At this point, the configuration file will be automatically generated in the `da
 
 The code is located in the `web` directory and requires Node.js.
 
-Install dependencies
+Copy `.env.example` to `.env` and fill in the values.
 
 ```bash
-npm install
+cp .env.example .env
 ```
 
-Start debugging
-
-- Usage in Linux and other environments
+Recommended to use [pnpm](https://pnpm.io/installation) to install dependencies.
 
 ```bash
-npm run dev:local
+pnpm install
+pnpm dev
 ```
-
-- Usage in Windows environments
-
-```bash
-npm run dev:local:win
-```
-
 
 :::info
-When using `dev:local` to start locally, the environment variable `NEXT_PUBLIC_API_BASE_URL` will be automatically used by the frontend to ensure that the frontend can access the `5300` port of the locally running backend. If you need to modify the backend address or port used, please modify the `scripts` in the `web/package.json` file.
+When using `pnpm dev` to start locally, the environment variable `NEXT_PUBLIC_API_BASE_URL` will be automatically used by the frontend to ensure that the frontend can access the `5300` port of the locally running backend.
 
 In production environments, the frontend will be precompiled into static files and provided by the backend, and the frontend will automatically access the backend address on the same domain.
 :::

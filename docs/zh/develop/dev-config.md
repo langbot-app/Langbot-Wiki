@@ -27,28 +27,21 @@ uv run main.py
 
 代码位于 `web` 目录下，需要安装 Node.js。
 
-安装依赖
+复制 `.env.example` 到 `.env`。
 
 ```bash
-npm install
+cp .env.example .env
 ```
 
-启动调试
-
-- linux等环境使用
+推荐使用 [pnpm](https://pnpm.io/zh/installation) 安装依赖。
 
 ```bash
-npm run dev:local
-```
-
-- windows环境使用
-
-```bash
-npm run dev:local:win
+pnpm install
+pnpm dev
 ```
 
 :::info
-本地使用`dev:local`启动时，会携带环境变量`NEXT_PUBLIC_API_BASE_URL`，该变量会自动被前端使用，以确保前端可以访问到本地启动的后端的`5300`端口。如果您需要修改所使用的后端地址或端口，请到`web/package.json`文件中修改`scripts`中的`dev:local`命令。
+本地使用`pnpm dev`启动时，会携带`.env`中的环境变量`NEXT_PUBLIC_API_BASE_URL`，该变量会自动被前端使用，以确保前端可以访问到本地启动的后端的`5300`端口。
 
 生产环境中，前端会被预编译成静态文件，由后端提供服务，前端会自动访问同域的后端地址。
 :::
