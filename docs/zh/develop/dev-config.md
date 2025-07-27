@@ -25,7 +25,7 @@ uv run main.py
 
 ## 前端
 
-代码位于 `web` 目录下，需要安装 Node.js。
+代码位于 `web` 目录下，需要安装 Node.js，PNPM。
 
 复制 `.env.example` 到 `.env`。
 
