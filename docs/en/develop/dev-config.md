@@ -25,7 +25,7 @@ At this point, the configuration file will be automatically generated in the `da
 
 ## Frontend
 
-The code is located in the `web` directory and requires Node.js.
+The code is located in the `web` directory and requires Node.js and PNPM.
 
 Copy `.env.example` to `.env` and fill in the values.
 
