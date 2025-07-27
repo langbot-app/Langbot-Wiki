@@ -29,8 +29,16 @@ The code is located in the `web` directory and requires Node.js.
 
 Copy `.env.example` to `.env` and fill in the values.
 
+- Usage in Linux and other environments
+
 ```bash
 cp .env.example .env
+```
+
+-  Usage in Windows environments
+
+```bash
+copy .env.example .env
 ```
 
 Recommended to use [pnpm](https://pnpm.io/installation) to install dependencies.
