@@ -29,8 +29,16 @@ uv run main.py
 
 复制 `.env.example` 到 `.env`。
 
+- linux环境使用
+
 ```bash
 cp .env.example .env
+```
+
+- windows环境使用
+
+```bash
+copy .env.example .env
 ```
 
 推荐使用 [pnpm](https://pnpm.io/zh/installation) 安装依赖。
