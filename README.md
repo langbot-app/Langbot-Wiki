@@ -8,12 +8,6 @@
 
 文档基于 VitePress 生成，本地编写需要安装 Node 和 VitePress
 
-### NodeJS
-
-自行安装
-
-### VitePress 
-
 Clone 本仓库，在目录下执行以下命令安装依赖：
 
 ```bash
@@ -44,3 +38,7 @@ npm run docs:dev
 - 子文件（夹）的命名，**不加前缀**（即文件夹的名称），如：`deploy`文件夹下的，文件夹`langbot`，`langbot`文件夹下的`manual`文件称之为`manual.md`
 - 由于这是有关于文档的规范化命名，所以任何文件的名称都可以以教程的角度来理解，如`deploy`是有关部署的教程
 - 除了配置文件板块的文档，其他的页面都不要在顶部加目录
+
+---
+
+**[English README](README_EN.md)**
