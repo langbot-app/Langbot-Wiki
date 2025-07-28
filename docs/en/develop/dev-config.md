@@ -1,7 +1,5 @@
 # Development Configuration
 
-> This document is based on LangBot version 4.0
-
 LangBot is divided into frontend and backend. The frontend is developed using Next.js + shadcn, and the backend is developed using Quart (an asynchronous version of Flask).
 
 ## Backend
@@ -25,15 +23,23 @@ At this point, the configuration file will be automatically generated in the `da
 
 ## Frontend
 
-The code is located in the `web` directory and requires Node.js.
+The code is located in the `web` directory and requires Node.js and [pnpm](https://pnpm.io/installation).
 
 Copy `.env.example` to `.env` and fill in the values.
+
+- Usage in Linux and other environments
 
 ```bash
 cp .env.example .env
 ```
 
-Recommended to use [pnpm](https://pnpm.io/installation) to install dependencies.
+-  Usage in Windows environments
+
+```bash
+copy .env.example .env
+```
+
+Install dependencies and start the frontend
 
 ```bash
 pnpm install
