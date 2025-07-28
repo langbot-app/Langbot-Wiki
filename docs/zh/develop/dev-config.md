@@ -1,7 +1,5 @@
 # 开发配置
 
-> 此文档基于 LangBot 4.0 版本编写
-
 LangBot 分为前端和后端，前端使用 Next.js + shadcn 开发，后端通过 Quart（Flask 的异步版本）开发。
 
 ## 后端
@@ -25,7 +23,7 @@ uv run main.py
 
 ## 前端
 
-代码位于 `web` 目录下，需要安装 Node.js，PNPM。
+代码位于 `web` 目录下，需要安装 Node.js，[pnpm](https://pnpm.io/zh/installation)。
 
 复制 `.env.example` 到 `.env`。
 
@@ -41,7 +39,7 @@ cp .env.example .env
 copy .env.example .env
 ```
 
-推荐使用 [pnpm](https://pnpm.io/zh/installation) 安装依赖。
+安装依赖并启动前端
 
 ```bash
 pnpm install
