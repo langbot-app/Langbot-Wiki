@@ -10,7 +10,7 @@ You need to use NT QQ to interact with the bot, old versions of QQ will not work
 
 ## Deployment Steps
 
-The following only provides general steps for Windows, for detailed steps or other platforms, please refer to the [Lagrange official documentation](https://lagrangedev.github.io/Lagrange.Doc/Lagrange.OneBot/)
+The following only provides general steps for Windows, for detailed steps or other platforms, please refer to the [Lagrange official documentation](https://lagrangedev.github.io/Lagrange.Doc/v1/Lagrange.OneBot/)
 
 ### Environment Configuration
 

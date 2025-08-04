@@ -10,7 +10,7 @@ Lagrange 是一个 QQNT 协议逆向工程框架，轻便且相对稳定。通�
 
 ## 部署步骤
 
-以下仅提供 Windows 上的大致步骤，详细步骤或其他平台请参考 [Lagrange官方文档](https://lagrangedev.github.io/Lagrange.Doc/Lagrange.OneBot/)
+以下仅提供 Windows 上的大致步骤，详细步骤或其他平台请参考 [Lagrange官方文档](https://lagrangedev.github.io/Lagrange.Doc/v1/Lagrange.OneBot/)
 
 ### 环境配置
 
