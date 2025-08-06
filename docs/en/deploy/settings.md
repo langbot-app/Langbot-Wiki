@@ -46,7 +46,7 @@ mcp:
     # SSE mode:
     #    name Server name, self-defined
     #    enable Whether to enable this Server
-    #    mode Fixed as SSE
+    #    mode Fixed as sse
     #    url MCP SSE Server access URL
     #    headers Connection headers, optional
     #    timeout Connection timeout
@@ -63,7 +63,7 @@ mcp:
     # servers:
     #   - name: 'SSE Server'
     #     enable: true
-    #     mode: SSE
+    #     mode: sse
     #     url: 'http://127.0.0.1:8000/sse'
     #     headers: {}
     #     timeout: 10
