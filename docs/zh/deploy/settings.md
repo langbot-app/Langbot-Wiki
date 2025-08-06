@@ -46,7 +46,7 @@ mcp:
     # SSE 模式：
     #    name 服务器名称，自行定义
     #    enable 是否启用本 Server
-    #    mode 固定填写SSE
+    #    mode 固定填写 sse
     #    url MCP SSE Server 的访问 URL
     #    headers 连接时的 headers，可选
     #    timeout 连接超时时间
@@ -54,7 +54,7 @@ mcp:
     # stdio 模式：
     #    name 服务器名称，自行定义
     #    enable 是否启用本 Server
-    #    mode 固定填写stdio
+    #    mode 固定填写 stdio
     #    command 执行命令
     #    args 执行命令的参数
     #    env 执行命令的环境变量，可选
@@ -63,7 +63,7 @@ mcp:
     # servers:
     #   - name: 'SSE Server'
     #     enable: true
-    #     mode: SSE
+    #     mode: sse
     #     url: 'http://127.0.0.1:8000/sse'
     #     headers: {}
     #     timeout: 10
