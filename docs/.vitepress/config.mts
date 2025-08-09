@@ -155,8 +155,26 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                   { text: "基础教程", link: "/zh/plugin/dev/tutor" },
-                  { text: "消息平台实体", link: "/zh/plugin/dev/messages" },
-                  { text: "API 参考", link: "/zh/plugin/dev/api-ref" },
+                  { text: "完善插件信息", link: "/zh/plugin/dev/basic-info" },
+                  {
+                    text: "组件开发",
+                    collapsed: true,
+                    items: [
+                      { text: "添加组件", link: "/zh/plugin/dev/components/add" },
+                      { text: "组件：事件监听器", link: "/zh/plugin/dev/components/event-listener" },
+                      { text: "组件：命令", link: "/zh/plugin/dev/components/command" },
+                      { text: "组件：工具", link: "/zh/plugin/dev/components/tool" },
+                    ],
+                  },
+                  {
+                    text: "API 参考",
+                    collapsed: true,
+                    items: [
+                      { text: "流水线事件", link: "/zh/plugin/dev/apis/pipeline-events" },
+                      { text: "命令上下文", link: "/zh/plugin/dev/apis/command-context" },
+                      { text: "消息平台实体", link: "/zh/plugin/dev/apis/messages" },
+                    ],
+                  },
                 ],
               },
             ],
