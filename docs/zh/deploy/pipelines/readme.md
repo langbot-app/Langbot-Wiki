@@ -31,7 +31,7 @@ AI 能力主要分为两个部分，选择运行器和配置运行器参数。
 - 接入 Dify 的详细步骤可以[参考教程](/zh/deploy/pipelines/dify.html)。
 - 接入 n8n 的详细步骤可以[参考教程](/zh/deploy/pipelines/n8n.html)。
 
-### 对话变量
+### 请求变量
 
 当使用外部 LLMOps 平台时，LangBot 会显式传入以下参数，您可以自行在 LLMOps 平台的开始节点中添加（下图以 Dify 为例）：
 
@@ -40,7 +40,7 @@ AI 能力主要分为两个部分，选择运行器和配置运行器参数。
 - `conversation_id`：字符串，用户会话id，由 LangBot 生成。用户重置会话后，会重新生成
 - `msg_create_time`：数字类型，收到此消息的时间戳（秒）
 
-您可以[通过插件自定义任何变量](/zh/plugin/dev/api-ref.html#%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%8F%98%E9%87%8F)。
+您可以[通过插件自定义任何变量](/zh/plugin/dev/apis/common.html#%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%8F%98%E9%87%8F)。
 
 ![Dify 工作流开始节点配置](/assets/image/zh/workshop/dify-service-api/dify_workflow_var.png)
 
