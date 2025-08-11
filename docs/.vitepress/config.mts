@@ -106,6 +106,16 @@ export default defineConfig({
                       },
                     ],
                   },
+                  {
+                    text: "微信",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "WeChatPadPro",
+                        link: "/zh/deploy/platforms/wechat/wechatpad.md"
+                      },
+                    ],
+                  },
                   { text: "微信公众号", link: "/zh/deploy/platforms/wxoa.md" },
                   { text: "飞书", link: "/zh/deploy/platforms/lark" },
                   { text: "钉钉", link: "/zh/deploy/platforms/dingtalk.md" },
