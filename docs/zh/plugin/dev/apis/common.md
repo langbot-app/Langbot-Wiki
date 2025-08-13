@@ -127,6 +127,34 @@ async def get_bots(self) -> list[str]:
 bots = await self.plugin.get_bots()
 ```
 
+### 获取机器人信息
+
+获取机器人信息。
+
+```python
+async def get_bot_info(self, bot_uuid: str) -> dict[str, Any]:
+    """Get a bot info"""
+
+# 调用示例
+bot_info = await self.plugin.get_bot_info("de639861-be05-4018-859b-c2e2d3e0d603")
+
+# 返回示例
+{
+    "uuid": "de639861-be05-4018-859b-c2e2d3e0d603",
+    "name": "aiocqhttp",
+    "description": "由 LangBot v3 迁移而来",
+    "adapter": "aiocqhttp",
+    "enable": true,
+    "use_pipeline_name": "ChatPipeline",
+    "use_pipeline_uuid": "c30a1dca-e91c-452b-83ec-84d635a30028",
+    "created_at": "2025-05-10T13:53:08",
+    "updated_at": "2025-08-12T11:27:30",
+    "adapter_runtime_values": {  # 若该机器人正在运行中，则具有该字段
+        "bot_account_id": 960164003  # 机器人账号 ID
+    }
+}
+```
+
 ### 发送主动消息
 
 通过机器人 UUID 和目标会话 ID 发送主动消息。
