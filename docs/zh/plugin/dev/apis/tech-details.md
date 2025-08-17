@@ -2,7 +2,7 @@
 
 ## 架构
 
-<img width="600" src="/assets/image/zh/plugin/dev/tech-details/plugin_system_arch.png" />
+<img width="600" src="/assets/image/zh/plugin/dev/plugin_system_arch.png" />
 
 在 4.0 版本中，我们引入了一种高安全性、高灵活性的生产级插件系统，并为插件开发者提供了丰富的 API 和易用的配套工具。
 
