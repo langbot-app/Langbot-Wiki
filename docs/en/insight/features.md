@@ -10,10 +10,10 @@ LangBot is an open-source LLM native instant messaging robot development platfor
 | QQ Official API | ✅ |  |
 | WeCom | ✅ |  |
 | WeComCS | ✅ |  |
-| Lark | ✅ |  |
-| DingTalk | ✅ |  |
+| Lark | ✅ | Support streaming output |
+| DingTalk | ✅ | Support streaming output |
 | Discord | ✅ |  |
-| Telegram | ✅ |  |
+| Telegram | ✅ | Support streaming output |
 | Slack | ✅ |  |
 | LINE | 🚧 |  |
 | WhatsApp | 🚧 |  |
