@@ -17,7 +17,7 @@ Plugin Runtime 会自动启动各个已安装的插件，通过 stdio 交互。�
 在任意空目录执行命令，安装 LangBot CLI 和 SDK
 
 ```bash
-pip install langbot_plugin
+pip install langbot_plugin==0.1.1b1
 ```
 
 ## 初始化插件目录
