@@ -68,6 +68,7 @@ spec:
 ```yaml
 - name: api_key
   type: string
+  ...
 ```
 
 ### type: array[string]
@@ -77,6 +78,7 @@ spec:
 ```yaml
 - name: tags
   type: array[string]
+  ...
 ```
 
 ### type: integer
@@ -86,6 +88,7 @@ spec:
 ```yaml
 - name: progress
   type: integer
+  ...
 ```
 
 ### type: float
@@ -95,6 +98,7 @@ spec:
 ```yaml
 - name: temperature
   type: float
+  ...
 ```
 
 ### type: boolean
@@ -104,6 +108,7 @@ spec:
 ```yaml
 - name: is_enabled
   type: boolean
+  ...
 ```
 
 ### type: select
@@ -122,6 +127,7 @@ spec:
       label:  # 显示名称，支持多语言。
         en_US: Mode 2
         zh_Hans: 模式 2
+  ...
 ```
 
 ### type: prompt-editor
@@ -131,6 +137,7 @@ spec:
 ```yaml
 - name: prompt
   type: prompt-editor
+  ...
 ```
 
 ### type: llm-model-selector
@@ -140,6 +147,7 @@ LLM 模型选择器。会展示一个 LLM 模型选择器，可选择已配置�
 ```yaml
 - name: model
   type: llm-model-selector
+  ...
 ```
 
 ## 接下来做什么
