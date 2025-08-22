@@ -44,16 +44,16 @@ execution:
 ```yaml
 spec:
   config:
-    - name: github_token  # 配置项名称，用于在插件中获取
-      type: string  # 配置项类型，支持 string, integer, float, boolean, select, prompt-editor, llm-model-selector 等
-      label:  # 配置项显示名称，支持多语言。语言代码采用 RFC 4646 标准。
+    - name: github_token  # 必填；配置项名称，用于在插件中获取
+      type: string  # 必填；配置项类型，支持 string, integer, float, boolean, select, prompt-editor, llm-model-selector 等
+      label:  # 必填；配置项显示名称，支持多语言。语言代码采用 RFC 4646 标准。
         en_US: Github Token
         zh_Hans: Github Token
       description:  # 配置项描述，支持多语言。可选。
         en_US: Image downloading requires a Github token
         zh_Hans: 如果不填的话，图片可能会下载失败
-      default: ''  # 配置项默认值
-      required: false  # 配置项是否必填
+      default: ''  # 配置项默认值，可选。
+      required: false  # 配置项是否必填，可选。
     - name: mode
       type: select
       ...
