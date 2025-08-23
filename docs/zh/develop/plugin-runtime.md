@@ -43,7 +43,7 @@ plugin:
   runtime_ws_url: ws://localhost:5401/control/ws
 ```
 
-并在启动 LangBot 主程序时提供环境变量`DOCKER_ENV=true`。  
+并在启动 LangBot 主程序时携带启动参数`--standalone-runtime`（如：`uv run main.py --standalone-runtime`）。  
 重启 LangBot，将会使用 WebSocket 连接到此运行时。
 
 ## langbot-plugin-sdk 架构
