@@ -211,6 +211,7 @@ export default defineConfig({
             items: [
               { text: "开发配置", link: "/zh/develop/dev-config" },
               { text: "组件架构", link: "/zh/develop/comp-arch" },
+              { text: "插件运行时", link: "/zh/develop/plugin-runtime" },
               {
                 text: "适配器开发",
                 collapsed: true,
@@ -419,6 +420,7 @@ export default defineConfig({
             items: [
               { text: "Development Configuration", link: "/en/develop/dev-config" },
               { text: "Component Architecture", link: "/en/develop/comp-arch" },
+              { text: "Plugin Runtime", link: "/en/develop/plugin-runtime" },
             ],
           },
         ],
