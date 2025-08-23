@@ -36,11 +36,11 @@ Plugin Runtime 接受以下参数：
 
 ### 使 LangBot 连接到此运行时
 
-在 LangBot 的`data/config.yaml`中配置`plugin.runtime_ws_url`为`ws://localhost:5401/control/ws`。
+在 LangBot 的`data/config.yaml`中配置`plugin.runtime_ws_url`为`ws://localhost:5400/control/ws`。
 
 ```yaml
 plugin:
-  runtime_ws_url: ws://localhost:5401/control/ws
+  runtime_ws_url: ws://localhost:5400/control/ws
 ```
 
 并在启动 LangBot 主程序时携带启动参数`--standalone-runtime`（如：`uv run main.py --standalone-runtime`）。  
