@@ -19,6 +19,16 @@ cd langbot-plugin-sdk
 uv sync --dev
 ```
 
+此时，uv 将自动为您创建虚拟环境(.venv)，若您的编辑器询问您是否使用此虚拟环境，请选择`是`。
+
+<img width="600" src="/assets/image/zh/develop/confirm_venv.png" />
+
+或者请您手动激活此虚拟环境：
+
+```bash
+source .venv/bin/activate
+```
+
 ## 启动插件运行时
 
 ```bash
