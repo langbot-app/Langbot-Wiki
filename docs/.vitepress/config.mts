@@ -191,6 +191,10 @@ export default defineConfig({
                 link: "/zh/workshop/network-details",
               },
               {
+                text: "接入来自胜算云的模型",
+                link: "/zh/workshop/shengsuanyun-integration"
+              },
+              {
                 text: "接入 PPIO API 的模型",
                 link: "/zh/workshop/ppio-integration"
               },
