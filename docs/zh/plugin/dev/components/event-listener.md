@@ -46,8 +46,8 @@ from langbot_plugin.api.entities import events, context
 
 class DefaultEventListener(EventListener):
 
-    def __init__(self):
-        super().__init__()
+    async def initialize(self):
+        await super().initialize()
 
         "Fill with your code here"
 ```
@@ -58,8 +58,8 @@ class DefaultEventListener(EventListener):
 ...
 class DefaultEventListener(EventListener):
 
-    def __init__(self):
-        super().__init__()
+    async def initialize(self):
+        await super().initialize()
         
         @self.handler(events.PersonMessageReceived)
         async def handler(event_context: context.EventContext):

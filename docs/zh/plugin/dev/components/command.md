@@ -68,8 +68,8 @@ from langbot_plugin.api.entities.builtin.command.context import ExecuteContext, 
 
 class Info(Command):
     
-    def __init__(self):
-        super().__init__()
+    async def initialize(self):
+        await super().initialize()
         
         "Fill with your code here"
 ```
@@ -80,8 +80,8 @@ class Info(Command):
 ...
 class Info(Command):
     
-    def __init__(self):
-        super().__init__()
+    async def initialize(self):
+        await super().initialize()
         
         @self.subcommand(
             name="",  # 空字符串表示根命令
