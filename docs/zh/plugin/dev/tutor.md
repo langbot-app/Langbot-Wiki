@@ -56,7 +56,7 @@ main.py 中的插件类是每个插件通用的代码，在插件被启动时会
 在任意空目录执行命令，安装 LangBot CLI 和 SDK
 
 ```bash
-pip install langbot_plugin==0.1.1b2
+pip install langbot_plugin==0.1.1b5
 ```
 
 ## 初始化插件目录
