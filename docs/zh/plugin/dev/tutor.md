@@ -61,18 +61,21 @@ pip install langbot_plugin==0.1.1b5
 
 ## 初始化插件目录
 
-假设您的插件名称为 `HelloPlugin`，则执行
+假设您的插件名称为 `HelloPlugin`，则在任意目录下创建目录`HelloPlugin`，并进入该目录，执行命令初始化插件：
 
 ```bash
-lbp init HelloPlugin
-cd HelloPlugin
+lbp init
 ```
 
 按照提示输入`Author(作者)`、`Description(描述)`等信息
 
-<img width="600" src="/assets/image/zh/plugin/dev/create_plugin.png" />
+:::info
+您也可以使用`lbp init HelloPlugin`命令，在子目录`HelloPlugin`中初始化插件。
 
-此操作将创建目录 `HelloPlugin`，并生成插件的初始化文件。您现在可以在您喜爱的编辑器中打开 `HelloPlugin` 目录，开始编写插件代码。
+<img width="600" src="/assets/image/zh/plugin/dev/create_plugin.png" />
+:::
+
+此操作将生成插件的初始文件。您现在可以在您喜爱的编辑器中打开 `HelloPlugin` 目录，开始编写插件代码。
 
 :::info
 若提示找不到 `lbp` 命令，可能是由于您未正确设置 `PATH` 环境变量。
