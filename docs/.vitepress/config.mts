@@ -108,6 +108,10 @@ export default defineConfig({
                         text: "对外客服",
                         link: "/zh/deploy/platforms/wecom/wecomcs",
                       },
+                      {
+                        text: "企业微信智能机器人",
+                        link: "/zh/deploy/platforms/wecom/wecombot",
+                      }
                     ],
                   },
                   {
