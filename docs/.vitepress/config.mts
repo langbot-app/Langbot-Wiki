@@ -344,6 +344,10 @@ export default defineConfig({
                         text: "External Customer Service",
                         link: "/en/deploy/platforms/wecom/wecomcs",
                       },
+                      {
+                        text: "Wecom Intelligent Bot",
+                        link: "/en/deploy/platforms/wecom/wecombot",
+                      }
                     ],
                   },
                   { text: "WeChat Official Account", link: "/en/deploy/platforms/wxoa" },
