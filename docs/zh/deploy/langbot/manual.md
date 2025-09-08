@@ -3,8 +3,8 @@
 :::warning
 1. 请使用Python 3.10.1（不包含3.10.0）及以上版本，推荐3.10.14版本，没有Python的需自行安装。
 2. 不推荐此方式，后续可能不再支持手动部署，请考虑使用 Docker 部署。
+3. **请勿在 Windows 系统上原生部署 LangBot，[这将导致插件不可用](/zh/plugin/compatibility)**，推荐使用 [WSL2](https://learn.microsoft.com/zh-cn/windows/wsl/install) 或 Docker 部署。
 ::: 
-
 
 ## 安装主程序
 

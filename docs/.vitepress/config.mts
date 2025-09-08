@@ -179,6 +179,7 @@ export default defineConfig({
                   { text: "发布插件", link: "/zh/plugin/dev/publish" },
                 ],
               },
+              { text: "系统兼容性", link: "/zh/plugin/compatibility" },
             ],
           },
           {
