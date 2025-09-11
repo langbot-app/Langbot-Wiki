@@ -32,6 +32,8 @@ LangBot is an open-source LLM native instant messaging robot development platfor
 | [Zhipu AI](https://open.bigmodel.cn/) | ✅ |  |
 | [CompShare](https://www.compshare.cn/?ytag=GPU_YY-gh_langbot) | ✅ | LLM and GPU resource platform |
 | [Dify](https://dify.ai) | ✅ | LLMOps platform |
+| [n8n](https://n8n.io/) | ✅ | LLMOps platform |
+| [Langflow](https://langflow.org/) | ✅ | LLMOps platform |
 | [PPIO](https://ppio.com/user/register?invited_by=QJKFYD&utm_source=github_langbot) | ✅ | LLM and GPU resource platform |
 | [ShengSuanYun](https://www.shengsuanyun.com/login?code=7DS2QLH5) | ✅ | LLM and GPU resource platform |
 | [302.AI](https://share.302.ai/SuTG99) | ✅ | LLM gateway(MaaS) |

@@ -139,6 +139,7 @@ export default defineConfig({
                 items: [
                   { text: "Dify", link: "/zh/deploy/pipelines/dify" },
                   { text: "n8n", link: "/zh/deploy/pipelines/n8n" },
+                  { text: "Langflow", link: "/zh/deploy/pipelines/langflow" },
                 ],
               },
               {
@@ -356,6 +357,7 @@ export default defineConfig({
                 items: [
                   { text: "Dify", link: "/en/deploy/pipelines/dify" },
                   { text: "n8n", link: "/en/deploy/pipelines/n8n" },
+                  { text: "Langflow", link: "/en/deploy/pipelines/langflow" },
                 ],
               },
               {
