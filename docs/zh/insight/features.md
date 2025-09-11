@@ -37,6 +37,8 @@ LangBot 是一个开源的大语言模型原生即时通信机器人开发平台
 | [302.AI](https://share.302.ai/SuTG99) | ✅ | 大模型聚合平台 |
 | [Google Gemini](https://aistudio.google.com/prompts/new_chat) | ✅ | |
 | [Dify](https://dify.ai) | ✅ | LLMOps 平台 |
+| [n8n](https://n8n.io/) | ✅ | LLMOps 平台 |
+| [Langflow](https://langflow.org/) | ✅ | LLMOps 平台 |
 | [Ollama](https://ollama.com/) | ✅ | 本地大模型运行平台 |
 | [LMStudio](https://lmstudio.ai/) | ✅ | 本地大模型运行平台 |
 | [GiteeAI](https://ai.gitee.com/) | ✅ | 大模型接口聚合平台 |
