@@ -11,6 +11,7 @@
 | QQ 官方机器人 | ✅ | 接入 QQ 开放平台的机器人 API | [教程](/zh/deploy/platforms/qq/official_webhook) |
 | 企业微信 | ✅ | 企业内部机器人 | [教程](/zh/deploy/platforms/wecom/wecom) |
 | 企业微信客服 | ✅ | 企业对外机器人 | [教程](/zh/deploy/platforms/wecom/wecomcs) |
+| 企业微信智能机器人 | ✅ | 智能机器人 | [教程](/zh/deploy/platforms/wecom/wecombot) |
 | 微信公众号 | ✅ | 微信公众平台机器人 | [教程](/zh/deploy/platforms/wxoa.md) |
 | 飞书 | ✅ |  | [教程](/zh/deploy/platforms/lark) |
 | 钉钉 | ✅ |  | [教程](/zh/deploy/platforms/dingtalk) |
