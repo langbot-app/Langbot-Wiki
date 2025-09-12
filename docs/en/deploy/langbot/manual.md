@@ -3,6 +3,7 @@
 :::warning
 1. Please use Python 3.10.1 (not including 3.10.0) or higher version, 3.10.14 is recommended. You need to install Python if you don't have it.
 2. This method is not recommended, manual deployment may not be supported in the future. Please consider using Docker deployment.
+3. **Do not deploy LangBot natively on Windows, [this will make plugins unusable](/en/plugin/compatibility)**, please use [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) or Docker deployment.
 :::
 
 ## Installing the Main Program

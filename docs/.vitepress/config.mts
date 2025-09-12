@@ -385,10 +385,31 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                   { text: "Basic Tutorial", link: "/en/plugin/dev/tutor" },
-                  { text: "Message Platform Entities", link: "/en/plugin/dev/messages" },
-                  { text: "API Reference", link: "/en/plugin/dev/api-ref" },
+                  { text: "Complete Plugin Information", link: "/en/plugin/dev/basic-info" },
+                  {
+                    text: "Component Development",
+                    collapsed: true,
+                    items: [
+                      { text: "Adding Components", link: "/en/plugin/dev/components/add" },
+                      { text: "Component: Event Listener", link: "/en/plugin/dev/components/event-listener" },
+                      { text: "Component: Command", link: "/en/plugin/dev/components/command" },
+                      { text: "Component: Tool", link: "/en/plugin/dev/components/tool" },
+                    ],
+                  },
+                  {
+                    text: "API Reference",
+                    collapsed: true,
+                    items: [
+                      { text: "Plugin Common APIs", link: "/en/plugin/dev/apis/common" },
+                      { text: "Pipeline Events", link: "/en/plugin/dev/apis/pipeline-events" },
+                      { text: "Message Platform Entities", link: "/en/plugin/dev/apis/messages" },
+                    ],
+                  },
+                  { text: "Migration Guide", link: "/en/plugin/dev/migration" },
+                  { text: "Publish Plugin", link: "/en/plugin/dev/publish" },
                 ],
               },
+              { text: "System Compatibility", link: "/en/plugin/compatibility" },
             ],
           },
           {
