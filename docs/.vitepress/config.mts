@@ -109,7 +109,7 @@ export default defineConfig({
                         link: "/zh/deploy/platforms/wecom/wecomcs",
                       },
                       {
-                        text: "企业微信智能机器人",
+                        text: "智能机器人",
                         link: "/zh/deploy/platforms/wecom/wecombot",
                       }
                     ],
@@ -345,7 +345,7 @@ export default defineConfig({
                         link: "/en/deploy/platforms/wecom/wecomcs",
                       },
                       {
-                        text: "Wecom Intelligent Bot",
+                        text: "Intelligent Bot",
                         link: "/en/deploy/platforms/wecom/wecombot",
                       }
                     ],
