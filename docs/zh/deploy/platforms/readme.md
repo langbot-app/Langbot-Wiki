@@ -18,3 +18,4 @@
 | Discord | ✅ |  | [教程](/zh/deploy/platforms/discord) |
 | Telegram | ✅ |  | [教程](/zh/deploy/platforms/telegram) |
 | Slack | ✅ |  | [教程](/zh/deploy/platforms/slack) |
+| LINE | ✅ |  | [教程](/zh/deploy/platforms/line) |

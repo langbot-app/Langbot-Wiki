@@ -130,6 +130,7 @@ export default defineConfig({
                   { text: "Discord", link: "/zh/deploy/platforms/discord" },
                   { text: "Telegram", link: "/zh/deploy/platforms/telegram" },
                   { text: "Slack", link: "/zh/deploy/platforms/slack" },
+                  { text: "LINE", link: "/zh/deploy/platforms/line" },
                 ],
               },
               {
@@ -299,6 +300,7 @@ export default defineConfig({
                   { text: "Discord", link: "/en/deploy/platforms/discord" },
                   { text: "Telegram", link: "/en/deploy/platforms/telegram" },
                   { text: "Slack", link: "/en/deploy/platforms/slack" },
+                  { text: "LINE", link: "/en/deploy/platforms/line" },
                   { text: "Lark", link: "/en/deploy/platforms/lark" },
                   { text: "DingTalk", link: "/en/deploy/platforms/dingtalk" },
                   {

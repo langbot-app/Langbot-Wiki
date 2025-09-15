@@ -16,7 +16,7 @@ LangBot is an open-source LLM native instant messaging robot development platfor
 | Discord | ✅ |  |
 | Telegram | ✅ | Support streaming output |
 | Slack | ✅ |  |
-| LINE | 🚧 |  |
+| LINE | ✅ |  |
 | WhatsApp | 🚧 |  |
 
 🚧: In development

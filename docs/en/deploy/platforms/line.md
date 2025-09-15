@@ -17,23 +17,23 @@ This article explains how to connect LangBot with the LINE platform to implement
 ![alt text](/assets/image/zh/deploy/bots/line/line01.png)
 2. Under the Provider, click "Create"
 ![alt text](/assets/image/zh/deploy/bots/line/line02.png)
-3. Enter a name and click create
+3. Enter a name and click Create
 ![alt text](/assets/image/zh/deploy/bots/line/line03.png)
 
-4. After being redirected, select create a message api
+4. After being redirected, select Create a Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line04.png)
-* Continue by clicking create a message api
+* Continue by clicking Create a Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line05.png)
 * After being redirected, fill in the basic information
 ![alt text](/assets/image/zh/deploy/bots/line/line06.png)
-   - Channel name
-   - Channel description
+   - Channel Name
+   - Channel Description
    - Category
    - Subcategory
-   - Email address
+   - Email Address
 5. After filling in all information, click "Continue" to create
 ![alt text](/assets/image/zh/deploy/bots/line/line07.png)
-6. Check the information you entered, and if there are no issues, click submit
+6. Check the information you entered, and if there are no issues, click Submit
 ![alt text](/assets/image/zh/deploy/bots/line/line08.png)
 7. Successfully created, proceed to use
 ![alt text](/assets/image/zh/deploy/bots/line/line09.png)
@@ -42,31 +42,31 @@ This article explains how to connect LangBot with the LINE platform to implement
 
 After creation, you will obtain the following important information, please record it:
 
-1. Channel secret
+1. Channel Secret
 > [Page after clicking use](https://manager.line.biz/account)
-* Select settings
+* Select Settings
 ![alt text](/assets/image/zh/deploy/bots/line/line09.png)
-* Click message api
+* Click Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line11.png)
-* Enable message api
+* Enable Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line12.png)
-* Select the provider you just created and click agree
+* Select the Provider you just created and click Agree
 ![alt text](/assets/image/zh/deploy/bots/line/line13.png)
-* For privacy terms, simply click ok
+* For privacy terms, simply click OK
 ![alt text](/assets/image/zh/deploy/bots/line/line14.png)
-* Click ok to complete creation
+* Click OK to complete creation
 ![alt text](/assets/image/zh/deploy/bots/line/line15.png)
 * Copy it
 ![alt text](/assets/image/zh/deploy/bots/line/line16.png)
 
-2. Channel access token (need to click the "Issue" button to generate)
+2. Channel Access Token (need to click the "Issue" button to generate)
 * Click console or directly visit [Console](https://developers.line.biz/console/)
 ![alt text](/assets/image/zh/deploy/bots/line/line17.png)
-* Select the provider you created and click message api
+* Select the Provider you created and click Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line18.png)
-* Click Message api
+* Click Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line19.png)
-* Scroll to the bottom, click issue
+* Scroll to the bottom, click Issue
 ![alt text](/assets/image/zh/deploy/bots/line/line20.png)
 * Click the icon to copy
 ![alt text](/assets/image/zh/deploy/bots/line/line21.png)
@@ -75,16 +75,16 @@ After creation, you will obtain the following important information, please reco
 
 * Click console or directly visit [Console](https://developers.line.biz/console/)
 ![alt text](/assets/image/zh/deploy/bots/line/line17.png)
-* Select the provider you created and click message api
+* Select the Provider you created and click Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line18.png)
-* Click Message api
+* Click Message API
 ![alt text](/assets/image/zh/deploy/bots/line/line19.png)
-* Click edit to fill in the connection
+* Click Edit to fill in the connection
 ![alt text](/assets/image/zh/deploy/bots/line/line22.png)
-* Enter the connection (must be an https connection, which means you need an SSL certificate), click update
+* Enter the connection (must be an HTTPS connection, which means you need an SSL certificate), click Update
 ![alt text](/assets/image/zh/deploy/bots/line/line23.png)
 
-* Select use webhook
+* Select Use Webhook
 ![alt text](/assets/image/zh/deploy/bots/line/line24.png)
 
 5. Click the "Verify" button to test if the connection is successful
@@ -111,14 +111,14 @@ Next, open the LangBot configuration page:
 
 In the LINE developer console, you can further configure the bot's features:
 
-1. In the "Messaging API" tab, find the "LINE Official Account features" section
+1. In the "Messaging API" tab, find the "LINE Official Account Features" section
 2. Enable or disable the following features as needed:
    - Auto-reply messages
    - Welcome messages when adding friends
    - Group and multi-person chat
    - Greeting when the bot joins a group
 
-## Effect Demonstration
+## Usage
 
 After configuration, users can interact with your LINE bot through the following methods:
 
@@ -135,15 +135,11 @@ After configuration, users can interact with your LINE bot through the following
 
 ### Unable to Receive Messages
 
-- Check if the Channel access token is valid
-- Confirm that the "Use webhook" option is enabled
+- Check if the Channel Access Token is valid
+- Confirm that the "Use Webhook" option is enabled
 - Check the LangBot logs for error messages
 
 ### Permission Issues
 
 - Ensure you have enabled the necessary permissions for the bot in the LINE developer console
 - For some advanced features, a LINE Premium account may be required
-
-::: info
-Note, if you encounter network connection issues involving multiple docker containers, please refer to [Network Configuration Details](/en/workshop/network-details)
-:::
