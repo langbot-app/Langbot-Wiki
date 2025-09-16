@@ -15,6 +15,10 @@
 
 ![alt text](/assets/image/zh/deploy/bots/lark/lark_04.png)
 
+如需卡片流式权限则多添加如下图的创建与更新卡片：
+
+![img_1.png](../../../assets/image/zh/deploy/bots/lark/lark_14.png)
+
 ## 对接 LangBot
 
 在`凭证与基础信息`页找到`app_id`和`app_secret`。
@@ -28,6 +32,9 @@
 将相关信息填入表单
 
 ![alt text](/assets/image/zh/deploy/bots/lark/connect_to_langbot.png)
+
+流式相关：
+![流式相关](../../../assets/image/zh/deploy/bots/lark/connect_to_langbot01.png)
 
 填写完成后启动 LangBot，若成功配置，日志中会出现`[01-29 23:42:56.796] manager.py (68) - [INFO] : 初始化平台适配器 1: lark`的字样，保持 LangBot 运行。
 

@@ -15,6 +15,10 @@ Add the permissions shown in the image in the permission management:
 
 ![alt text](/assets/image/zh/deploy/bots/lark/lark_04.png)
 
+If card streaming permissions are required, additionally add the following card creation and update permissions as shown in the image:
+
+![img_1.png](../../../assets/image/zh/deploy/bots/lark/lark_14.png)
+
 ## Connect to LangBot
 
 Find `app_id` and `app_secret` on the `Credentials and Basic Information` page.
@@ -28,6 +32,9 @@ Open LangBot's Webui configuration page, create a new bot
 Fill in the relevant information in the form
 
 ![alt text](/assets/image/zh/deploy/bots/lark/connect_to_langbot.png)
+
+Streaming related:
+![Streaming related](../../../assets/image/zh/deploy/bots/lark/connect_to_langbot01.png)
 
 After filling in, start LangBot. If configured successfully, the log will show `[01-29 23:42:56.796] manager.py (68) - [INFO] : Initializing platform adapter 1: lark`, keep LangBot running.
 

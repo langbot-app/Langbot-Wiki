@@ -24,6 +24,35 @@
 
 点击`事件订阅`，将其中的推送方式改为`Stream模式推送`。
 
+如果需要卡片流式，则需要在权限管理中申请卡片权限，如图:
+![申请卡片权限前](/assets/image/zh/deploy/bots/dingtalk/dingtalk6.png)
+
+![申请卡片权限后](/assets/image/zh/deploy/bots/dingtalk/dingtalk7.png)
+
+另外卡片消息主要创建卡片模板，并记录模板id填入配置信息，流程如下：
+> 卡片内容模板ID，可通过登录开发者后台 > [卡片平台](https://open-dev.dingtalk.com/fe/card?spm=ding_open_doc.document.0.0.33cf2281L0fXsV)获取
+
+新建模板填写信息，如图：
+![新建模板填写信息](/assets/image/zh/deploy/bots/dingtalk/dingtalk8.png)
+
+选择预设模板（直接选第一个然后进去后更改模板内容），如图：
+![选择预设模板](/assets/image/zh/deploy/bots/dingtalk/dingtalk9.png)
+点击使用
+![点击](/assets/image/zh/deploy/bots/dingtalk/dingtalk10.png)
+创建
+![创建](/assets/image/zh/deploy/bots/dingtalk/dingtalk11.png)
+
+点击创建后会跳转到编辑模板。如图，这样你就可以尽情的编辑你想要的卡片消息了：
+![编辑模板](/assets/image/zh/deploy/bots/dingtalk/dingtalk12.png)
+
+主内容这里默认content不要改动即可：
+![不改动](../../../assets/image/zh/deploy/bots/dingtalk/dingtalk13.png)
+
+编辑好没问题之后保存即可，并复制模板id用以填写配置文件：
+![保存](../../../assets/image/zh/deploy/bots/dingtalk/dingtalk14.png)
+![复制模板id](../../../assets/image/zh/deploy/bots/dingtalk/dingtalk15.png)
+
+
 ## 填写配置信息
 
 点击`凭证与基础信息`，记录`Client ID` 和 `Client Secret`，
@@ -31,7 +60,13 @@
 `markdown_card` 为是否启用 Markdown 形式的回复，当此配置项关闭时，`@发送者` 配置开关不会生效。
 将以上配置项 记录下来，填到 LangBot 机器人配置表单中。
 
+点击[卡片平台](https://open-dev.dingtalk.com/fe/card?spm=ding_open_doc.document.0.0.33cf2281L0fXsV)模板列表复制绑定的对应的模板id填入卡片模板id
+
+
 ![对接 LangBot](/assets/image/zh/deploy/bots/dingtalk/connect_to_langbot.png)
+
+流式相关：
+![img.png](../../../assets/image/zh/deploy/bots/lark/lark_15.png)
 
 **启动 LangBot** 。
 

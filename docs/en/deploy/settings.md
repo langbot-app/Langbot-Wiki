@@ -94,4 +94,22 @@ system:
         expire: 604800
         # JWT secret key, a key will be automatically generated on first startup
         secret: 'xxxx'
+
+# Vector database configuration
+vdb:
+    # The vector database to use
+    # Supported vector databases:
+    # - chroma (default, embedded vector database)
+    # - qdrant (external vector database, please configure below)
+    use: chroma
+    # Qdrant configuration
+    qdrant:
+        # Qdrant URL
+        url: ''
+        # Qdrant Host
+        host: localhost
+        # Qdrant Port
+        port: 6333
+        # Qdrant API Key
+        api_key: ''
 ```

@@ -48,6 +48,10 @@ export default defineConfig({
                 items: [
                   { text: "Docker部署", link: "/zh/deploy/langbot/docker" },
                   {
+                    text: "1Panel面板部署",
+                    link: "/zh/deploy/langbot/one-click/1panel",
+                  },
+                  {
                     text: "宝塔面板部署",
                     link: "/zh/deploy/langbot/one-click/bt",
                   },
@@ -104,6 +108,20 @@ export default defineConfig({
                         text: "对外客服",
                         link: "/zh/deploy/platforms/wecom/wecomcs",
                       },
+                      {
+                        text: "智能机器人",
+                        link: "/zh/deploy/platforms/wecom/wecombot",
+                      }
+                    ],
+                  },
+                  {
+                    text: "微信",
+                    collapsed: true,
+                    items: [
+                      {
+                        text: "WeChatPadPro",
+                        link: "/zh/deploy/platforms/wechat/wechatpad.md"
+                      },
                     ],
                   },
                   { text: "微信公众号", link: "/zh/deploy/platforms/wxoa.md" },
@@ -112,6 +130,7 @@ export default defineConfig({
                   { text: "Discord", link: "/zh/deploy/platforms/discord" },
                   { text: "Telegram", link: "/zh/deploy/platforms/telegram" },
                   { text: "Slack", link: "/zh/deploy/platforms/slack" },
+                  { text: "LINE", link: "/zh/deploy/platforms/line" },
                 ],
               },
               {
@@ -125,6 +144,7 @@ export default defineConfig({
                 items: [
                   { text: "Dify", link: "/zh/deploy/pipelines/dify" },
                   { text: "n8n", link: "/zh/deploy/pipelines/n8n" },
+                  { text: "Langflow", link: "/zh/deploy/pipelines/langflow" },
                 ],
               },
               {
@@ -196,6 +216,10 @@ export default defineConfig({
               {
                 text: "容器网络配置详解",
                 link: "/zh/workshop/network-details",
+              },
+              {
+                text: "接入来自胜算云的模型",
+                link: "/zh/workshop/shengsuanyun-integration"
               },
               {
                 text: "接入 PPIO API 的模型",
@@ -280,6 +304,10 @@ export default defineConfig({
                 items: [
                   { text: "Docker Deployment", link: "/en/deploy/langbot/docker" },
                   {
+                    text: "1Panel Deployment",
+                    link: "/en/deploy/langbot/one-click/1panel",
+                  },
+                  {
                     text: "aaPanel Deployment",
                     link: "/en/deploy/langbot/one-click/bt",
                   },
@@ -294,6 +322,7 @@ export default defineConfig({
                   { text: "Discord", link: "/en/deploy/platforms/discord" },
                   { text: "Telegram", link: "/en/deploy/platforms/telegram" },
                   { text: "Slack", link: "/en/deploy/platforms/slack" },
+                  { text: "LINE", link: "/en/deploy/platforms/line" },
                   { text: "Lark", link: "/en/deploy/platforms/lark" },
                   { text: "DingTalk", link: "/en/deploy/platforms/dingtalk" },
                   {
@@ -340,6 +369,10 @@ export default defineConfig({
                         text: "External Customer Service",
                         link: "/en/deploy/platforms/wecom/wecomcs",
                       },
+                      {
+                        text: "Intelligent Bot",
+                        link: "/en/deploy/platforms/wecom/wecombot",
+                      }
                     ],
                   },
                   { text: "WeChat Official Account", link: "/en/deploy/platforms/wxoa" },
@@ -356,6 +389,7 @@ export default defineConfig({
                 items: [
                   { text: "Dify", link: "/en/deploy/pipelines/dify" },
                   { text: "n8n", link: "/en/deploy/pipelines/n8n" },
+                  { text: "Langflow", link: "/en/deploy/pipelines/langflow" },
                 ],
               },
               {

@@ -9,14 +9,15 @@ LangBot 是一个开源的大语言模型原生即时通信机器人开发平台
 | QQ 个人号 | ✅ | 由支持 onebot11 协议的第三方应用端支持，支持 QQ 个人号私聊、群聊 |
 | QQ 官方机器人 | ✅ | QQ 官方机器人，支持频道、私聊、群聊 |
 | 企业微信 | ✅ |  |
+| 企微智能机器人 | ✅ |  |
 | 企微对外客服 | ✅ |  |
 | 微信公众号 | ✅ |  |
-| 飞书 | ✅ |  |
-| 钉钉 | ✅ |  |
+| 飞书 | ✅ | 支持流式输出 |
+| 钉钉 | ✅ | 支持流式输出 |
 | Discord | ✅ |  |
-| Telegram | ✅ |  |
+| Telegram | ✅ | 支持流式输出 |
 | Slack | ✅ |  |
-| LINE | 🚧 |  |
+| LINE | ✅ |  |
 | WhatsApp | 🚧 |  |
 
 🚧: 正在开发中
@@ -31,11 +32,14 @@ LangBot 是一个开源的大语言模型原生即时通信机器人开发平台
 | [Anthropic](https://www.anthropic.com/) | ✅ |  |
 | [xAI](https://x.ai/) | ✅ |  |
 | [智谱AI](https://open.bigmodel.cn/) | ✅ |  |
+| [胜算云](https://www.shengsuanyun.com/?from=CH_KYIPP758) | ✅ | 全球大模型都可调用（友情推荐） |
 | [优云智算](https://www.compshare.cn/?ytag=GPU_YY-gh_langbot) | ✅ | 大模型和 GPU 资源平台 |
-| [PPIO](https://ppinfra.com/user/register?invited_by=QJKFYD&utm_source=github_langbot) | ✅ | 大模型和 GPU 资源平台 |
+| [PPIO](https://ppio.com/user/register?invited_by=QJKFYD&utm_source=github_langbot) | ✅ | 大模型和 GPU 资源平台 |
 | [302.AI](https://share.302.ai/SuTG99) | ✅ | 大模型聚合平台 |
 | [Google Gemini](https://aistudio.google.com/prompts/new_chat) | ✅ | |
 | [Dify](https://dify.ai) | ✅ | LLMOps 平台 |
+| [n8n](https://n8n.io/) | ✅ | LLMOps 平台 |
+| [Langflow](https://langflow.org/) | ✅ | LLMOps 平台 |
 | [Ollama](https://ollama.com/) | ✅ | 本地大模型运行平台 |
 | [LMStudio](https://lmstudio.ai/) | ✅ | 本地大模型运行平台 |
 | [GiteeAI](https://ai.gitee.com/) | ✅ | 大模型接口聚合平台 |

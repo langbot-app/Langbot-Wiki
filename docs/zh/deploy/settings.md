@@ -94,4 +94,22 @@ system:
         expire: 604800
         # JWT 密钥，首次启动时会自动生成一个密钥
         secret: 'xxxx'
+
+# 向量数据库配置
+vdb:
+    # 所使用的向量数据库
+    # 支持的向量数据库：
+    # - chroma（默认，嵌入式向量数据库）
+    # - qdrant（外部向量数据库，请在下方配置）
+    use: chroma
+    # Qdrant 配置
+    qdrant:
+        # Qdrant 的 URL
+        url: ''
+        # Qdrant 的 Host
+        host: localhost
+        # Qdrant 的 Port
+        port: 6333
+        # Qdrant 的 API Key
+        api_key: ''
 ```

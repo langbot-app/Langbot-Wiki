@@ -22,10 +22,10 @@ git clone https://github.com/langbot-app/LangBot
 cd LangBot
 ```
 
-若您位于中国大陆境内，可以从 [GitCode 镜像](https://gitcode.com/langbot-app/LangBot) 克隆：
+若您位于中国大陆境内，可以从 [GitCode 镜像](https://gitcode.com/RockChinQ/LangBot) 克隆：
 
 ```bash
-git clone https://gitcode.com/langbot-app/LangBot
+git clone https://gitcode.com/RockChinQ/LangBot
 cd LangBot
 ```
 
