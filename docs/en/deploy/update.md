@@ -2,13 +2,17 @@
 
 ## Using Docker (or one-click deployment based on Docker)
 
-Please execute in the `docker-compose.yaml` directory:
+Please execute in the `docker/docker-compose.yaml` directory:
 
 ```bash
 docker compose up --force-recreate --pull always -d
 ```
 
 This command will pull the latest LangBot image and rebuild the container.
+
+:::info
+4.3.0 version changed the content and location of the `docker-compose.yaml` file, please [redploy according to the documentation](/en/deploy/langbot/docker).
+:::
 
 ## Manual Deployment
 
