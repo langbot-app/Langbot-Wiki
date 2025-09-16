@@ -56,7 +56,7 @@ Please ensure you have Python 3.10 or higher installed, and have installed the [
 Execute the command in any empty directory to install LangBot CLI and SDK:
 
 ```bash
-pip install langbot_plugin==0.1.1b5
+pip install -U langbot_plugin
 ```
 
 ## Initializing Plugin Directory
