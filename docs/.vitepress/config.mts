@@ -175,10 +175,31 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                   { text: "基础教程", link: "/zh/plugin/dev/tutor" },
-                  { text: "消息平台实体", link: "/zh/plugin/dev/messages" },
-                  { text: "API 参考", link: "/zh/plugin/dev/api-ref" },
+                  { text: "完善插件信息", link: "/zh/plugin/dev/basic-info" },
+                  {
+                    text: "组件开发",
+                    collapsed: true,
+                    items: [
+                      { text: "添加组件", link: "/zh/plugin/dev/components/add" },
+                      { text: "组件：事件监听器", link: "/zh/plugin/dev/components/event-listener" },
+                      { text: "组件：命令", link: "/zh/plugin/dev/components/command" },
+                      { text: "组件：工具", link: "/zh/plugin/dev/components/tool" },
+                    ],
+                  },
+                  {
+                    text: "API 参考",
+                    collapsed: true,
+                    items: [
+                      { text: "插件通用 API", link: "/zh/plugin/dev/apis/common" },
+                      { text: "流水线事件", link: "/zh/plugin/dev/apis/pipeline-events" },
+                      { text: "消息平台实体", link: "/zh/plugin/dev/apis/messages" },
+                    ],
+                  },
+                  { text: "迁移指南", link: "/zh/plugin/dev/migration" },
+                  { text: "发布插件", link: "/zh/plugin/dev/publish" },
                 ],
               },
+              { text: "系统兼容性", link: "/zh/plugin/compatibility" },
             ],
           },
           {
@@ -215,6 +236,7 @@ export default defineConfig({
             items: [
               { text: "开发配置", link: "/zh/develop/dev-config" },
               { text: "组件架构", link: "/zh/develop/comp-arch" },
+              { text: "插件运行时", link: "/zh/develop/plugin-runtime" },
               {
                 text: "适配器开发",
                 collapsed: true,
@@ -397,10 +419,31 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                   { text: "Basic Tutorial", link: "/en/plugin/dev/tutor" },
-                  { text: "Message Platform Entities", link: "/en/plugin/dev/messages" },
-                  { text: "API Reference", link: "/en/plugin/dev/api-ref" },
+                  { text: "Complete Plugin Information", link: "/en/plugin/dev/basic-info" },
+                  {
+                    text: "Component Development",
+                    collapsed: true,
+                    items: [
+                      { text: "Adding Components", link: "/en/plugin/dev/components/add" },
+                      { text: "Component: Event Listener", link: "/en/plugin/dev/components/event-listener" },
+                      { text: "Component: Command", link: "/en/plugin/dev/components/command" },
+                      { text: "Component: Tool", link: "/en/plugin/dev/components/tool" },
+                    ],
+                  },
+                  {
+                    text: "API Reference",
+                    collapsed: true,
+                    items: [
+                      { text: "Plugin Common APIs", link: "/en/plugin/dev/apis/common" },
+                      { text: "Pipeline Events", link: "/en/plugin/dev/apis/pipeline-events" },
+                      { text: "Message Platform Entities", link: "/en/plugin/dev/apis/messages" },
+                    ],
+                  },
+                  { text: "Migration Guide", link: "/en/plugin/dev/migration" },
+                  { text: "Publish Plugin", link: "/en/plugin/dev/publish" },
                 ],
               },
+              { text: "System Compatibility", link: "/en/plugin/compatibility" },
             ],
           },
           {
@@ -433,6 +476,7 @@ export default defineConfig({
             items: [
               { text: "Development Configuration", link: "/en/develop/dev-config" },
               { text: "Component Architecture", link: "/en/develop/comp-arch" },
+              { text: "Plugin Runtime", link: "/en/develop/plugin-runtime" },
             ],
           },
         ],

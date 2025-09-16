@@ -4,45 +4,41 @@
 [[toc]]
 :::
 
-LangBot 支持多种消息平台，但每个消息平台的`消息实体`格式均不相同，为了屏蔽这些差异，LangBot 具有一套统一的标准。插件开发者只需要掌握并在插件中使用此页所述的消息实体，LangBot 内部的消息处理逻辑能够自动完成消息的解析和转换。
-
-:::info
-LangBot 的消息平台实体是基于 [YiriMirai](https://github.com/YiriMiraiProject/YiriMirai) 的实现改造的。
-:::
+LangBot 支持多种消息平台，每个消息平台的`消息实体`格式均不相同。为了屏蔽这些差异，我们实现了一套统一的标准。插件开发者只需要掌握并在插件中使用此页所述的消息实体，LangBot 内部的消息处理逻辑能够自动完成消息的解析和转换。
 
 ## 消息链
 
 消息平台的`消息`不同于用于 AI 交互的消息，消息平台的消息以`消息链`的形式描述，QQ 上展示的每一个独立的消息就是一条消息链，消息链中可以包含`文字`、`图片`、`@组件`等多种`消息链组件`，例如：
 
-![](/assets/image/zh/plugin/dev/plugin_dev_messages_01.png)
+![](/assets/image/zh/plugin/dev/apis/plugin_dev_messages_01.png)
 
 这就是一个消息链，包含 一个 Plain 组件（Hello World）和 一个 Image 组件（乌萨奇）
 
-消息链和消息链组件的定义位于`pkg/platform/types/messages.py`中。
+消息链和消息链组件的定义位于`langbot_plugin.api.entities.platform.message`中。
 
 ### 构造消息链
 
-请先引入`pkg.platform.types`包，才能使用其中的消息组件。  
+请先引入`langbot_plugin.api.entities.platform.message`包，才能使用其中的消息组件。  
 
 ```python
-from pkg.platform.types import *
+from langbot_plugin.api.entities.platform.message import *
 
 # 构建一个包含文字 Hello LangBot 和图片（从URL获取）的消息
 msg_chain = MessageChain([
-    Plain("Hello LangBot"),
+    Plain(text="Hello LangBot"),
     Image(url='https://qchatgpt.rockchin.top/langbot-logo.png')
 ])
 
 # 构建一个包含 @全体成员 和文字 Hello LangBot 的消息
 msg_chain = MessageChain([
     AtAll(),
-    Plain("Hello LangBot")
+    Plain(text="Hello LangBot")
 ])
 
 # 构建一个包含 @指定成员 和文字 Hello LangBot 的消息
 msg_chain = MessageChain([
-    At(123456),
-    Plain("Hello LangBot")
+    At(target=123456),
+    Plain(text="Hello LangBot")
 ])
 ```
 
@@ -60,28 +56,17 @@ msg_chain = MessageChain([
     - 在很多平台不受支持，不建议使用
 - `File` 文件消息
 
-具体使用方式可以查看源码`pkg/platform/types/messages.py`中的定义。
-
-## 消息平台事件
-
-这些事件不同于 LangBot 插件事件，是消息平台系统独立的一套事件系统。这些事件是 LangBot 消息的源事件，可以从每个 Query.message_event 取得。
-
-```python
-    # 例如在插件中
-    @handler(GroupMessageReceived)
-    async def _(self, ctx: EventContext):
-        # 取得消息平台事件
-        message_event = ctx.query.message_event
-```
-
-消息平台事件定义位于`pkg/platform/types/events.py`中。
+创建组件时，须使用具名参数传入。具体使用方式可以查看源码`langbot_plugin.api.entities.platform.message`中的定义。
 
 ## 其他实体
 
-除了上述实体之外，还有`好友 Friend`和`群 Group`等实体，这些实体的定义位于`pkg/platform/types/entities.py`中。
-他们一般被包含于上述事件对象中，可以从中取得一些未被包含在插件事件中的信息。
+除了上述实体之外，还有`好友 Friend`和`群 Group`等实体，这些实体的定义位于`langbot_plugin.api.entities.platform.entities`中。
 
 ## 访问消息平台底层 API
+
+:::warning 注意
+4.x 暂不适用。
+:::
 
 为了抹平各个平台的差异，LangBot 在消息平台API之上，提供了一个抽象层，即上方所述的内容，以及`pkg/platform/sources`目录下的各个平台适配器。  
 但由于各个平台的差异较大，抽象层内的实体和 API 封装并不完整，如果您的插件需要访问特定平台的功能，可以按照以下说明访问底层 API。

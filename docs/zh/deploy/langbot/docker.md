@@ -16,7 +16,7 @@ Git 克隆本项目：
 
 ```bash
 git clone https://github.com/langbot-app/LangBot
-cd LangBot
+cd LangBot/docker
 ```
 
 启动容器：

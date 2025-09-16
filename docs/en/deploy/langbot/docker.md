@@ -15,7 +15,7 @@ Clone the project:
 
 ```bash
 git clone https://github.com/langbot-app/LangBot
-cd LangBot
+cd LangBot/docker
 ```
 
 Start the container:
