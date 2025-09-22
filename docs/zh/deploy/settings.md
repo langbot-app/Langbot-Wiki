@@ -95,6 +95,19 @@ system:
         # JWT 密钥，首次启动时会自动生成一个密钥
         secret: 'xxxx'
 
+# 插件系统配置
+plugin:
+    # 是否启用插件系统
+    enable: true
+    # 插件运行时 WebSocket 地址
+    # 默认为 Docker 环境下的默认值
+    # 若要使用独立的 Plugin Runtime，请参考 https://docs.langbot.app/zh/develop/plugin-runtime.html
+    runtime_ws_url: 'ws://langbot_plugin_runtime:5400/control/ws'
+    # 是否启用插件市场
+    enable_marketplace: true
+    # 插件市场 URL
+    cloud_service_url: 'https://space.langbot.app'
+
 # 向量数据库配置
 vdb:
     # 所使用的向量数据库

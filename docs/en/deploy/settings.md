@@ -95,6 +95,19 @@ system:
         # JWT secret key, a key will be automatically generated on first startup
         secret: 'xxxx'
 
+# Plugin system configuration
+plugin:
+    # Whether to enable the plugin system
+    enable: true
+    # Plugin runtime WebSocket address
+    # Default value for Docker environment
+    # If you want to use a standalone Plugin Runtime, please refer to https://docs.langbot.app/en/develop/plugin-runtime.html
+    runtime_ws_url: 'ws://langbot_plugin_runtime:5400/control/ws'
+    # Whether to enable the plugin marketplace
+    enable_marketplace: true
+    # Plugin marketplace URL
+    cloud_service_url: 'https://space.langbot.app'
+
 # Vector database configuration
 vdb:
     # The vector database to use
