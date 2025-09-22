@@ -2,7 +2,13 @@
 
 ## 使用 Docker（或基于 Docker 的一键部署）
 
-请在 `docker/docker-compose.yaml` 目录下执行：
+请在之前 Clone 的 LangBot 目录下执行：
+
+```bash
+git pull
+```
+
+并在 `docker/` 目录下执行：
 
 ```bash
 docker compose up --force-recreate --pull always -d
@@ -11,7 +17,7 @@ docker compose up --force-recreate --pull always -d
 此命令将拉取最新的 LangBot 镜像并重建容器。
 
 :::info
-4.3.0 版本更改了 `docker/docker-compose.yaml` 文件的内容和位置，请[根据文档重新部署](/zh/deploy/langbot/docker)。
+4.3.0 版本更改了 `docker/docker-compose.yaml` 文件的内容和位置，若您由之前版本更新而来，请[根据文档重新部署](/zh/deploy/langbot/docker)。
 :::
 
 ## 手动部署
