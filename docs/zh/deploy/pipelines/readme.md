@@ -14,7 +14,7 @@ LangBot 首次启动时会自动创建一个默认的流水线。创建机器人
 
 ## AI 能力
 
-可以选择使用：`内置 Agent`、[`Dify`](https://dify.ai/)、[`阿里云百炼`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs)、[`n8n`](https://n8n.io/)
+可以选择使用：`内置 Agent`、[`Dify`](https://dify.ai/)、[`阿里云百炼`](https://www.aliyun.com/product/bailian?source=5176.29345612&userCode=ys4ad8gs)、[`n8n`](https://n8n.io/)、[`TBox（蚂蚁百宝箱）`](https://tbox.cn/)
 
 AI 能力主要分为两个部分，选择运行器和配置运行器参数。  
 
