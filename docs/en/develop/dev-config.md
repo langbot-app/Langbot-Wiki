@@ -44,7 +44,13 @@ Install dependencies and start the frontend
 ```bash
 pnpm install
 pnpm dev
+
+# If pnpm is not installed, you can also use npm to solve dependencies and start
+npm install
+npm run dev
 ```
+
+Then according to the output information, visit `http://127.0.0.1:3000` to view the standalone frontend page.
 
 :::info
 When using `pnpm dev` to start locally, the environment variable `NEXT_PUBLIC_API_BASE_URL` will be automatically used by the frontend to ensure that the frontend can access the `5300` port of the locally running backend.
