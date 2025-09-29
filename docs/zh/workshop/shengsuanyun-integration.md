@@ -12,7 +12,7 @@
 
 <img src="/assets/image/zh/workshop/shengsuanyun-integration/llm-models.png" alt="胜算云模型列表" />
 
-前往 LangBot 模型管理页，添加模型（选择胜算云提供商，填入模型名称和 API Key：
+前往 LangBot 模型管理页，添加模型（选择胜算云提供商，填入模型名称和 API Key）：
 
 <img src="/assets/image/zh/workshop/shengsuanyun-integration/add-llm-model.png" alt="添加模型" />
 

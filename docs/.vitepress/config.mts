@@ -222,6 +222,10 @@ export default defineConfig({
                 link: "/zh/workshop/shengsuanyun-integration"
               },
               {
+                text: "接入来自小马算力的模型",
+                link: "/zh/workshop/tokenpony-integration"
+              },
+              {
                 text: "接入 PPIO API 的模型",
                 link: "/zh/workshop/ppio-integration"
               },
