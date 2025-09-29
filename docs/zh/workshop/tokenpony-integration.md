@@ -6,7 +6,7 @@ TokenPony（小马算力）提供统一的API，可以通过单一端点访问�
 
 ## 注册小马算力
 
-点击[链接](https://www.tokenpony.cn/453z1)注册小马算力账号，完成后点击右上家账户按钮，点击`API Keys`
+点击[链接](https://www.tokenpony.cn/453z1)注册小马算力账号，完成后点击右上角账户按钮，点击`API Keys`
 
 ![api-keys](/assets/image/zh/workshop/tokenpony-integration/access-api-key-page.png)
 
