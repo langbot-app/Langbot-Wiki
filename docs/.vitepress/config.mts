@@ -145,6 +145,7 @@ export default defineConfig({
                   { text: "Dify", link: "/zh/deploy/pipelines/dify" },
                   { text: "n8n", link: "/zh/deploy/pipelines/n8n" },
                   { text: "Langflow", link: "/zh/deploy/pipelines/langflow" },
+                  { text: "TBox", link: "/zh/deploy/pipelines/tbox" },
                 ],
               },
               {
