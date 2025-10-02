@@ -227,6 +227,10 @@ export default defineConfig({
                 link: "/zh/workshop/tokenpony-integration"
               },
               {
+                text: "接入 New API的模型",
+                link: "/zh/workshop/newapi-integration"
+              },
+              {
                 text: "接入 PPIO API 的模型",
                 link: "/zh/workshop/ppio-integration"
               },
@@ -465,6 +469,10 @@ export default defineConfig({
               {
                 text: "Container Network Configuration Details",
                 link: "/en/workshop/network-details",
+              },
+              {
+                text: "Integrating New API Model",
+                link: "/en/workshop/newapi-integration"
               },
               {
                 text: "Integrating PPIO API Model",
