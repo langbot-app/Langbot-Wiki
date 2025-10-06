@@ -1,4 +1,4 @@
-# Pipeline Events
+# Pipeline Events and APIs
 
 :::info Table of Contents
 [[toc]]
@@ -6,7 +6,11 @@
 
 LangBot plugins can register and handle pipeline events. For usage instructions, see [Component: Event Listener](/en/plugin/dev/components/event-listener).
 
-## *MessageReceived
+## List of Events
+
+Some events have `settable attributes`, which can be modified by plugin code and used in subsequent LangBot processing.
+
+### *MessageReceived
 
 Triggered when any message is received in group chat or private chat.
 
@@ -49,7 +53,7 @@ class GroupMessageReceived(BaseEventModel):
     )
 ```
 
-## *NormalMessageReceived
+### *NormalMessageReceived
 
 Triggered when a group chat or private chat message is received and determined to be a message that needs to be processed by LLM (non-command message).
 
@@ -68,11 +72,13 @@ class PersonNormalMessageReceived(BaseEventModel):
     text_message: str
     """Message text"""
 
-    alter: typing.Optional[str] = None
-    """Modified message text"""
+    # ========== Settable Attributes ==========
 
-    reply: typing.Optional[list] = None
-    """Reply message component list"""
+    user_message_alter: typing.Optional[provider_message.ContentElement] = None
+    """Modified message text, langbot_plugin.api.entities.builtin.provider.message.ContentElement type"""
+
+    reply_message_chain: typing.Optional[platform_message.MessageChain] = None
+    """Reply message component list, only effective when preventing default behavior"""
 
 class GroupNormalMessageReceived(BaseEventModel):
     """Triggered when a group chat normal message that should be processed is determined"""
@@ -88,14 +94,16 @@ class GroupNormalMessageReceived(BaseEventModel):
     text_message: str
     """Message text"""
 
-    alter: typing.Optional[str] = None
-    """Modified message text"""
+    # ========== Settable Attributes ==========
 
-    reply: typing.Optional[list] = None
-    """Reply message component list"""
+    user_message_alter: typing.Optional[provider_message.ContentElement] = None
+    """Modified message text, langbot_plugin.api.entities.builtin.provider.message.ContentElement type"""
+
+    reply_message_chain: typing.Optional[platform_message.MessageChain] = None
+    """Reply message component list, only effective when preventing default behavior"""
 ```
 
-## *CommandSent
+### *CommandSent
 
 :::warning Note
 No longer recommended for use, please use [Component: Command](/en/plugin/dev/components/command) instead.
@@ -127,11 +135,6 @@ class PersonCommandSent(BaseEventModel):
     is_admin: bool
     """Whether it's an administrator"""
 
-    alter: typing.Optional[str] = None
-    """Modified complete command text"""
-
-    reply: typing.Optional[list] = None
-    """Reply message component list"""
 
 class GroupCommandSent(BaseEventModel):
     """Triggered when a group chat command that should be processed is determined"""
@@ -156,14 +159,9 @@ class GroupCommandSent(BaseEventModel):
     is_admin: bool
     """Whether it's an administrator"""
 
-    alter: typing.Optional[str] = None
-    """Modified complete command text"""
-
-    reply: typing.Optional[list] = None
-    """Reply message component list"""
 ```
 
-## NormalMessageResponded
+### NormalMessageResponded
 
 Triggered when a message receives an LLM response.
 
@@ -194,11 +192,13 @@ class NormalMessageResponded(BaseEventModel):
     funcs_called: list[str]
     """List of called functions"""
 
-    reply: typing.Optional[list] = None
-    """Reply message component list"""
+    # ========== Settable Attributes ==========
+
+    reply_message_chain: typing.Optional[platform_message.MessageChain] = None
+    """Reply message component list, only effective when preventing default behavior"""
 ```
 
-## PromptPreProcessing
+### PromptPreProcessing
 
 Triggered when building the LLM response context (prompt).
 
@@ -210,9 +210,59 @@ class PromptPreProcessing(BaseEventModel):
 
     session_name: str
 
-    default_prompt: list[provider_message.Message]
-    """Scenario preset for this conversation, can be modified"""
+    # ========== Settable Attributes ==========
 
-    prompt: list[provider_message.Message]
-    """Existing message records for this conversation, can be modified"""
+    default_prompt: list[typing.Union[provider_message.Message, provider_message.MessageChunk]]
+    """Scenario preset for this conversation, can be modified, langbot_plugin.api.entities.builtin.provider.message.Message or langbot_plugin.api.entities.builtin.provider.message.MessageChunk type"""
+
+    prompt: list[typing.Union[provider_message.Message, provider_message.MessageChunk]]
+    """Existing message records for this conversation, can be modified, langbot_plugin.api.entities.builtin.provider.message.Message or langbot_plugin.api.entities.builtin.provider.message.MessageChunk type"""
 ```
+
+## Event Context APIs
+
+```python
+...
+        @self.handler(events.PersonMessageReceived)
+        async def handler(event_context: context.EventContext):
+            ...
+```
+
+Event processing methods will be passed the `EventContext` object, which contains event context information, and the object has both [Request API](/en/plugin/dev/apis/common) and event context specific APIs. The following is a list of event context specific APIs:
+
+### Prevent Default Behavior
+
+```python
+def prevent_default(self):
+    """Prevent default behavior"""
+
+# Usage example
+event_context.prevent_default()
+```
+
+Calling this method will prevent the default subsequent behavior of this event, and the pipeline will end directly.
+
+:::info
+Only the following events can prevent default behavior:
+
+- PersonMessageReceived
+- GroupMessageReceived
+- PersonNormalMessageReceived
+- GroupNormalMessageReceived
+- PersonCommandSent
+- GroupCommandSent
+- NormalMessageResponded
+
+:::
+
+### Prevent Postorder Execution
+
+```python
+def prevent_postorder(self):
+    """Prevent postorder execution"""
+
+# Usage example
+event_context.prevent_postorder()
+```
+
+Calling this method will prevent the subsequent plugins from executing this time.
