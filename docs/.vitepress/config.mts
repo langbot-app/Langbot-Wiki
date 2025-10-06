@@ -219,6 +219,10 @@ export default defineConfig({
                 link: "/zh/workshop/network-details",
               },
               {
+                text: "使用 New API 中转多种渠道模型",
+                link: "/zh/workshop/newapi-integration"
+              },
+              {
                 text: "接入来自胜算云的模型",
                 link: "/zh/workshop/shengsuanyun-integration"
               },
@@ -465,6 +469,10 @@ export default defineConfig({
               {
                 text: "Container Network Configuration Details",
                 link: "/en/workshop/network-details",
+              },
+              {
+                text: "Using New API to Transmit Models from Multiple Channels",
+                link: "/en/workshop/newapi-integration"
               },
               {
                 text: "Integrating PPIO API Model",
