@@ -37,7 +37,7 @@ docker run --name new-api -d --restart always \
 
 ![](/assets/image/zh/workshop/newapi-integration/model.png)
 
-2. **流式线选择刚才配置的模型**
+2. **流水线选择使用刚才配置的模型**
 
 ![](/assets/image/zh/workshop/newapi-integration/model2.png)
 
