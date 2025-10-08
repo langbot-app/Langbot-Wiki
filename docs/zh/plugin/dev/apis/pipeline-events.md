@@ -1,4 +1,4 @@
-# 流水线事件
+# 流水线事件和 API
 
 :::info 目录
 [[toc]]
@@ -6,7 +6,11 @@
 
 LangBot 插件可注册并处理流水线事件。使用方法见[组件：事件监听器](/zh/plugin/dev/components/event-listener)。
 
-## *MessageReceived
+## 可监听的事件列表
+
+某些事件具有`可设置的属性`，这些属性可以被插件代码修改，并在之后被用在 LangBot 后续的处理中。
+
+### *MessageReceived
 
 接收到群聊或私聊任何消息时触发。
 
@@ -49,7 +53,7 @@ class GroupMessageReceived(BaseEventModel):
     )
 ```
 
-## *NormalMessageReceived
+### *NormalMessageReceived
 
 接收到群聊或私聊消息，并判断为需要由 LLM 处理的消息（非命令消息）时触发。
 
@@ -68,11 +72,14 @@ class PersonNormalMessageReceived(BaseEventModel):
     text_message: str
     """消息文本"""
 
-    alter: typing.Optional[str] = None
-    """修改后的消息文本"""
+    # ========== 可设置的属性 ==========
 
-    reply: typing.Optional[list] = None
-    """回复消息组件列表"""
+    user_message_alter: typing.Optional[provider_message.ContentElement] = None
+    """修改后的消息文本，langbot_plugin.api.entities.builtin.provider.message.ContentElement 类型"""
+
+    reply_message_chain: typing.Optional[platform_message.MessageChain] = None
+    """直接回复消息链，仅在阻止默认行为时生效"""
+
 
 class GroupNormalMessageReceived(BaseEventModel):
     """判断为应该处理的群聊普通消息时触发"""
@@ -88,14 +95,16 @@ class GroupNormalMessageReceived(BaseEventModel):
     text_message: str
     """消息文本"""
 
-    alter: typing.Optional[str] = None
-    """修改后的消息文本"""
+    # ========== 可设置的属性 ==========
 
-    reply: typing.Optional[list] = None
-    """回复消息组件列表"""
+    user_message_alter: typing.Optional[provider_message.ContentElement] = None
+    """修改后的消息文本，langbot_plugin.api.entities.builtin.provider.message.ContentElement 类型"""
+
+    reply_message_chain: typing.Optional[platform_message.MessageChain] = None
+    """直接回复消息链，仅在阻止默认行为时生效"""
 ```
 
-## *CommandSent
+### *CommandSent
 
 :::warning 注意
 不再推荐使用，请改为使用[组件：命令](/zh/plugin/dev/components/command)。
@@ -127,11 +136,6 @@ class PersonCommandSent(BaseEventModel):
     is_admin: bool
     """是否为管理员"""
 
-    alter: typing.Optional[str] = None
-    """修改后的完整命令文本"""
-
-    reply: typing.Optional[list] = None
-    """回复消息组件列表"""
 
 class GroupCommandSent(BaseEventModel):
     """判断为应该处理的群聊命令时触发"""
@@ -156,20 +160,15 @@ class GroupCommandSent(BaseEventModel):
     is_admin: bool
     """是否为管理员"""
 
-    alter: typing.Optional[str] = None
-    """修改后的完整命令文本"""
-
-    reply: typing.Optional[list] = None
-    """回复消息组件列表"""
 ```
 
-## NormalMessageResponded
+### NormalMessageResponded
 
 消息得到 LLM 响应时触发。
 
 ```python
 class NormalMessageResponded(BaseEventModel):
-    """回复普通消息时触发"""
+    """收到对普通消息的响应时触发"""
 
     event_name: str = "NormalMessageResponded"
 
@@ -194,11 +193,13 @@ class NormalMessageResponded(BaseEventModel):
     funcs_called: list[str]
     """调用的函数列表"""
 
-    reply: typing.Optional[list] = None
-    """回复消息组件列表"""
+    # ========== 可设置的属性 ==========
+
+    reply_message_chain: typing.Optional[platform_message.MessageChain] = None
+    """直接回复消息链，仅在阻止默认行为时生效"""
 ```
 
-## PromptPreProcessing
+### PromptPreProcessing
 
 在构建 LLM 响应的上下文（prompt）时触发。
 
@@ -210,9 +211,62 @@ class PromptPreProcessing(BaseEventModel):
 
     session_name: str
 
-    default_prompt: list[provider_message.Message]
-    """此对话的情景预设，可修改"""
+    # ========== 可设置的属性 ==========
 
-    prompt: list[provider_message.Message]
-    """此对话现有消息记录，可修改"""
+    default_prompt: list[
+        typing.Union[provider_message.Message, provider_message.MessageChunk]
+    ]
+    """此对话的情景预设（系统提示词），可修改，langbot_plugin.api.entities.builtin.provider.message.Message 或 langbot_plugin.api.entities.builtin.provider.message.MessageChunk 类型"""
+
+    prompt: list[typing.Union[provider_message.Message, provider_message.MessageChunk]]
+    """此对话现有消息记录，可修改，langbot_plugin.api.entities.builtin.provider.message.Message 或 langbot_plugin.api.entities.builtin.provider.message.MessageChunk 类型"""
+
 ```
+
+## 事件上下文 API
+
+```python
+...
+        @self.handler(events.PersonMessageReceived)
+        async def handler(event_context: context.EventContext):
+            ...
+```
+
+事件处理方法将被传入`EventContext`对象，该对象包含事件的上下文信息，该对象同时具有[请求 API](/zh/plugin/dev/apis/common)和事件上下文特定 API，以下为事件上下文特定 API 列表：
+
+### 阻止默认行为
+
+```python
+def prevent_default(self):
+    """阻止默认行为"""
+
+# 调用示例
+event_context.prevent_default()
+```
+
+调用该方法后，该事件后续默认行为将被阻止，流水线将直接结束。
+
+:::info
+仅以下事件可阻止默认行为：
+
+- PersonMessageReceived
+- GroupMessageReceived
+- PersonNormalMessageReceived
+- GroupNormalMessageReceived
+- PersonCommandSent
+- GroupCommandSent
+- NormalMessageResponded
+
+:::
+
+### 阻止后序插件执行
+
+```python
+def prevent_postorder(self):
+    """阻止后序插件执行"""
+
+# 调用示例
+event_context.prevent_postorder()
+```
+
+调用该方法后，注册了该事件的后序插件此次将不被执行。
