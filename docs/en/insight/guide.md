@@ -11,13 +11,6 @@ The documentation is divided into the following sections:
 - Practice: Many excellent use cases for LangBot
 - Development: Information related to participating in LangBot development
 
-## Usage Examples
-
-![private_chat](/assets/image/zh/insight/private_chat.png)
-
-![group_chat](/assets/image/zh/insight/group_chat.png)
-
-
 ## Quick Start Guide
 
 > Two ways to get started quickly:
