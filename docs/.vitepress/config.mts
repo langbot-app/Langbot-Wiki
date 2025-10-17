@@ -146,6 +146,7 @@ export default defineConfig({
                   { text: "n8n", link: "/zh/deploy/pipelines/n8n" },
                   { text: "Langflow", link: "/zh/deploy/pipelines/langflow" },
                   { text: "TBox", link: "/zh/deploy/pipelines/tbox" },
+                  { text: "Coze", link: "/zh/deploy/pipelines/coze" },
                 ],
               },
               {
