@@ -46,6 +46,7 @@ LangBot is an open-source LLM native instant messaging robot development platfor
 | [Aliyun Bailian](https://bailian.console.aliyun.com/) | ✅ | LLM gateway(MaaS), LLMOps platform |
 | [Volc Engine Ark](https://console.volcengine.com/ark/region:ark+cn-beijing/model?vendor=Bytedance&view=LIST_VIEW) | ✅ | LLM gateway(MaaS), LLMOps platform |
 | [ModelScope](https://modelscope.cn/docs/model-service/API-Inference/intro) | ✅ | LLM gateway(MaaS) |
+| [Coze](https://coze.com) | ✅ | LLMOps platform |
 
 ## LLM Application Paradigm Implementation
 

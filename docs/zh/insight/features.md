@@ -48,6 +48,7 @@ LangBot 是一个开源的大语言模型原生即时通信机器人开发平台
 | [火山方舟](https://console.volcengine.com/ark/region:ark+cn-beijing/model?vendor=Bytedance&view=LIST_VIEW) | ✅ | 大模型聚合平台, LLMOps 平台 |
 | [ModelScope](https://modelscope.cn/docs/model-service/API-Inference/intro) | ✅ | 大模型聚合平台 |
 | [TBox（蚂蚁百宝箱）](https://tbox.cn/) | ✅ | LLMOps 平台 |
+| [Coze](https://coze.cn) | ✅ | LLMOps 平台 |
 
 ## LLM 应用范式实现
 
