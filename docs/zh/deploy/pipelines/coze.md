@@ -8,6 +8,9 @@
 ![Coze 应用 API 密钥](/assets/image/zh/deploy/pipelines/coze/coze07.png)
 2. 在“API 管理”中创建并复制令牌。
 ![Coze 应用 API 密钥](/assets/image/zh/deploy/pipelines/coze/coze06.png)
+:::info
+coze.cn的授权中有可以长期授权的`服务身份及凭证`但是coze.com只有个人访问令牌。
+:::
 3. 从项目开发中选择你自己的智能体，或者新建智能体，拿到一下id就是bot_id。
 ![Coze bot_id](/assets/image/zh/deploy/pipelines/coze/coze05.png)
 * 智能体发布一定要选上api的选项

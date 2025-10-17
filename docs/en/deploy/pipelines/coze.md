@@ -9,6 +9,9 @@ This document explains how to obtain the Token and Bot ID from the Coze platform
 
 2. In "API Management", create and copy the token.
 ![Coze Application API Key](/assets/image/zh/deploy/pipelines/coze/coze06.png)
+:::info
+In Coze authorization, coze.cn supports long-term authorization through "Service Identities and Credentials", while coze.com only provides Personal Access Tokens.
+:::
 
 3. Select your own agent (or create a new one) from the project development section. The obtained ID is the `bot_id`.
 ![Coze bot_id](/assets/image/zh/deploy/pipelines/coze/coze05.png)
