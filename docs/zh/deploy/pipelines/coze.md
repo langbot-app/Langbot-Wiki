@@ -8,9 +8,11 @@
 ![Coze 应用 API 密钥](/assets/image/zh/deploy/pipelines/coze/coze07.png)
 2. 在“API 管理”中创建并复制令牌。
 ![Coze 应用 API 密钥](/assets/image/zh/deploy/pipelines/coze/coze06.png)
+
 :::info
-coze.cn的授权中有可以长期授权的`服务身份及凭证`但是coze.com只有个人访问令牌。
+coze.cn 的授权中有可以长期授权的`服务身份及凭证`，但是 coze.com 只有个人访问令牌。
 :::
+
 3. 从项目开发中选择你自己的智能体，或者新建智能体，拿到一下id就是bot_id。
 ![Coze bot_id](/assets/image/zh/deploy/pipelines/coze/coze05.png)
 * 智能体发布一定要选上api的选项
@@ -29,6 +31,8 @@ coze.cn的授权中有可以长期授权的`服务身份及凭证`但是coze.com
 3. 在运行器的配置项中，填写：
    - token：粘贴你在 Coze 平台复制的 API Token
    - bot_id：粘贴对应机器人的 Bot ID
+   - 请根据您使用的 Coze 站点选择 `API 基础 URL`：coze.cn 请填写 `https://api.coze.cn`；coze.com 请填写 `https://api.coze.com`
+
     ![流水线配置](/assets/image/zh/deploy/pipelines/coze/coze08.png)
 4. 点击“保存”完成配置。
 
