@@ -34,47 +34,6 @@ concurrency:
     # Single session concurrency
     session: 1
 
-# MCP configuration
-# Should be configurable in WebUI in the future
-mcp:
-    # MCP server list
-    # Currently supports two protocol MCP servers:
-    # - SSE
-    # - Stdio (Python)
-    # 
-    # Format:
-    # SSE mode:
-    #    name Server name, self-defined
-    #    enable Whether to enable this Server
-    #    mode Fixed as sse
-    #    url MCP SSE Server access URL
-    #    headers Connection headers, optional
-    #    timeout Connection timeout
-    # 
-    # stdio mode:
-    #    name Server name, self-defined
-    #    enable Whether to enable this Server
-    #    mode Fixed as stdio
-    #    command Execution command
-    #    args Command parameters
-    #    env Command environment variables, optional
-    #
-    # For example:
-    # servers:
-    #   - name: 'SSE Server'
-    #     enable: true
-    #     mode: sse
-    #     url: 'http://127.0.0.1:8000/sse'
-    #     headers: {}
-    #     timeout: 10
-    #   - name: 'stdio Server'
-    #     enable: true
-    #     mode: stdio
-    #     command: 'python'
-    #     args: ['-m', 'weather']
-    #     env: {}
-    servers: []
-
 # Proxy configuration
 proxy:
     # HTTP proxy address
