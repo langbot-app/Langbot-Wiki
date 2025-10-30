@@ -1,8 +1,5 @@
 # Deploying WeCom Intelligent Bot
 
-:::info  
-The WeCom Intelligent Robot official API is still being updated, so it currently only accepts requests within 7 seconds.  
-:::
 
 ## Creating a Bot
 
