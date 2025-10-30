@@ -154,6 +154,10 @@ export default defineConfig({
                 link: "/zh/deploy/knowledge/readme",
               },
               {
+                text: "使用MCP服务",
+                link: "zh/deploy/mcp/readme"
+              },
+              {
                 text: "系统环境设置",
                 link: "/zh/deploy/settings",
               },
