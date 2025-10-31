@@ -471,14 +471,14 @@ export default defineConfig({
                 text: "How to Implement a Message Platform Adapter?",
                 link: "/en/workshop/impl-platform-adapter",
               },
-              {
-                text: "Integrating Complete MCP Ecosystem in LangBot",
-                link: "/en/workshop/mcp-details"
-              },
               // {
-              //   text: "Container Network Configuration Details",
-              //   link: "/en/workshop/network-details",
+              //  text: "Integrating Complete MCP Ecosystem in LangBot",
+              // link: "/en/workshop/mcp-details"
               // },
+              {
+                 text: "Container Network Configuration Details",
+                 link: "/en/workshop/network-details",
+              },
               {
                 text: "Using New API to Transmit Models from Multiple Channels",
                 link: "/en/workshop/newapi-integration"
