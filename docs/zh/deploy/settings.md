@@ -34,47 +34,6 @@ concurrency:
     # 单会话并发数
     session: 1
 
-# MCP 配置
-# 后续应该会改为在 WebUI 上可以配置
-mcp:
-    # MCP 服务器列表
-    # 目前支持两种协议的 MCP 服务器：
-    # - SSE
-    # - Stdio（Python）
-    # 
-    # 格式：
-    # SSE 模式：
-    #    name 服务器名称，自行定义
-    #    enable 是否启用本 Server
-    #    mode 固定填写 sse
-    #    url MCP SSE Server 的访问 URL
-    #    headers 连接时的 headers，可选
-    #    timeout 连接超时时间
-    # 
-    # stdio 模式：
-    #    name 服务器名称，自行定义
-    #    enable 是否启用本 Server
-    #    mode 固定填写 stdio
-    #    command 执行命令
-    #    args 执行命令的参数
-    #    env 执行命令的环境变量，可选
-    #
-    # 例如：
-    # servers:
-    #   - name: 'SSE Server'
-    #     enable: true
-    #     mode: sse
-    #     url: 'http://127.0.0.1:8000/sse'
-    #     headers: {}
-    #     timeout: 10
-    #   - name: 'stdio Server'
-    #     enable: true
-    #     mode: stdio
-    #     command: 'python'
-    #     args: ['-m', 'weather']
-    #     env: {}
-    servers: []
-
 # 代理配置
 proxy:
     # HTTP 代理地址
