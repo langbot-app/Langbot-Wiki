@@ -5,6 +5,7 @@ LangBot supports SSE mode MCP servers. You can add MCP servers to leverage the t
 
 :::info
 MCP service only supports SSE mode.
+- MCP servers recommended acquisition channel: [Composio MCP](https://mcp.composio.dev/)
 :::
 
 ## Enable Function Calling for Models

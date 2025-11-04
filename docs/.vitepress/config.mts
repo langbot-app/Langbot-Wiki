@@ -154,7 +154,7 @@ export default defineConfig({
                 link: "/zh/deploy/knowledge/readme",
               },
               {
-                text: "使用MCP服务",
+                text: "使用 MCP 服务",
                 link: "zh/deploy/mcp/readme"
               },
               {
@@ -215,10 +215,6 @@ export default defineConfig({
                 text: "如何实现一个消息平台适配器？",
                 link: "/zh/workshop/impl-platform-adapter",
               },
-              // {
-              //   text: "在 LangBot 接入完整 MCP 生态",
-              //   link: "/zh/workshop/mcp-details"
-              // },
               {
                 text: "容器网络配置详解",
                 link: "/zh/workshop/network-details",

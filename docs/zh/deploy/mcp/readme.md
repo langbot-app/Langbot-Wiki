@@ -4,7 +4,8 @@
 LangBot 支持 SSE 模式 MCP 服务器，您可以添加 MCP 服务器，使用大语言模型中的工具调用特性，更好的处理 LLM 请求。
 
 :::info
-MCP 服务仅支持 SSE 模式。
+- MCP 服务仅支持 SSE 模式。
+- MCP 服务器推荐获取渠道：[ModelScope](https://modelscope.cn/mcp)
 :::
 
 ## 打开模型的函数调用功能
