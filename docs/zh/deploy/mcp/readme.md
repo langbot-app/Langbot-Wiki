@@ -35,15 +35,3 @@ LangBot 支持 SSE 模式 MCP 服务器，您可以添加 MCP 服务器，使用
 需要在流水线设置中选用 `内置 Agent` 作为运行器，并使用支持函数调用的模型。
 
 <img width="1000px" src="/assets/image/zh/deploy/mcp/mcp04.png" alt="dialog with mcp" />
-
-
-
-
-
-
-
-
-
-
-
-

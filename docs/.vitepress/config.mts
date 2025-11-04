@@ -202,7 +202,12 @@ export default defineConfig({
                     ],
                   },
                   { text: "迁移指南", link: "/zh/plugin/dev/migration" },
-                  { text: "发布插件", link: "/zh/plugin/dev/publish" },
+                  { text: "分发插件", collapsed: true,
+                    items: [
+                      { text: "发布到插件市场", link: "/zh/plugin/dev/dist/market" },
+                      { text: "通过 GitHub 分发", link: "/zh/plugin/dev/dist/github" },
+                    ]
+                   },
                 ],
               },
               { text: "系统兼容性", link: "/zh/plugin/compatibility" },
@@ -454,7 +459,12 @@ export default defineConfig({
                     ],
                   },
                   { text: "Migration Guide", link: "/en/plugin/dev/migration" },
-                  { text: "Publish Plugin", link: "/en/plugin/dev/publish" },
+                  { text: "Distribute Plugin", collapsed: true,
+                    items: [
+                      { text: "Publish to Marketplace", link: "/en/plugin/dev/dist/market" },
+                      { text: "Distribute via GitHub", link: "/en/plugin/dev/dist/github" },
+                    ]
+                   },
                 ],
               },
               { text: "System Compatibility", link: "/en/plugin/compatibility" },

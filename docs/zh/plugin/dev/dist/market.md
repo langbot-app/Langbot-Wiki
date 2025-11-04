@@ -1,18 +1,18 @@
-# Publish Plugin
+# 发布插件到插件市场
 
-Publish plugins to [LangBot Plugin Marketplace](https://space.langbot.app/market) via CLI.
+通过 CLI 将插件发布至 [LangBot 插件市场](https://space.langbot.app/market)。
 
-## Create Account on LangBot Space
+## 在 LangBot Space 创建账号
 
-LangBot Space is LangBot's centralized service platform. Please visit [LangBot Space](https://space.langbot.app), click the top-right corner to log in with GitHub and create an account.
+LangBot Space 是 LangBot 提供中心化服务平台。请访问[LangBot Space](https://space.langbot.app)，点击右上角使用 GitHub 登录并创建账号。
 
 <img width="600" src="/assets/image/zh/plugin/dev/login_space.png" />
 
-This will redirect to GitHub authorization page, please complete authorization as prompted.
+这将跳转到 GitHub 授权页面，请根据提示完成授权。
 
-## Log in to LangBot Space Using CLI
+## 使用 CLI 登录 LangBot Space
 
-Execute command `lbp login` in any directory:
+在任意目录执行命令`lbp login`：
 
 ```bash
 ➜  HelloPlugin > lbp login
@@ -29,7 +29,7 @@ Device code expires in: 120 seconds
 Waiting for verification...
 ```
 
-Please click `Verification URL` to redirect to LangBot Space, enter `User Code` to complete login.
+请点击`Verification URL`跳转至 LangBot Space，输入`User Code`完成登录。
 
 <img width="600" src="/assets/image/zh/plugin/dev/space_device_flow.png" />
 
@@ -42,11 +42,11 @@ Expires in: 21600 seconds
 ==================================================
 ```
 
-After successful login, you can continue using CLI to upload plugins.
+登录成功后，您可以继续使用 CLI 上传插件。
 
-## Upload Plugin
+## 上传插件
 
-Please execute `lbp publish` in your plugin directory:
+请在您的插件目录下执行`lbp publish`:
 
 ```bash
 ➜  HelloPlugin > lbp publish
@@ -58,8 +58,8 @@ Plugin built successfully: dist/tmp/RockChinQ-HelloPlugin-0.1.0.lbpkg
 ✅ Plugin published successfully. You can check it on https://https://space.langbot.app/market
 ```
 
-You can now check your plugin submission task at [LangBot Plugin Marketplace](https://space.langbot.app/market). Please wait for approval, after which you can view your plugin in the marketplace.
+您现在可以在[LangBot 插件市场](https://space.langbot.app/market)查看您的插件提交任务。请等待审核通过后，您可以在插件市场查看您的插件。
 
 <img width="600" src="/assets/image/zh/plugin/dev/plugin_submission.png" />
 
-If you have any questions, you can send an email to `hello@langbot.app` or contact us through [Community](/en/insight/community).
+有任何问题，您可以发送邮件到`hello@langbot.app`或通过[社区](/zh/insight/community)联系我们。
