@@ -20,6 +20,6 @@ There are two types of MCP Servers in the market:
 
 ## Configuring MCP Server
 
-Please refer to the [System Settings Documentation](/zh/deploy/settings.html)
+Please refer to the [System Settings Documentation](/en/deploy/settings.html)
 
 After configuration, you can use the `!func` command in chat to view registered MCP tools. When chatting with models that support Function Calling, LangBot will automatically call MCP tools.

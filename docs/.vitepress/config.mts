@@ -154,6 +154,10 @@ export default defineConfig({
                 link: "/zh/deploy/knowledge/readme",
               },
               {
+                text: "使用 MCP 服务",
+                link: "zh/deploy/mcp/readme"
+              },
+              {
                 text: "系统环境设置",
                 link: "/zh/deploy/settings",
               },
@@ -210,10 +214,6 @@ export default defineConfig({
               {
                 text: "如何实现一个消息平台适配器？",
                 link: "/zh/workshop/impl-platform-adapter",
-              },
-              {
-                text: "在 LangBot 接入完整 MCP 生态",
-                link: "/zh/workshop/mcp-details"
               },
               {
                 text: "容器网络配置详解",
@@ -407,6 +407,10 @@ export default defineConfig({
                 link: "/en/deploy/knowledge/readme",
               },
               {
+                text: "Using MCP Services",
+                link: "/en/deploy/mcp/readme",
+              },
+              {
                 text: "System Settings",
                 link: "/en/deploy/settings",
               },
@@ -463,13 +467,13 @@ export default defineConfig({
                 text: "How to Implement a Message Platform Adapter?",
                 link: "/en/workshop/impl-platform-adapter",
               },
+              // {
+              //  text: "Integrating Complete MCP Ecosystem in LangBot",
+              // link: "/en/workshop/mcp-details"
+              // },
               {
-                text: "Integrating Complete MCP Ecosystem in LangBot",
-                link: "/en/workshop/mcp-details"
-              },
-              {
-                text: "Container Network Configuration Details",
-                link: "/en/workshop/network-details",
+                 text: "Container Network Configuration Details",
+                 link: "/en/workshop/network-details",
               },
               {
                 text: "Using New API to Transmit Models from Multiple Channels",
