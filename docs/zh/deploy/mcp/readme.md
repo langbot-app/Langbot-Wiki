@@ -16,11 +16,11 @@ LangBot 支持 SSE 模式 MCP 服务器，您可以添加 MCP 服务器，使用
 
 ## 创建MCP服务器
 
-点击`插件管理`，`mcp管理`，如图所示：
+点击`插件管理` -> `MCP管理`，如图所示：
 
 <img width="1000px" src="/assets/image/zh/deploy/mcp/mcp02.png" alt="server page" />
 
-点击右上角的`添加`，`创建MCP服务器`，
+点击右上角的`添加`，选择`添加 MCP 服务器`，
 
 <img width="400px" src="/assets/image/zh/deploy/mcp/mcp03.png" alt="create new mcp server" />
 
@@ -31,6 +31,8 @@ LangBot 支持 SSE 模式 MCP 服务器，您可以添加 MCP 服务器，使用
 <img width="400px" src="/assets/image/zh/deploy/mcp/mcp05.png" alt="detailed server" />
 
 ## 效果
+
+需要在流水线设置中选用 `内置 Agent` 作为运行器，并使用支持函数调用的模型。
 
 <img width="1000px" src="/assets/image/zh/deploy/mcp/mcp04.png" alt="dialog with mcp" />
 

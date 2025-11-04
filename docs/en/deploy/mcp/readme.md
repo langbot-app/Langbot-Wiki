@@ -32,4 +32,6 @@ After adding, click the switch on the card to connect to the MCP server. Click t
 
 ## Effect
 
+You need to select `Local Agent` as the runner in the pipeline settings and use a model that supports function calling.
+
 <img width="1000px" src="/assets/image/zh/deploy/mcp/mcp04.png" alt="dialog with mcp" />
