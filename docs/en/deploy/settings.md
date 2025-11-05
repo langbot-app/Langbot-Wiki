@@ -85,3 +85,18 @@ vdb:
         # Qdrant API Key
         api_key: ''
 ```
+
+## Set configuration via environment variables
+
+The configuration in `config.yaml` can be set via environment variables. The environment variable name is uppercase letters, using double underscores to connect, for example: `API__PORT` represents `api.port`.
+
+- `API__PORT` represents `api.port`
+- `CONCURRENCY__PIPELINE` represents `concurrency.pipeline`
+- `CONCURRENCY__SESSION` represents `concurrency.session`
+- `DATABASE__POSTGRESQL__DATABASE` represents `database.postgresql.database`
+- `DATABASE__POSTGRESQL__HOST` represents `database.postgresql.host`
+- `DATABASE__SQLITE__PATH` represents `database.sqlite.path`
+
+...
+
+When starting, LangBot will read all environment variables and apply the corresponding configuration to `config.yaml` and write to the `data/config.yaml` file.

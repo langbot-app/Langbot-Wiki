@@ -85,3 +85,18 @@ vdb:
         # Qdrant 的 API Key
         api_key: ''
 ```
+
+## 通过环境变量设置
+
+config.yaml 中的配置可以通过环境变量进行设置。环境变量名称为大写字母，使用双下划线连接，例如：`API__PORT`代表`api.port`。
+
+- `API__PORT` 代表 `api.port`
+- `CONCURRENCY__PIPELINE` 代表 `concurrency.pipeline`
+- `CONCURRENCY__SESSION` 代表 `concurrency.session`
+- `DATABASE__POSTGRESQL__DATABASE` 代表 `database.postgresql.database`
+- `DATABASE__POSTGRESQL__HOST` 代表 `database.postgresql.host`
+- `DATABASE__SQLITE__PATH` 代表 `database.sqlite.path`
+
+...
+
+在启动时，LangBot 会读取所有环境变量，将对应的配置应用到 config.yaml 中并写入到 data/config.yaml 文件中。
