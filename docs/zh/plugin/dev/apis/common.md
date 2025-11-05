@@ -298,3 +298,15 @@ async def delete_workspace_storage(self, key: str) -> None:
 # 调用示例
 await self.plugin.delete_workspace_storage("key")
 ```
+
+### 获取插件配置项文件数据
+
+```python
+async def get_config_file(self, file_key: str) -> bytes:
+    """Get a config file value"""
+
+# 调用示例
+file_bytes = await self.plugin.get_config_file("key")
+```
+
+请结合 [`file` 或 `array[file]` 类型配置项](/zh/plugin/dev/basic-info.html#type-file)使用。

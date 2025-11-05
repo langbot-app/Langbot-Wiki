@@ -298,3 +298,15 @@ async def delete_workspace_storage(self, key: str) -> None:
 # Usage example
 await self.plugin.delete_workspace_storage("key")
 ```
+
+### Get Plugin File-typed Config Field Data
+
+```python
+async def get_config_file(self, file_key: str) -> bytes:
+    """Get a config file value"""
+
+# Usage example
+file_bytes = await self.plugin.get_config_file("key")
+```
+
+Use this in conjunction with configuration fields of type [`file` or `array[file`](/en/plugin/dev/basic-info.html#type-file).
