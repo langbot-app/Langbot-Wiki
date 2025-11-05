@@ -140,6 +140,71 @@ Prompt editor. Displays a prompt editor from the pipeline configuration page, wi
   ...
 ```
 
+### type: text
+
+Large text input. Rendered as a textarea in the frontend for user input, and passed to the plugin as a string.
+
+```yaml
+- name: prompt
+  type: text
+  ...
+```
+
+### type: file
+
+File upload. Supports file uploads up to 10MB, passed to the plugin in the format `{"file_key": "xxxxx.xxx", "mimetype": "xxxxx"}`. The plugin can use the `get_config_file` API to retrieve the file content.
+
+```yaml
+- name: config_file
+  type: file
+  accept: 'application/json'  # Optional, specify accepted file MIME types
+  ...
+```
+
+Retrieving the file in the plugin:
+
+```python
+# Get file information from config
+file_config = self.get_config()['config_file']
+file_key = file_config['file_key']
+mimetype = file_config['mimetype']
+
+# Example output: {'file_input': {'file_key': 'plugin_config_d2234fd802054faf80babe0679a97fa9.json', 'mimetype': 'application/json'}}
+print(file_config)
+
+# Get file content
+file_bytes = await self.get_config_file(file_key)
+```
+
+::: info
+Common MIME type and file extension reference: [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
+:::
+
+### type: array[file]
+
+Multiple file upload. Similar to the file type, but supports uploading multiple files, passed to the plugin in the format `[{"file_key": "xxxxx.xxx", "mimetype": "xxxxx"}]`.
+
+```yaml
+- name: resource_files
+  type: array[file]
+  accept: 'image/*'  # Optional, specify accepted file MIME types
+  ...
+```
+
+Retrieving files in the plugin:
+
+```python
+# Get file list from config
+files_config = self.get_config()['resource_files']
+
+for file_config in files_config:
+    file_key = file_config['file_key']
+    mimetype = file_config['mimetype']
+
+    # Get file content
+    file_bytes = await self.get_config_file(file_key)
+```
+
 ### type: llm-model-selector
 
 LLM model selector. Displays an LLM model selector where you can choose configured LLM models, with the final result represented as the LLM model UUID.

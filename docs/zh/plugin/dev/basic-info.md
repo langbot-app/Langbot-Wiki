@@ -140,6 +140,71 @@ spec:
   ...
 ```
 
+### type: text
+
+大段文本。前端渲染为 textarea 以供用户输入，最终以 string 类型传递给插件。
+
+```yaml
+- name: prompt
+  type: text
+  ...
+```
+
+### type: file
+
+文件上传。支持最大 10MB 的文件上传，最终以 `{"file_key": "xxxxx.xxx", "mimetype": "xxxxx"}` 格式传递给插件。插件可使用 `get_config_file` API 获取文件内容。
+
+```yaml
+- name: config_file
+  type: file
+  accept: 'application/json'  # 可选，指定接受的文件 MIME 类型
+  ...
+```
+
+在插件中获取文件：
+
+```python
+# 从配置中获取文件信息
+file_config = self.get_config()['config_file']
+file_key = file_config['file_key']
+mimetype = file_config['mimetype']
+
+# {'file_input': {'file_key': 'plugin_config_d2234fd802054faf80babe0679a97fa9.json', 'mimetype': 'application/json'}}
+print(file_config)
+
+# 获取文件内容
+file_bytes = await self.get_config_file(file_key)
+```
+
+::: info
+常见 mimetype 与文件扩展名对应参考：[mdn 文档](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Guides/MIME_types/Common_types)
+:::
+
+### type: array[file]
+
+多文件上传。与 file 类型类似，但支持上传多个文件，最终以 `[{"file_key": "xxxxx.xxx", "mimetype": "xxxxx"}]` 格式传递给插件。
+
+```yaml
+- name: resource_files
+  type: array[file]
+  accept: 'image/*'  # 可选，指定接受的文件 MIME 类型
+  ...
+```
+
+在插件中获取文件：
+
+```python
+# 从配置中获取文件列表
+files_config = self.get_config()['resource_files']
+
+for file_config in files_config:
+    file_key = file_config['file_key']
+    mimetype = file_config['mimetype']
+
+    # 获取文件内容
+    file_bytes = await self.get_config_file(file_key)
+```
+
 ### type: llm-model-selector
 
 LLM 模型选择器。会展示一个 LLM 模型选择器，可选择已配置的 LLM 模型，最终结果表示为 LLM 模型 uuid。
