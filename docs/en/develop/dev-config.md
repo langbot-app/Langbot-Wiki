@@ -10,7 +10,7 @@ Install dependencies, we use uv to manage dependencies.
 
 ```bash
 pip install uv
-uv sync
+uv sync --dev
 ```
 
 Start the backend

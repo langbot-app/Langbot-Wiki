@@ -10,7 +10,7 @@ LangBot 分为前端和后端，前端使用 Next.js + shadcn 开发，后端通
 
 ```bash
 pip install uv
-uv sync
+uv sync --dev
 ```
 
 启动后端
