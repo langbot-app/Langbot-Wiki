@@ -45,7 +45,7 @@ For example:
 spec:
   config:
     - name: github_token  # Required; configuration item name, used for retrieval in the plugin
-      type: string  # Required; configuration item type, supports string, integer, float, boolean, select, prompt-editor, llm-model-selector, etc.
+      type: string  # Required; configuration item type, supports string, integer, float, boolean, select, prompt-editor, llm-model-selector, bot-selector, etc.
       label:  # Required; configuration item display name, supports multilingual. Language codes follow RFC 4646 standard.
         en_US: Github Token
         zh_Hans: Github Token
@@ -213,6 +213,24 @@ LLM model selector. Displays an LLM model selector where you can choose configur
 - name: model
   type: llm-model-selector
   ...
+```
+
+### type: bot-selector
+
+Bot selector. Displays a Bot selector where you can choose configured Bots, with the final result represented as the Bot UUID.
+
+```yaml
+- name: bot
+  type: bot-selector
+  ...
+```
+
+Using the Bot UUID in the plugin:
+
+```python
+# Get Bot UUID from config
+bot_uuid = self.get_config()['bot']
+print(bot_uuid)  # Output: '550e8400-e29b-41d4-a716-446655440000'
 ```
 
 ## What's Next

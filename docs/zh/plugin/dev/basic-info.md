@@ -45,7 +45,7 @@ execution:
 spec:
   config:
     - name: github_token  # 必填；配置项名称，用于在插件中获取
-      type: string  # 必填；配置项类型，支持 string, integer, float, boolean, select, prompt-editor, llm-model-selector 等
+      type: string  # 必填；配置项类型，支持 string, integer, float, boolean, select, prompt-editor, llm-model-selector, bot-selector 等
       label:  # 必填；配置项显示名称，支持多语言。语言代码采用 RFC 4646 标准。
         en_US: Github Token
         zh_Hans: Github Token
@@ -213,6 +213,24 @@ LLM 模型选择器。会展示一个 LLM 模型选择器，可选择已配置�
 - name: model
   type: llm-model-selector
   ...
+```
+
+### type: bot-selector
+
+Bot 选择器。会展示一个 Bot 选择器，可选择已配置的 Bot，最终结果表示为 Bot uuid。
+
+```yaml
+- name: bot
+  type: bot-selector
+  ...
+```
+
+在插件中使用 Bot uuid：
+
+```python
+# 从配置中获取 Bot UUID
+bot_uuid = self.get_config()['bot']
+print(bot_uuid)  # 输出: '550e8400-e29b-41d4-a716-446655440000'
 ```
 
 ## 接下来做什么
