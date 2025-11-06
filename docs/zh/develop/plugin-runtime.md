@@ -43,6 +43,7 @@ Plugin Runtime 接受以下参数：
 - `--ws-debug-port`: 监听的调试端口，默认是`5401`。
 - `--ws-control-port`: 监听的控制端口（供 LangBot 主程序连接），默认是`5400`。
 - `-s`: 使用`stdio`接受控制连接。**仅在生产环境使用**。
+- `--skip-deps-check`: 为了确保插件依赖均已安装，Runtime 会在每次启动时检查并安装所有已安装插件的依赖。携带此参数可禁用此检查。
 
 ### 使 LangBot 连接到此运行时
 

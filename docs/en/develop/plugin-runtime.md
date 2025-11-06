@@ -41,6 +41,7 @@ Plugin Runtime accepts the following parameters:
 - `--ws-debug-port`: Debug port to listen on, default is `5401`.
 - `--ws-control-port`: Control port to listen on (for LangBot main program connection), default is `5400`.
 - `-s`: Use `stdio` to accept control connections. **Use only in production environment**.
+- `--skip-deps-check`: To ensure that all plugin dependencies are installed, the Runtime will check and install all installed plugin dependencies on every startup. Use this parameter to disable this check.
 
 ### Make LangBot Connect to This Runtime
 
