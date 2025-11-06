@@ -1,4 +1,8 @@
-# Completing Plugin Information
+# Completing Plugin Configuration Information
+
+:::info Table of Contents
+[[toc]]
+:::
 
 ## Modifying the Manifest File
 
