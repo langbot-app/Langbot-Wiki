@@ -1,7 +1,7 @@
 ---
 aside: false
 outline: false
-title: vitepress-openapi
+title: Service API
 ---
 
 <script setup lang="ts">
