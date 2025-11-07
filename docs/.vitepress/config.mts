@@ -261,8 +261,9 @@ export default defineConfig({
             ],
           },
           {
-            text: "Service API 参考",
+            text: "[Beta] Service API 参考",
             items: [
+              { text: "概述", link: "/zh/tags/readme" },
               ...sidebarZh.generateSidebarGroups({
                 linkPrefix: '/zh/tags/',
               }).map(group => ({
@@ -526,8 +527,9 @@ export default defineConfig({
             ],
           },
           {
-            text: "Service API Reference",
+            text: "[Beta] Service API Reference",
             items: [
+              { text: "Overview", link: "/en/tags/readme" },
               ...sidebarEn.generateSidebarGroups({
                 linkPrefix: '/en/tags/',
               }).map(group => ({
