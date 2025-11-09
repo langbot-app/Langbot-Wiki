@@ -224,7 +224,7 @@ export default defineConfig({
                   },
                 ],
               },
-              { text: "系统兼容性", link: "/zh/plugin/compatibility" },
+              { text: "系统兼容处理", link: "/zh/plugin/compatibility" },
             ],
           },
           {

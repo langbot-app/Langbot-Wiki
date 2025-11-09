@@ -6,10 +6,6 @@ Each plugin runs in an independent process, managed uniformly by the Plugin Runt
 
 <img width="600" src="/assets/image/zh/plugin/dev/plugin_system_arch.png" />
 
-:::warning
-Due to Python Asyncio compatibility issues, the plugin system currently cannot run properly in native Windows environments. Please use Docker or WSL2 for deployment: [System Compatibility](/en/plugin/compatibility)
-:::
-
 ## Plugin Structure
 
 Plugins can consist of the following components based on their specific functionality:

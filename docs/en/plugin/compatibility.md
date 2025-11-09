@@ -8,8 +8,8 @@ If we switch to using `SelectorEventLoop`, it would prevent Plugin Runtime and p
 
 For detailed information about these issues, please refer to: [Python Official Documentation](https://docs.python.org/3.13/library/asyncio-platforms.html)
 
-## Proposed Solution
+## Solution
 
-In the future, we plan to support WebSocket as the default communication method between LangBot and Plugin Runtime, as well as between Plugin Runtime and plugins on Windows.
+Unlike the tight coupling between subprocess management and Stdio communication on Unix-like systems, LangBot and the Plugin Runtime automatically switch to a hybrid subprocess + WebSocket communication strategy on Windows. LangBot still launches the Plugin Runtime via a subprocess, but communicates with it over WebSocket; similarly, the Plugin Runtime starts each installed plugin via subprocesses while communicating with them through WebSocket.
 
-For now, please deploy LangBot on Unix-like systems, or use Docker or WSL2 on Windows.
+This behavior is automatically selected based on the OS, so no manual configuration is required.

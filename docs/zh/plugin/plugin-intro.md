@@ -6,10 +6,6 @@ LangBot 内部由多种组件组成，如大模型工具、命令、消息平台
 
 <img width="600" src="/assets/image/zh/plugin/dev/plugin_system_arch.png" />
 
-:::warning
-由于 Python Asyncio 的兼容性问题，目前无法正常在 Windows 原生环境中使用插件系统，请改为使用 Docker 或 WSL2部署：[系统兼容性](/zh/plugin/compatibility)
-:::
-
 ## 插件结构
 
 插件根据具体功能可由以下组件构成：
