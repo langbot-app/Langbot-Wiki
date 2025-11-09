@@ -29,6 +29,10 @@ LangBot 内部由多种组件组成，如大模型工具、命令、消息平台
 
 <img width="600" src="/assets/image/zh/plugin/install_from_marketplace.png" />
 
+安装插件后，您需要到流水线配置中，选择所需要使用的插件。
+
+<img width="600" src="/assets/image/zh/plugin/pipeline_extensions.png" />
+
 ## 插件管理
 
 ### 插件配置项

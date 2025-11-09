@@ -29,6 +29,10 @@ Or click the Plugin Marketplace tab, select a plugin, and click install.
 
 <img width="600" src="/assets/image/zh/plugin/install_from_marketplace.png" />
 
+After installing plugins, you need to select the plugin in your pipeline configuration page.
+
+<img width="600" src="/assets/image/zh/plugin/pipeline_extensions.png" />
+
 ## Plugin Management
 
 ### Plugin Configuration
