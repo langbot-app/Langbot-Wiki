@@ -1,4 +1,4 @@
-# 系统兼容性
+# 系统兼容处理
 
 LangBot 插件系统运用了`Asyncio`和`Subprocess`等机制，这在unix-like系统（如Linux、MacOS）上运行良好，但在Windows上存在一些问题，导致插件无法正常运行。
 
@@ -8,8 +8,8 @@ Windows 上的 Python 异步事件循环默认使用 `ProactorEventLoop`，但�
 
 详细问题参阅：[Python官方文档](https://docs.python.org/zh-cn/3.13/library/asyncio-platforms.html)
 
-## 解决方案（拟）
+## 解决方案
 
-后续将支持在 Windows 上默认采用 Websocket 作为 LangBot 到 Plugin Runtime 、Plugin Runtime 到插件的通信方式。
+与 Unix-like 系统上的子进程管理与 Stdio 通信绑定的形式不同，LangBot 和 Plugin Runtime 在 Windows 上会自动采用 子进程 + WebSocket 结合的跨进程通信技术，LangBot 通过子进程启动 Plugin Runtime 但通过 WebSocket 与其通信；Plugin Runtime 也通过子进程启动各个已安装插件但通过 WebSocket 通信。
 
-现阶段请您使用 Unix-like 系统部署 LangBot，或在 Windows 上使用 Docker 或 WSL2。
+这是 LangBot 根据系统标识自动适应的，您无需手动配置。

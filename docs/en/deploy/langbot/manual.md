@@ -3,7 +3,6 @@
 :::warning
 1. Please use Python 3.10.1 (not including 3.10.0) or higher version, 3.10.14 is recommended. You need to install Python if you don't have it.
 2. This method is not recommended, manual deployment may not be supported in the future. Please consider using Docker deployment.
-3. **Do not deploy LangBot natively on Windows, [this will make plugins unusable](/en/plugin/compatibility)**, please use [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) or Docker deployment.
 :::
 
 ## Installing the Main Program
@@ -12,30 +11,9 @@
 
 ![Download Release](/assets/image/zh/deploy/langbot/manual/dl_release.png)
 
-:::info
-
-You can also use the following commands to clone the latest code (may contain unstable code) and use it:
-
-```bash
-# Clone the main repository
-git clone https://github.com/langbot-app/LangBot
-cd LangBot
-```
-
-Then manually build the frontend:
-
-```bash
-# Build frontend, requires NodeJS >= 22
-cd web
-npm install && npm run build
-cd ..
-```
-
-:::
-
 2. Install dependencies
 
-We use uv to manage dependencies.
+We use [uv](https://docs.astral.sh/uv/) to manage dependencies.
 
 ```bash
 pip install uv
@@ -61,7 +39,7 @@ You will see the following message:
 📖Documentation: https://docs.langbot.app
 
 The following files do not exist and have been automatically generated. Please modify the configuration files as needed and restart:
-- plugins/__init__.py
+- data/config.yaml
 ...
 ```
 

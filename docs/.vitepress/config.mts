@@ -1,4 +1,17 @@
 import { defineConfig } from "vitepress";
+import { useSidebar } from "vitepress-openapi";
+import specZh from '../assets/service-api-openapi-zh.json' with { type: 'json' }
+import specEn from '../assets/service-api-openapi-en.json' with { type: 'json' }
+
+const sidebarZh = useSidebar({
+  spec: specZh,
+  linkPrefix: '/zh/tags/',
+})
+
+const sidebarEn = useSidebar({
+  spec: specEn,
+  linkPrefix: '/en/tags/',
+})
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -202,15 +215,16 @@ export default defineConfig({
                     ],
                   },
                   { text: "迁移指南", link: "/zh/plugin/dev/migration" },
-                  { text: "分发插件", collapsed: true,
+                  {
+                    text: "分发插件", collapsed: true,
                     items: [
                       { text: "发布到插件市场", link: "/zh/plugin/dev/publish/market" },
                       { text: "通过 GitHub 分发", link: "/zh/plugin/dev/publish/github" },
                     ]
-                   },
+                  },
                 ],
               },
-              { text: "系统兼容性", link: "/zh/plugin/compatibility" },
+              { text: "系统兼容处理", link: "/zh/plugin/compatibility" },
             ],
           },
           {
@@ -244,6 +258,18 @@ export default defineConfig({
                 text: "接入 302.AI 的模型",
                 link: "/zh/workshop/302ai-integration"
               }
+            ],
+          },
+          {
+            text: "[Beta] Service API 参考",
+            items: [
+              { text: "概述", link: "/zh/tags/readme" },
+              ...sidebarZh.generateSidebarGroups({
+                linkPrefix: '/zh/tags/',
+              }).map(group => ({
+                ...group,
+                collapsed: true, // Collapsible and open by default.
+              })),
             ],
           },
           {
@@ -459,12 +485,13 @@ export default defineConfig({
                     ],
                   },
                   { text: "Migration Guide", link: "/en/plugin/dev/migration" },
-                  { text: "Distribute Plugin", collapsed: true,
+                  {
+                    text: "Distribute Plugin", collapsed: true,
                     items: [
                       { text: "Publish to Marketplace", link: "/en/plugin/dev/publish/market" },
                       { text: "Distribute via GitHub", link: "/en/plugin/dev/publish/github" },
                     ]
-                   },
+                  },
                 ],
               },
               { text: "System Compatibility", link: "/en/plugin/compatibility" },
@@ -482,8 +509,8 @@ export default defineConfig({
               // link: "/en/workshop/mcp-details"
               // },
               {
-                 text: "Container Network Configuration Details",
-                 link: "/en/workshop/network-details",
+                text: "Container Network Configuration Details",
+                link: "/en/workshop/network-details",
               },
               {
                 text: "Using New API to Transmit Models from Multiple Channels",
@@ -497,6 +524,18 @@ export default defineConfig({
                 text: "Integrating 302.AI Models",
                 link: "/en/workshop/302ai-integration"
               }
+            ],
+          },
+          {
+            text: "[Beta] Service API Reference",
+            items: [
+              { text: "Overview", link: "/en/tags/readme" },
+              ...sidebarEn.generateSidebarGroups({
+                linkPrefix: '/en/tags/',
+              }).map(group => ({
+                ...group,
+                collapsed: true,
+              })),
             ],
           },
           {

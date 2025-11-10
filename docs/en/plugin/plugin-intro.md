@@ -6,13 +6,9 @@ Each plugin runs in an independent process, managed uniformly by the Plugin Runt
 
 <img width="600" src="/assets/image/zh/plugin/dev/plugin_system_arch.png" />
 
-:::warning
-Due to Python Asyncio compatibility issues, the plugin system currently cannot run properly in native Windows environments. Please use Docker or WSL2 for deployment: [System Compatibility](/en/plugin/compatibility)
-:::
-
 ## Plugin Structure
 
-Plugins can consist of the following components based on their specific functionality:
+Plugins can provide the following components based on their specific functionality:
 
 - Event Handlers: Listen to events during pipeline execution and modify context or pipelines.
 - Commands: Triggered by user command messages starting with `!` (or other configured prefixes).
@@ -25,13 +21,17 @@ More component types will be supported for plugin implementation in the future.
 Currently supports uploading plugin packages and installing plugins from the plugin marketplace.
 In LangBot's plugin management page, click the top-right corner to choose the installation method.
 
-<img width="600" src="/assets/image/zh/plugin/install_from_local.png" />
+<img width="600" src="/assets/image/zh/plugin/install_method.png" />
 
-Select `.lbpkg` files shared by others or downloaded from the Marketplace to install plugins.
+Click `Upload Local`, select `.lbpkg` files shared by others or downloaded from the Marketplace to install plugins.
 
 Or click the Plugin Marketplace tab, select a plugin, and click install.
 
 <img width="600" src="/assets/image/zh/plugin/install_from_marketplace.png" />
+
+After installing plugins, you need to select the plugin in your pipeline configuration page.
+
+<img width="600" src="/assets/image/zh/plugin/pipeline_extensions.png" />
 
 ## Plugin Management
 

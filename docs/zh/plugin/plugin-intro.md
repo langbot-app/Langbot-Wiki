@@ -6,13 +6,9 @@ LangBot 内部由多种组件组成，如大模型工具、命令、消息平台
 
 <img width="600" src="/assets/image/zh/plugin/dev/plugin_system_arch.png" />
 
-:::warning
-由于 Python Asyncio 的兼容性问题，目前无法正常在 Windows 原生环境中使用插件系统，请改为使用 Docker 或 WSL2部署：[系统兼容性](/zh/plugin/compatibility)
-:::
-
 ## 插件结构
 
-插件根据具体功能可由以下组件构成：
+插件根据具体功能可提供以下组件：
 
 - 事件处理器：监听流水线执行期间的事件，对上下文或流水线进行修改。
 - 命令：由用户通过`!`（或其他已设置的前缀）开头的命令消息触发。
@@ -22,16 +18,20 @@ LangBot 内部由多种组件组成，如大模型工具、命令、消息平台
 
 ## 安装插件
 
-目前支持上传插件包和从插件市场安装插件。  
+目前支持上传插件包安装、从插件市场安装以及从 GitHub Release 安装插件。  
 在 LangBot 的插件管理页面，点击右上角即可选择安装方式
 
-<img width="600" src="/assets/image/zh/plugin/install_from_local.png" />
+<img width="600" src="/assets/image/zh/plugin/install_method.png" />
 
-选择他人分享的或从 Marketplace 下载的`.lbpkg`文件，即可安装插件。
+点击本地安装，选择他人分享的或从 Marketplace 下载的`.lbpkg`文件，即可安装插件。
 
 或点击插件市场 Tab，选择插件后点击安装。
 
 <img width="600" src="/assets/image/zh/plugin/install_from_marketplace.png" />
+
+安装插件后，您需要到流水线配置中，选择所需要使用的插件。
+
+<img width="600" src="/assets/image/zh/plugin/pipeline_extensions.png" />
 
 ## 插件管理
 

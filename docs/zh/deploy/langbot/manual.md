@@ -2,8 +2,7 @@
 
 :::warning
 1. 请使用Python 3.10.1（不包含3.10.0）及以上版本，推荐3.10.14版本，没有Python的需自行安装。
-2. 不推荐此方式，后续可能不再支持手动部署，请考虑使用 Docker 部署。
-3. **请勿在 Windows 系统上原生部署 LangBot，[这将导致插件不可用](/zh/plugin/compatibility)**，推荐使用 [WSL2](https://learn.microsoft.com/zh-cn/windows/wsl/install) 或 Docker 部署。
+2. Unix-like 系统上请优先考虑使用 Docker 部署。
 ::: 
 
 ## 安装主程序
@@ -12,37 +11,9 @@
 
 ![下载Release](/assets/image/zh/deploy/langbot/manual/dl_release.png)
 
-:::info
-
-您也可以使用以下命令克隆最新代码（有可能包含不稳定的代码）并使用：
-
-```bash
-# 克隆主仓库
-git clone https://github.com/langbot-app/LangBot
-cd LangBot
-```
-
-若您位于中国大陆境内，可以从 [GitCode 镜像](https://gitcode.com/RockChinQ/LangBot) 克隆：
-
-```bash
-git clone https://gitcode.com/RockChinQ/LangBot
-cd LangBot
-```
-
-接下来手动构建前端：
-
-```bash
-# 构建前端，需要 NodeJS >= 22
-cd web
-npm install && npm run build
-cd ..
-```
-
-:::
-
 2. 安装依赖
 
-我们使用 uv 管理依赖。
+我们使用 [uv](https://docs.astral.sh/uv/) 管理依赖。
 
 ```bash
 pip install uv
@@ -75,13 +46,8 @@ uv run main.py
 📖文档地址: https://docs.langbot.app
 
 以下文件不存在，已自动生成，请按需修改配置文件后重启：
-- plugins/__init__.py
+- data/config.yaml
 ...
 ```
 
 接下来可以使用 Ctrl+C 退出程序，继续查看[部署机器人](/zh/deploy/platforms/readme)页。
-
-:::info
-LangBot 在每次启动时会检查所有插件的依赖以便确保所有插件都能正常运行。  
-如果由于网络问题导致 LangBot 无法正常检查依赖，可以提供`--skip-plugin-deps-check`参数跳过检查，并自行安装插件依赖：命令行切换目录到`plugins`目录下的每个子文件夹（若已安装插件），然后使用`uv sync`安装依赖。
-:::
