@@ -34,25 +34,21 @@ concurrency:
     # 单会话并发数
     session: 1
 
-# 代理配置
-proxy:
-    # HTTP 代理地址
-    # 如果已经在环境变量设置了代理，则不需要配置
-    # 例如：
-    # proxy:
-    #     http: 'http://127.0.0.1:7890'
-    #     https: 'http://127.0.0.1:7890'
-    http: ''
-    https: ''
-
-# 系统配置
-system:
-    # JWT 配置
-    jwt:
-        # JWT 过期时间，单位为秒
-        expire: 604800
-        # JWT 密钥，首次启动时会自动生成一个密钥
-        secret: 'xxxx'
+# 数据库配置
+database:
+    # 所使用的数据库
+    # 支持的数据库：
+    # - sqlite（本地 SQLite 数据库，默认）
+    # - postgresql（PostgreSQL 数据库，请在下方配置）
+    use: sqlite
+    sqlite:
+        path: 'data/langbot.db'
+    postgresql:
+        host: '127.0.0.1'
+        port: 5432
+        user: 'postgres'
+        password: 'postgres'
+        database: 'postgres'
 
 # 插件系统配置
 plugin:
@@ -66,6 +62,41 @@ plugin:
     enable_marketplace: true
     # 插件市场 URL
     cloud_service_url: 'https://space.langbot.app'
+
+# 代理配置
+proxy:
+    # HTTP 代理地址
+    # 如果已经在环境变量设置了代理，则不需要配置
+    # 例如：
+    # proxy:
+    #     http: 'http://127.0.0.1:7890'
+    #     https: 'http://127.0.0.1:7890'
+    http: ''
+    https: ''
+
+# 对象存储配置
+storage:
+    # 所使用的对象存储
+    # 支持的对象存储：
+    # - local（本地存储，默认）
+    # - s3（S3 协议对象存储，支持 R2、MinIO 等兼容 S3 协议的对象存储服务，请在下方配置）
+    use: local
+    # S3 配置
+    s3:
+        endpoint_url: ''
+        access_key_id: ''
+        secret_access_key: ''
+        region: 'us-east-1'
+        bucket: 'langbot-storage'
+
+# 系统配置
+system:
+    # JWT 配置
+    jwt:
+        # JWT 过期时间，单位为秒
+        expire: 604800
+        # JWT 密钥，首次启动时会自动生成一个密钥
+        secret: 'xxxx'
 
 # 向量数据库配置
 vdb:

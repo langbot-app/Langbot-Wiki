@@ -34,25 +34,23 @@ concurrency:
     # Single session concurrency
     session: 1
 
-# Proxy configuration
-proxy:
-    # HTTP proxy address
-    # If proxy is already set in environment variables, no configuration is needed
-    # For example:
-    # proxy:
-    #     http: 'http://127.0.0.1:7890'
-    #     https: 'http://127.0.0.1:7890'
-    http: ''
-    https: ''
-
-# System configuration
-system:
-    # JWT configuration
-    jwt:
-        # JWT expiration time in seconds
-        expire: 604800
-        # JWT secret key, a key will be automatically generated on first startup
-        secret: 'xxxx'
+# Database configuration
+database:
+    # The database to use
+    # Supported databases:
+    # - sqlite (local SQLite database, default)
+    # - postgresql (PostgreSQL database, please configure below)
+    use: sqlite
+    # SQLite configuration
+    sqlite:
+        path: 'data/langbot.db'
+    # PostgreSQL configuration
+    postgresql:
+        host: '127.0.0.1'
+        port: 5432
+        database: 'postgres'
+        user: 'postgres'
+        password: 'postgres'
 
 # Plugin system configuration
 plugin:
@@ -66,6 +64,41 @@ plugin:
     enable_marketplace: true
     # Plugin marketplace URL
     cloud_service_url: 'https://space.langbot.app'
+
+# Proxy configuration
+proxy:
+    # HTTP proxy address
+    # If proxy is already set in environment variables, no configuration is needed
+    # For example:
+    # proxy:
+    #     http: 'http://127.0.0.1:7890'
+    #     https: 'http://127.0.0.1:7890'
+    http: ''
+    https: ''
+
+# Object storage configuration
+storage:
+    # The object storage to use
+    # Supported object storage:
+    # - local (local storage, default)
+    # - s3 (S3 protocol object storage, supports R2, MinIO, etc. Please configure below)
+    use: local
+    # S3 configuration
+    s3:
+        endpoint_url: ''
+        access_key_id: ''
+        secret_access_key: ''
+        region: 'us-east-1'
+        bucket: 'langbot-storage'
+
+# System configuration
+system:
+    # JWT configuration
+    jwt:
+        # JWT expiration time in seconds
+        expire: 604800
+        # JWT secret key, a key will be automatically generated on first startup
+        secret: 'xxxx'
 
 # Vector database configuration
 vdb:
