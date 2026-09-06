@@ -32,6 +32,27 @@ Place images in the `images` directory, then reference them using the absolute p
 
 The documentation is built as a static site in `dist/public` and hosted on Cloudflare Pages. Type checking, documentation contract tests, and a full static build run before deployment.
 
+### Agent-readable exports
+
+`npm run build` generates agent text after finalizing the `/docs` base path and
+sitemaps. Every published page has a canonical `.md` companion, advertised by an
+HTML `rel="alternate" type="text/markdown"` link without changing the visible UI.
+
+- `/docs/llms.txt` and `/docs/llms-full.txt`: all-language index and complete text.
+- `/docs/{en,zh,ja}/llms.txt` and `llms-full.txt`: language-specific exports.
+- `llm.txt` is an identical compatibility alias for each `llms.txt` index.
+- `/docs/openapi/service-api-{en,zh,ja}.json`: complete API specifications.
+
+The generator reads canonical MDX with a Markdown AST (not compiled image
+variables), preserves callout titles and literal image URLs, and exports every
+API operation with its request/response contract, security and transitive schema
+references. Unknown semantic JSX or executable expressions fail the build rather
+than silently losing content. Generated files stay in `dist/public`; edit source
+MDX/OpenAPI, not generated Markdown. `npm test` covers conversion, and
+`npm run test:static` verifies sitemap coverage, discovery, links and API contracts
+after a build. Run `npm run generate:agent-docs` to regenerate text in an existing
+finalized build.
+
 ### Some Standardization Guidelines
 
 - Folder and file naming: **Use all lowercase, separate words with `-`, such as** `plugin-intro.mdx`

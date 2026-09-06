@@ -379,6 +379,7 @@ export default defineConfig({
       const defaultLocale = alternates.includes("en") ? "en" : alternates[0];
       return <>
         <link rel="canonical" href={`${SITE_URL}${page.url}`} />
+        <link rel="alternate" type="text/markdown" href={`${SITE_URL}${page.url}.md`} />
         {alternates.map((candidate) => (
           <link
             key={candidate}
