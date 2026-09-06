@@ -166,7 +166,7 @@ test("every Markdown image in the English guide has descriptive alt text", async
     "utf8",
   );
   const images = [...guide.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)];
-  // The entry page can be text-only; any future images still need alt text.
+  assert.ok(images.length > 0, "expected at least one Markdown image");
 
   for (const [, alt, src] of images) {
     assert.ok(alt.trim().length >= 8, `${src} is missing descriptive alt text`);
@@ -204,23 +204,31 @@ test("localized config examples use locale-appropriate YAML comments", async () 
 });
 
 
-test("guide routes people and AI agents to task-specific resources in every locale", async () => {
-  const headings = {
-    zh: ["人类用户，从这里开始", "AI Agent，从这里读取"],
-    en: ["For people", "For AI agents"],
-    ja: ["ユーザーの方へ", "AI エージェントへ"],
+test("guide preserves the introduction and adds ordered navigation plus a copyable AI prompt", async () => {
+  const sections = {
+    zh: ["能用它做什么", "从这里开始", "让 AI Agent 帮你部署和使用"],
+    en: ["What You Can Build", "Start Here", "Let an AI agent help you deploy and use LangBot"],
+    ja: ["何ができるか", "はじめに", "AI エージェントに導入・利用を手伝ってもらう"],
   };
-  for (const [locale, sections] of Object.entries(headings)) {
+  for (const [locale, [useCases, start, title]] of Object.entries(sections)) {
     const guide = await readFile(new URL(`${locale}/insight/guide.mdx`, repoRoot), "utf8");
-    for (const heading of sections) assert.ok(guide.includes(`## ${heading}`));
-    assert.doesNotMatch(guide, /^### \d+\.|127\.0\.0\.1:5300|<Steps>|```/m);
-    for (const resource of [
-      `${locale}/llms.txt`, `${locale}/llms-full.txt`,
-      `${locale}/develop/agent-context.md`, `openapi/service-api-${locale}.json`,
-    ]) assert.ok(guide.includes(`https://langbot.app/docs/${resource}`), resource);
-    assert.ok(guide.includes("https://github.com/langbot-app/LangBot/tree/master/skills"));
-    assert.ok(guide.includes("`AGENTS.md`"));
-    for (const [, href] of guide.matchAll(/\]\((\/[^)]+)\)/g)) {
+    const overview = guide.indexOf(`## ${useCases}`);
+    const navigation = guide.indexOf(`## ${start}`);
+    const assistant = guide.indexOf(`<Tip title="${title}">`);
+    assert.ok(overview > 0 && navigation > overview && assistant > navigation);
+    assert.ok(guide.includes("/images/zh/insight/dashboard-overview.png"));
+    assert.match(guide.slice(navigation, assistant), /^1\. /m);
+    assert.match(guide.slice(navigation, assistant), /^5\. /m);
+    assert.doesNotMatch(guide, /^### \d+\.|127\.0\.0\.1:5300|<Steps>/m);
+    const prompt = guide.slice(assistant).match(/```text\n([\s\S]*?)\n```/);
+    assert.ok(prompt, `${locale}: missing copyable prompt`);
+    assert.ok(prompt[1].includes(`https://langbot.app/docs/${locale}/llms.txt`));
+    for (const page of ["insight/features", "insight/platform-features", "usage/platforms/readme", "usage/models/readme", "usage/pipelines/readme"]) {
+      assert.ok(prompt[1].includes(`https://langbot.app/docs/${locale}/${page}.md`));
+      await readFile(new URL(`${locale}/${page}.mdx`, repoRoot), "utf8");
+    }
+    for (const [, href] of guide.matchAll(/(?<!!)\]\((\/[^)]+)\)/g)) {
+      if (href.startsWith("/images/")) continue;
       assert.ok(href.startsWith(`/${locale}/`), `cross-locale guide link: ${href}`);
       await readFile(new URL(`${href.slice(1)}.mdx`, repoRoot), "utf8");
     }

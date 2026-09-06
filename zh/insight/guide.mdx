@@ -1,31 +1,52 @@
 ---
 title: "欢迎访问 LangBot 文档"
-description: "按你的使用方式开始：为人类用户提供部署、使用与开发指南，为 AI Agent 提供文档索引、Markdown、开发上下文与 API 规范。"
+description: "LangBot 是开源的大模型机器人平台，将 Discord、Telegram、微信、Slack 等连接到 GPT、Claude、Gemini、DeepSeek 与 Dify。从这里开始。"
 ---
 
-LangBot 是开源的 AI 机器人平台，将大模型与 Agent 工作流接入 Discord、Telegram、微信、飞书等聊天平台，并提供 Web 管理面板、知识库、插件与工具扩展。
+LangBot 是一个**开源、生产级**的大语言模型（LLM）原生即时通信机器人平台。它把 OpenAI、Anthropic、Gemini、DeepSeek 等大模型，以及 Dify、Coze、n8n 等 Agent 平台，一站式接入 QQ、微信、企业微信、飞书、钉钉、Discord、Telegram、Slack 等全球主流即时通信平台。内置 Agent、RAG 知识库、MCP、技能（Skills）与代码沙箱，并提供开箱即用的 Web 管理面板——无需手写配置文件，几分钟即可让你的 AI 机器人上线。
 
-## 人类用户，从这里开始
+![LangBot Web 管理面板仪表盘：实时监控消息量、模型调用、成功率、活跃会话与流量趋势](/images/zh/insight/dashboard-overview.png)
 
-无论是第一次搭建机器人，还是扩展已有实例，都可以按目标找到对应文档。
+## 能用它做什么
 
-- **先了解 LangBot** → [功能概览](/zh/insight/features)与[平台支持](/zh/insight/platform-features)，了解它能做什么、支持哪些聊天平台。
-- **开始使用** → 选择 [LangBot Cloud](https://space.langbot.app/cloud) 免去自建服务，或阅读 [Docker 部署](/zh/deploy/langbot/docker)、[包管理器部署](/zh/deploy/langbot/package)。
-- **配置已有实例** → 查看[机器人接入](/zh/usage/platforms/readme)、[模型配置](/zh/usage/models/readme)与[流水线](/zh/usage/pipelines/readme)；需要基于自己的资料回答问题时，查看[知识库](/zh/usage/knowledge/readme)。
-- **扩展或参与开发** → 从[插件介绍](/zh/plugin/plugin-intro)、[插件开发](/zh/plugin/dev/tutor)或[核心开发环境](/zh/develop/dev-config)进入。
-- **遇到问题** → 查阅[故障排除](/zh/insight/troubleshooting)，或前往[社区](/zh/insight/community)交流。
+- **智能客服 / 企业助手**：把基于知识库的 AI Agent 部署到微信、企微、飞书、钉钉，自动回答用户与员工的问题。
+- **社群运营**：在 QQ、Discord、Telegram 群里提供 AI 驱动的问答、内容审核与互动。
+- **工作流接入**：把已有的 Dify / n8n / Coze 工作流直接接到聊天平台，无需重写业务逻辑。
+- **多平台触达**：一个机器人，覆盖所有平台，通过统一面板集中管理。
 
-## AI Agent，从这里读取
+## 从这里开始
 
-如果你是协助用户部署、配置或开发 LangBot 的 AI Agent，请优先使用以下文本入口，按任务读取相关资料，无需解析网页界面。
+按下面的顺序了解 LangBot，再根据需要深入对应文档。
 
-- **查找文档** → [中文文档索引（llms.txt）](https://langbot.app/docs/zh/llms.txt)。按主题查找页面，再读取索引中的 Markdown 链接；需要其他语言时使用[全语言索引](https://langbot.app/docs/llms.txt)。
-- **读取完整文档** → [中文文档全文（llms-full.txt）](https://langbot.app/docs/zh/llms-full.txt)。适合需要全局上下文的任务；只处理局部问题时，优先读取索引中的相关页面。
-- **进行代码开发** → [AI 助手开发上下文](/zh/develop/agent-context)（[Markdown](https://langbot.app/docs/zh/develop/agent-context.md)）提供架构与开发环境说明；[官方 Agent Skills](https://github.com/langbot-app/LangBot/tree/master/skills)提供任务指引。在仓库内工作时，同时阅读该仓库的 `AGENTS.md`。
-- **调用 HTTP API** → [OpenAPI 规范](https://langbot.app/docs/openapi/service-api-zh.json)，查阅接口、鉴权、请求与响应结构。
+1. **了解功能与平台**：阅读[功能概览](/zh/insight/features)与[平台支持](/zh/insight/platform-features)，确认 LangBot 是否适合你的场景。
+2. **选择部署方式**：使用 [LangBot Cloud](https://space.langbot.app/cloud) 免去自建服务，或通过 [Docker](/zh/deploy/langbot/docker)、[包管理器](/zh/deploy/langbot/package)自行部署。
+3. **连接机器人与模型**：查看[配置机器人](/zh/usage/platforms/readme)、[配置对话模型](/zh/usage/models/readme)和[流水线](/zh/usage/pipelines/readme)，了解如何把聊天平台与 AI 能力连接起来。
+4. **丰富机器人的能力**：通过[知识库](/zh/usage/knowledge/readme)、[插件](/zh/plugin/plugin-intro)、[MCP](/zh/usage/mcp/readme)与[技能](/zh/usage/skills/readme)扩展机器人。
+5. **参考实践或参与开发**：从[实践文章](/zh/articles/index)寻找思路，或阅读[插件开发](/zh/plugin/dev/tutor)与[核心开发环境](/zh/develop/dev-config)。
 
-想让 AI 助手帮你操作？把文档索引链接和你的目标一起发给它即可。
+遇到问题时，可以查阅[故障排除](/zh/insight/troubleshooting)，或到[社区](/zh/insight/community)交流。
+
+<Tip title="让 AI Agent 帮你部署和使用">
+将下面的提示词复制给你的 AI 助手。它会从官方文档开始，结合你的环境与目标协助操作。
+
+```text
+请帮助我部署和使用 LangBot，先阅读官方文档，再根据我的环境制定方案。
+
+先读取中文文档索引 https://langbot.app/docs/zh/llms.txt ，并阅读以下关键文档：
+- 功能概览：https://langbot.app/docs/zh/insight/features.md
+- 平台支持：https://langbot.app/docs/zh/insight/platform-features.md
+- 机器人配置：https://langbot.app/docs/zh/usage/platforms/readme.md
+- 模型配置：https://langbot.app/docs/zh/usage/models/readme.md
+- 流水线：https://langbot.app/docs/zh/usage/pipelines/readme.md
+
+先了解我想接入的聊天平台、使用的模型，以及是否已有 LangBot 实例。若需要部署，确认我的系统、服务器或本机环境，以及偏好云服务还是自部署；再从索引中读取对应的部署文档和平台接入文档，不要猜测命令或配置项。
+
+根据文档帮助我完成部署、机器人连接、模型与流水线配置。若你有执行工具，在我授权的环境内执行并验证；否则给我适合当前环境的操作指导。已有实例请优先复用，涉及覆盖配置、删除数据或付费操作时先征求确认，不要让我在聊天中粘贴密钥。
+
+最后帮助我发送一条真实测试消息，确认机器人能够回复。基础功能跑通后，再按需要引导我使用知识库、插件、MCP 或技能。文档无法读取或操作失败时请明确说明，不要把未验证的步骤说成已经完成。
+```
+</Tip>
 
 <Info>
-这是 LangBot 4.x 文档。使用旧版本请查看 [LangBot 3.x 文档](https://v3.langbot.app/docs)。
+这是 LangBot 4.0 的文档，3.0 文档请[访问](https://v3.langbot.app/docs)。
 </Info>
