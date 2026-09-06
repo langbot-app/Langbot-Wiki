@@ -12,6 +12,7 @@ import { createOpenAPI, type OpenAPIServer } from "fumadocs-openapi/server";
 import { Blocks, Bot, Cloud, ExternalLink, Map as MapIcon, Newspaper } from "lucide-react";
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
+import { LocalePreferenceProvider } from "./src/locale-preference-provider";
 
 const SITE_URL = "https://langbot.app/docs";
 const LOCALES = ["en", "zh", "ja"] as const;
@@ -403,6 +404,16 @@ export default defineConfig({
   // One registration is intentional: its adapter and loader plugin handle all
   // OpenAPI virtual pages, regardless of which content source generated them.
   .plugins(
+    {
+      name: "langbot:locale-preference",
+      init() {
+        const data = (this.data["core:provider"] ??= {});
+        (data.transformers ??= []).push((props) => {
+          if (props.i18n) props.children = <LocalePreferenceProvider i18n={props.i18n}>{props.children}</LocalePreferenceProvider>;
+          return props;
+        });
+      },
+    },
     flexsearchPlugin({
       async buildIndex(page) {
         const title = page.data.title ?? page.path;

@@ -133,7 +133,6 @@ function cloudflarePattern(value, destination = false) {
 
 export function renderCloudflareRedirects(docs) {
   const lines = [
-    "/ /en/insight/guide 302",
     "/zh/develop/adapter/discord /zh/develop/adapter/discord/README 308",
     "/scripts/README-blog-articles /en/articles 308",
   ];
@@ -206,7 +205,7 @@ export async function prepareFumapress({ root = ROOT, outRoot = root } = {}) {
     documents: documents.length,
     fallbackDefaults: 0,
     localeOnlyDocuments,
-    redirects: (docs.redirects?.length ?? 0) + 3,
+    redirects: (docs.redirects?.length ?? 0) + 2,
     locales: [...LOCALES],
     openapi,
   };

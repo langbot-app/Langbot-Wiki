@@ -179,11 +179,11 @@ test("canonical MDX and nested OpenAPI sources are discovered", async () => {
   ]);
 });
 
-test("Cloudflare redirects preserve all Mintlify routes and add root", async () => {
+test("Cloudflare redirects preserve localized routes without overriding negotiated root", async () => {
   const docs = JSON.parse(await readFile(path.join(root, "docs.json"), "utf8"));
   const lines = renderCloudflareRedirects(docs).trim().split("\n");
-  assert.equal(lines.length, docs.redirects.length + 3);
-  assert.equal(lines[0], "/ /en/insight/guide 302");
+  assert.equal(lines.length, docs.redirects.length + 2);
+  assert.ok(!lines.some((line) => line.startsWith("/ ")));
   assert.ok(lines.includes("/README_EN /en/insight/guide 308"));
   assert.ok(lines.includes("/zh/develop/adapter/discord /zh/develop/adapter/discord/README 308"));
   assert.ok(lines.includes("/scripts/README-blog-articles /en/articles 308"));
@@ -219,7 +219,7 @@ test("prebuild is deterministic and preserves local assets and SEO files", async
     assert.equal(first.documents, 302);
     assert.equal(first.fallbackDefaults, 0);
     assert.equal(first.localeOnlyDocuments, 14);
-    assert.equal(first.redirects, 104);
+    assert.equal(first.redirects, 103);
     assert.deepEqual(first.locales, ["en", "zh", "ja"]);
     await readFile(path.join(temp, "content/docs/insight/guide.mdx"), "utf8");
     await readFile(path.join(temp, "content/docs/insight/guide.zh.mdx"), "utf8");
