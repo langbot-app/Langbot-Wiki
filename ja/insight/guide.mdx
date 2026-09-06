@@ -1,55 +1,31 @@
 ---
-title: "LangBotドキュメントへようこそ"
-description: "LangBot は Discord・Telegram・WeChat・Slack 等を GPT・Claude・Gemini・DeepSeek・Dify に接続するオープンソース LLM ボットプラットフォーム。"
+title: "LangBot ドキュメントへようこそ"
+description: "目的に合った入口を選べます。ユーザー向けには導入・設定・開発ガイド、AI エージェント向けには文書索引・Markdown・開発コンテキスト・API 仕様を用意しています。"
 ---
 
-LangBotは、**オープンソースで本番運用に耐える**、LLM ネイティブのインスタントメッセージングボットプラットフォームです。OpenAI、Anthropic、Gemini、DeepSeek などの大規模言語モデルや、Dify、Coze、n8n などの Agent プラットフォームを、LINE、Slack、Discord、Telegram、QQ、WeChat、企業微信、Lark、DingTalk といった主要メッセージングプラットフォームに接続します。Agent、RAG ナレッジベース、MCP、スキル（Skills）、コードサンドボックスを内蔵し、すぐに使える Web 管理パネルを提供——設定ファイルを手書きする必要はなく、数分で AI ボットを公開できます。
+LangBot は、大規模言語モデルやエージェントのワークフローを Discord、Telegram、WeChat、Lark などのチャットプラットフォームにつなぐ、オープンソースの AI ボットプラットフォームです。Web 管理画面、ナレッジベース、プラグイン、ツール連携を備えています。
 
-![LangBot Web 管理パネルのダッシュボード：メッセージ量、モデル呼び出し、成功率、アクティブセッション、トラフィック傾向をリアルタイム監視](/images/zh/insight/dashboard-overview.png)
+## ユーザーの方へ
 
-## 何ができるか
+初めてボットを導入する方も、既存の環境を拡張する方も、目的に合ったドキュメントからお読みください。
 
-- **AI カスタマーサービス / 企業アシスタント**：ナレッジベースに基づく AI エージェントを LINE、Slack、Lark、企業微信、DingTalk に展開し、顧客や従業員の質問に自動応答。
-- **コミュニティ運営**：Discord、Telegram、QQ グループで AI による Q&A、コンテンツモデレーション、インタラクションを提供。
-- **ワークフロー統合**：既存の Dify / n8n / Coze ワークフローをそのままチャットプラットフォームに接続。ビジネスロジックの書き直しは不要。
-- **マルチプラットフォーム到達**：1 つのボットですべてのプラットフォームをカバーし、統一パネルから集中管理。
+- **LangBot について知る** → [機能概要](/ja/insight/features)と[プラットフォーム対応状況](/ja/insight/platform-features)で、できることや対応するチャットサービスを確認できます。
+- **使い始める** → サーバーを自分で管理しないなら [LangBot Cloud](https://space.langbot.app/cloud)、セルフホストするなら [Docker](/ja/deploy/langbot/docker) または[パッケージマネージャー](/ja/deploy/langbot/package)による導入ガイドへ。
+- **既存の環境を設定する** → [ボットの接続](/ja/usage/platforms/readme)、[モデル設定](/ja/usage/models/readme)、[パイプライン](/ja/usage/pipelines/readme)をご覧ください。手元の資料に基づく回答には[ナレッジベース](/ja/usage/knowledge/readme)を利用できます。
+- **拡張・開発に参加する** → [プラグインの紹介](/ja/plugin/plugin-intro)、[プラグイン開発](/ja/plugin/dev/tutor)、[コア開発環境](/ja/develop/dev-config)から始められます。
+- **困ったとき** → [トラブルシューティング](/ja/insight/troubleshooting)を確認するか、[コミュニティ](/ja/insight/community)で相談してください。
 
-## ドキュメント構成
+## AI エージェントへ
 
-ドキュメントは以下のセクションに分かれています:
+ユーザーの LangBot 導入・設定・開発を支援する AI エージェントは、Web 画面を解析する代わりに、以下のテキスト資料からタスクに必要な情報を取得してください。
 
-- デプロイと使用(必読): LangBotのデプロイと使用に関する詳細な手順
-- プラグイン: プラグインの使用と開発に関する情報
-- 実践: LangBotの多くの優れたユースケース
-- 開発: LangBot開発への参加に関する情報
+- **ドキュメントを探す** → [日本語ドキュメント索引（llms.txt）](https://langbot.app/docs/ja/llms.txt)から、必要なトピックの Markdown リンクを参照してください。他の言語は[全言語の索引](https://langbot.app/docs/llms.txt)から探せます。
+- **全文を読む** → 広い範囲の情報が必要なタスクには[日本語ドキュメント全文（llms-full.txt）](https://langbot.app/docs/ja/llms-full.txt)を利用できます。個別の問題には、索引から関連ページだけを読む方法を推奨します。
+- **コードを開発する** → [AI アシスタント向け開発コンテキスト](/ja/develop/agent-context)（[Markdown](https://langbot.app/docs/ja/develop/agent-context.md)）でアーキテクチャと開発環境を確認できます。[公式 Agent Skills](https://github.com/langbot-app/LangBot/tree/master/skills)にはタスク別のガイドがあります。リポジトリ内で作業する際は、そのリポジトリの `AGENTS.md` も読んでください。
+- **HTTP API を呼び出す** → [OpenAPI 仕様](https://langbot.app/docs/openapi/service-api-ja.json)で、エンドポイント、認証、リクエストとレスポンスの構造を確認できます。
 
-## クイックスタートガイド
+AI アシスタントに手伝ってもらう場合は、文書索引のリンクと、やりたいことを一緒に渡してください。
 
-<Tip>
-**自分でデプロイしたくないですか？** [LangBot Cloud](https://space.langbot.app/cloud) をお試しください — サーバー不要、登録して支払うだけですぐに使えます。
-</Tip>
-
-> すぐに始める2つの方法:
->
-> - コミュニティリソースの簡易チュートリアルを使用する(左サイドバーを参照)
-> - ドキュメントを読んで自分でデプロイする(以下の方法を参照)
-
-### 1. LangBotをデプロイする
-
-左側の**LangBotのデプロイ**セクションを読み、LangBotをデプロイする方法を選択してください
-
-デプロイ後、`http://127.0.0.1:5300`または`http://your-server-public-ip:5300`を開きます
-
-メールアドレスとパスワードを入力して初期化を完了し、必ず保存してください
-
-### 2. ボットを設定する
-
-左サイドバーの[ボットの設定](/ja/usage/platforms/readme)を確認してください
-
-### 3. モデルを設定する
-
-左サイドバーの[対話モデルの設定](/ja/usage/models/readme)を確認してください
-
-<br />
-
-上記の2つのステップを完了すると、LangBotの使用を開始できます。さらに多くの機能を設定する必要がある場合は、[Pipeline](/ja/usage/pipelines/readme)セクションで設定できます
+<Info>
+このドキュメントは LangBot 4.x 向けです。旧バージョンについては [LangBot 3.x のドキュメント](https://v3.langbot.app/docs)をご覧ください。
+</Info>

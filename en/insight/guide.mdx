@@ -1,55 +1,31 @@
 ---
 title: "Welcome to LangBot Documentation"
-description: "LangBot is an open-source LLM bot platform connecting Discord, Telegram, WeChat, Slack and more to GPT, Claude, Gemini, DeepSeek and Dify. Start here."
+description: "Choose your starting point: deployment, usage, and development guides for people; documentation indexes, Markdown, development context, and API specifications for AI agents."
 ---
 
-LangBot is an **open-source, production-grade**, LLM-native instant messaging bot platform. It connects large language models — OpenAI, Anthropic, Gemini, DeepSeek and more — and Agent platforms like Dify, Coze and n8n to mainstream messaging platforms including Discord, Telegram, Slack, QQ, WeChat, WeCom, Lark and DingTalk. With built-in Agent, RAG knowledge base, MCP, Skills and a code sandbox, plus an out-of-the-box web management panel, you can get your AI bot online in minutes — no hand-written config files required.
+LangBot is an open-source AI bot platform that connects language models and agent workflows to messaging platforms such as Discord, Telegram, WeChat, and Lark. It includes a web management panel, knowledge bases, plugins, and tool integrations.
 
-![LangBot web management dashboard: real-time monitoring of message volume, model calls, success rate, active sessions and traffic trends](/images/zh/insight/dashboard-overview.png)
+## For people
 
-## What You Can Build
+Whether you are setting up your first bot or extending an existing instance, start with the documentation that matches your goal.
 
-- **AI customer service / enterprise assistant**: deploy a knowledge-base-backed AI agent to Slack, Discord, Lark, WeCom or DingTalk to answer customer and employee questions automatically.
-- **Community operations**: provide AI-powered Q&A, content moderation and interaction in Discord, Telegram and QQ groups.
-- **Workflow integration**: plug your existing Dify / n8n / Coze workflows straight into chat platforms — no need to rewrite business logic.
-- **Multi-platform reach**: one bot covers every platform, managed centrally from a unified panel.
+- **Explore LangBot** → Read the [feature overview](/en/insight/features) and [platform support](/en/insight/platform-features) to see what it can do and which messaging platforms it supports.
+- **Get started** → Choose [LangBot Cloud](https://space.langbot.app/cloud) without managing your own server, or follow the [Docker](/en/deploy/langbot/docker) or [package manager](/en/deploy/langbot/package) deployment guide.
+- **Configure an existing instance** → See [bot connections](/en/usage/platforms/readme), [model configuration](/en/usage/models/readme), and [pipelines](/en/usage/pipelines/readme). For answers grounded in your own documents, see [knowledge bases](/en/usage/knowledge/readme).
+- **Extend or contribute** → Start with the [plugin overview](/en/plugin/plugin-intro), [plugin development](/en/plugin/dev/tutor), or [core development setup](/en/develop/dev-config).
+- **Get help** → Check [troubleshooting](/en/insight/troubleshooting) or join the [community](/en/insight/community).
 
-## Documentation Structure
+## For AI agents
 
-The documentation is divided into the following sections:
+If you are helping a user deploy, configure, or develop LangBot, use these text resources to find the documentation relevant to the task instead of parsing the web interface.
 
-- Deployment and Usage (Must Read): Detailed steps for deploying and using LangBot
-- Plugins: Information related to plugin usage and development
-- Practice: Many excellent use cases for LangBot
-- Development: Information related to participating in LangBot development
+- **Find documentation** → Use the [English documentation index (llms.txt)](https://langbot.app/docs/en/llms.txt), then read the Markdown links for the topics you need. Use the [all-language index](https://langbot.app/docs/llms.txt) for other languages.
+- **Read the complete documentation** → The [English full-text export (llms-full.txt)](https://langbot.app/docs/en/llms-full.txt) is useful for tasks that need broad context. For focused questions, prefer individual pages from the index.
+- **Work on code** → The [AI assistant development context](/en/develop/agent-context) ([Markdown](https://langbot.app/docs/en/develop/agent-context.md)) covers architecture and development setup. The [official Agent Skills](https://github.com/langbot-app/LangBot/tree/master/skills) provide task-specific guidance. When working in a repository, also read its `AGENTS.md`.
+- **Call the HTTP API** → Consult the [OpenAPI specification](https://langbot.app/docs/openapi/service-api-en.json) for endpoints, authentication, and request and response schemas.
 
-## Quick Start Guide
+Want an AI assistant to help? Share the documentation index link together with your goal.
 
-<Tip>
-**Don't want to self-host?** Try [LangBot Cloud](https://space.langbot.app/cloud) — get started instantly with zero infrastructure. Just sign up, pay, and go.
-</Tip>
-
-> Two ways to get started quickly:
->
-> - Use the simplified tutorial from community resources (see left sidebar)
-> - Read the documentation to deploy it yourself (method described below)
-
-### 1. Deploy LangBot
-
-Read the **Deploy LangBot** section on the left and choose a method to deploy LangBot
-
-After deployment, open `http://127.0.0.1:5300` or `http://your-server-public-ip:5300`
-
-Complete the initialization by entering an email and password, and make sure to save them
-
-### 2. Configure Bots
-
-Check [Configure Bots](/en/usage/platforms/readme) in the left sidebar
-
-### 3. Configure Models
-
-Check [Configure Dialogue Models](/en/usage/models/readme) in the left sidebar
-
-<br />
-
-After completing the above two steps, you can start using LangBot. If you need to configure more features, you can set them in the [Pipeline](/en/usage/pipelines/readme) section
+<Info>
+These docs cover LangBot 4.x. For older installations, see the [LangBot 3.x documentation](https://v3.langbot.app/docs).
+</Info>

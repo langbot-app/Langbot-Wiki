@@ -166,7 +166,7 @@ test("every Markdown image in the English guide has descriptive alt text", async
     "utf8",
   );
   const images = [...guide.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)];
-  assert.ok(images.length > 0, "expected at least one Markdown image");
+  // The entry page can be text-only; any future images still need alt text.
 
   for (const [, alt, src] of images) {
     assert.ok(alt.trim().length >= 8, `${src} is missing descriptive alt text`);
@@ -199,6 +199,30 @@ test("localized config examples use locale-appropriate YAML comments", async () 
       if (rules.forbidden) {
         assert.doesNotMatch(comment, rules.forbidden, `${locale}: ${comment}`);
       }
+    }
+  }
+});
+
+
+test("guide routes people and AI agents to task-specific resources in every locale", async () => {
+  const headings = {
+    zh: ["人类用户，从这里开始", "AI Agent，从这里读取"],
+    en: ["For people", "For AI agents"],
+    ja: ["ユーザーの方へ", "AI エージェントへ"],
+  };
+  for (const [locale, sections] of Object.entries(headings)) {
+    const guide = await readFile(new URL(`${locale}/insight/guide.mdx`, repoRoot), "utf8");
+    for (const heading of sections) assert.ok(guide.includes(`## ${heading}`));
+    assert.doesNotMatch(guide, /^### \d+\.|127\.0\.0\.1:5300|<Steps>|```/m);
+    for (const resource of [
+      `${locale}/llms.txt`, `${locale}/llms-full.txt`,
+      `${locale}/develop/agent-context.md`, `openapi/service-api-${locale}.json`,
+    ]) assert.ok(guide.includes(`https://langbot.app/docs/${resource}`), resource);
+    assert.ok(guide.includes("https://github.com/langbot-app/LangBot/tree/master/skills"));
+    assert.ok(guide.includes("`AGENTS.md`"));
+    for (const [, href] of guide.matchAll(/\]\((\/[^)]+)\)/g)) {
+      assert.ok(href.startsWith(`/${locale}/`), `cross-locale guide link: ${href}`);
+      await readFile(new URL(`${href.slice(1)}.mdx`, repoRoot), "utf8");
     }
   }
 });
