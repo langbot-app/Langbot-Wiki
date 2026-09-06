@@ -14,42 +14,35 @@ LangBot is an **open-source, production-grade**, LLM-native instant messaging bo
 - **Workflow integration**: plug your existing Dify / n8n / Coze workflows straight into chat platforms — no need to rewrite business logic.
 - **Multi-platform reach**: one bot covers every platform, managed centrally from a unified panel.
 
-## Documentation Structure
+## Start Here
 
-The documentation is divided into the following sections:
+Follow this path to get familiar with LangBot, then explore the guides relevant to your needs.
 
-- Deployment and Usage (Must Read): Detailed steps for deploying and using LangBot
-- Plugins: Information related to plugin usage and development
-- Practice: Many excellent use cases for LangBot
-- Development: Information related to participating in LangBot development
+1. **Explore features and platforms**: read the [feature overview](/en/insight/features) and [platform support](/en/insight/platform-features) to see whether LangBot fits your use case.
+2. **Choose how to deploy**: use [LangBot Cloud](https://space.langbot.app/cloud) without managing your own server, or self-host with [Docker](/en/deploy/langbot/docker) or a [package manager](/en/deploy/langbot/package).
+3. **Connect bots and models**: see [bot configuration](/en/usage/platforms/readme), [model configuration](/en/usage/models/readme), and [pipelines](/en/usage/pipelines/readme) to learn how messaging platforms connect to AI capabilities.
+4. **Add more capabilities**: extend your bot with [knowledge bases](/en/usage/knowledge/readme), [plugins](/en/plugin/plugin-intro), [MCP](/en/usage/mcp/readme), and [Skills](/en/usage/skills/readme).
+5. **Explore examples or contribute**: find ideas in [practical articles](/en/articles/index), or read about [plugin development](/en/plugin/dev/tutor) and [core development setup](/en/develop/dev-config).
 
-## Quick Start Guide
+If you run into problems, check [troubleshooting](/en/insight/troubleshooting) or ask the [community](/en/insight/community).
 
-<Tip>
-**Don't want to self-host?** Try [LangBot Cloud](https://space.langbot.app/cloud) — get started instantly with zero infrastructure. Just sign up, pay, and go.
+<Tip title="Let an AI agent help you deploy and use LangBot">
+Copy the prompt below into your AI assistant. It starts with the official documentation and adapts its help to your environment and goals.
+
+```text
+Help me deploy and use LangBot. Read the official documentation first, then propose an approach suited to my environment.
+
+Start with the English documentation index at https://langbot.app/docs/en/llms.txt and read these key pages:
+- Features: https://langbot.app/docs/en/insight/features.md
+- Platform support: https://langbot.app/docs/en/insight/platform-features.md
+- Bot configuration: https://langbot.app/docs/en/usage/platforms/readme.md
+- Model configuration: https://langbot.app/docs/en/usage/models/readme.md
+- Pipelines: https://langbot.app/docs/en/usage/pipelines/readme.md
+
+First, find out which messaging platform and model I want to use and whether I already have a LangBot instance. If deployment is needed, ask about my operating system, server or local environment, and preference for cloud or self-hosting. Then use the index to read the relevant deployment and platform connection guides. Do not guess commands or configuration fields.
+
+Help me deploy LangBot and configure the bot connection, model, and pipeline based on the documentation. If you have execution tools, work within the environment I authorize and verify the results; otherwise, give me instructions suited to my setup. Prefer reusing an existing instance. Ask before overwriting configuration, deleting data, or taking paid actions, and do not ask me to paste secrets into chat.
+
+Finally, help me send a real test message and confirm that the bot replies. Once the basics work, guide me to knowledge bases, plugins, MCP, or Skills as needed. If you cannot read the docs or an operation fails, say so clearly. Do not report unverified steps as completed.
+```
 </Tip>
-
-> Two ways to get started quickly:
->
-> - Use the simplified tutorial from community resources (see left sidebar)
-> - Read the documentation to deploy it yourself (method described below)
-
-### 1. Deploy LangBot
-
-Read the **Deploy LangBot** section on the left and choose a method to deploy LangBot
-
-After deployment, open `http://127.0.0.1:5300` or `http://your-server-public-ip:5300`
-
-Complete the initialization by entering an email and password, and make sure to save them
-
-### 2. Configure Bots
-
-Check [Configure Bots](/en/usage/platforms/readme) in the left sidebar
-
-### 3. Configure Models
-
-Check [Configure Dialogue Models](/en/usage/models/readme) in the left sidebar
-
-<br />
-
-After completing the above two steps, you can start using LangBot. If you need to configure more features, you can set them in the [Pipeline](/en/usage/pipelines/readme) section
