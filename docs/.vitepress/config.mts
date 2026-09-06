@@ -2,14 +2,19 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "LangBot 文档",
+  title: "LangBot v3 文档（已停止维护）",
   description:
-    "😎高稳定、🧩支持插件、🦄多模态 - 大模型原生即时通信机器人平台",
+    "LangBot v3 及本文档早已停止维护，仅供历史参考。建议使用新版 LangBot 文档：https://langbot.app/docs/zh/insight/guide",
+  transformPageData(pageData) {
+    const notice = "LangBot v3 文档已停止维护，仅供历史参考。建议使用新版文档：https://langbot.app/docs/zh/insight/guide";
+    pageData.description = `${notice}。${pageData.description || ""}`;
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/langbot-logo-0.5x.png",
 
     nav: [
+      { text: "新版文档", link: "https://langbot.app/docs/zh/insight/guide" },
       { text: "主页", link: "https://langbot.app" },
       { text: "路线图", link: "https://langbot.featurebase.app/roadmap" },      
     ],
