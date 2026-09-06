@@ -1,3 +1,4 @@
 <script setup>
-  window.location.href = '/insight/guide'
+  import { onMounted } from 'vue'
+  onMounted(() => { window.location.href = '/insight/guide' })
 </script>
