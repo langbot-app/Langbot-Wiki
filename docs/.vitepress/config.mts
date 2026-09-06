@@ -10,6 +10,7 @@ export default defineConfig({
     pageData.description = `${notice}。${pageData.description || ""}`;
   },
   themeConfig: {
+    siteTitle: "LangBot v3 文档",
     // https://vitepress.dev/reference/default-theme-config
     logo: "/langbot-logo-0.5x.png",
 
