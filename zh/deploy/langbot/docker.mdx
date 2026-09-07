@@ -3,61 +3,72 @@ title: "Docker部署"
 description: "使用 Docker 和 Docker Compose 部署 LangBot，几分钟内运行支持 Discord、Telegram、微信等多平台的开源 AI 聊天机器人。"
 ---
 
-<Warning>
-  您需要提前了解：
+## 1. 准备环境
 
-  - `Docker` 和 `Docker Compose` 的使用
-  - Docker 容器间网络通信配置方式
-</Warning>
+请先安装 Git、Docker 和 Docker Compose，并确保当前账号可以运行 Docker 命令。
 
-<Info>
-  - 推荐使用[阿里云，服务器价格低至 38 元一年，更可以享受8折优惠](https://www.aliyun.com/minisite/goods?userCode=ys4ad8gs)
-</Info>
+## 2. 下载项目
 
-建议将 LangBot 安装到 `/opt/LangBot`，避免 `/root`、`/etc` 等受限制目录，以免沙箱功能被安全规则拦截。使用有 `/opt` 写入权限的账号，执行以下命令即可启动：
+建议安装到 `/opt/LangBot`，避免 `/root`、`/etc` 等受限制目录，以免沙箱功能被安全规则拦截。下面以 `/opt` 为例，你可以换成其他有写入权限的部署目录。
 
 ```bash
-git clone https://github.com/langbot-app/LangBot /opt/LangBot && cd /opt/LangBot/docker && docker compose --profile all up -d
+cd /opt
+git clone https://github.com/langbot-app/LangBot
+cd LangBot/docker
 ```
 
-默认启用沙箱、stdio MCP 和 Skill 编辑等功能，无需单独配置数据目录。
+### 中国大陆网络：可选镜像源
 
-## 公网部署的 Runtime Token
+如果拉取 Docker Hub 镜像较慢，**请在启动前**编辑当前目录下的 `docker-compose.yaml`，将所有 `rockchin/langbot:latest` 替换为：
 
-开源版仅在 LangBot 与对应 Runtime **两端都未设置 Token** 时跳过 Token 校验。若部署环境可从公网访问，强烈建议为 Plugin Runtime 和 Box Runtime 设置独立的强 Token：
+```text
+docker.langbot.app/langbot-public/rockchin/langbot:latest
+```
+
+保存文件后，继续下一步。
+
+## 3. 启动服务
+
+<Accordion title="公网服务器：启动前设置访问令牌">
+  如果部署在公网服务器上，建议先为配套服务设置访问令牌，不要直接向公网开放运行时端口。
+
+  运行两次以下命令，生成两个不同的随机值：
+
+  ```bash
+  openssl rand -hex 32
+  ```
+
+  在当前目录的 `.env` 文件中添加以下配置，将占位内容替换为生成的值；如已有同名配置，请修改原值：
+
+  ```dotenv
+  LANGBOT_PLUGIN_RUNTIME_CONTROL_TOKEN=<第一个随机值>
+  LANGBOT_BOX_CONTROL_TOKEN=<第二个随机值>
+  ```
+
+  Compose 会自动将令牌传给对应服务，无需修改其他配置。请妥善保存 `.env`，不要提交到仓库。
+</Accordion>
+
+在 `LangBot/docker` 目录执行：
 
 ```bash
-export LANGBOT_PLUGIN_RUNTIME_CONTROL_TOKEN="$(openssl rand -hex 32)"
-export LANGBOT_BOX_CONTROL_TOKEN="$(openssl rand -hex 32)"
 docker compose --profile all up -d
 ```
 
-官方 Compose 文件会把每个变量传给对应连接的两端。只设置一端、两端值不一致或 Token 强度不足都会导致连接被拒绝。请把 Token 保存在部署平台的 Secret 管理中，不要提交到仓库。
+这会在后台启动 LangBot 及配套服务，包含沙箱、stdio MCP 和技能功能。
 
-这会启动 `langbot`、`langbot_plugin_runtime` 和 `langbot_box`。如果只需要基础服务，不启用 Box Runtime，可以使用：
+## 4. 打开管理页面
+
+在浏览器中访问：
+
+- **本机部署**：`http://127.0.0.1:5300`
+- **服务器部署**：`http://你的服务器IP:5300`，并确保防火墙允许你访问 `5300` 端口。
+
+按照页面提示完成初始化，然后添加[模型](/zh/usage/models/readme)和[机器人](/zh/usage/platforms/readme)。
+
+如果页面无法打开，可在部署目录查看启动日志：
 
 ```bash
-docker compose up
+docker compose --profile all logs --tail=100
 ```
 
-## SeekDB 支持
-
-官方 Docker 镜像已经包含可选的 SeekDB 依赖，无需额外构建参数。容器会使用对应 Linux 架构的 `pylibseekdb` wheel，因此宿主机的 macOS 版本不会限制容器内的 embedded 模式；不使用 SeekDB 时保持默认 `vdb.use: chroma` 即可。
-
-<Info>
-  - 如果你的主机位于中国大陆，可以考虑把 `docker-compose.yaml` 文件中的镜像名称改为`docker.langbot.app/langbot-public/rockchin/langbot:latest`以使用我们提供的镜像源。
-  - 推荐[设置 Docker 容器代理](https://docker.github.net.cn/network/proxy/)，以便保证 LangBot 在运行期间的网络访问通畅。
-  - 如果需要禁用或强制沙箱后端，请参考[沙箱配置](/zh/usage/sandbox/config)。
-</Info>
-
-首次启动会输出创建配置文件的提示，请继续按照文件配置。
-
-容器会映射`5300`端口供 WebUI 使用，您可以访问`http://127.0.0.1:5300`查看 WebUI。\
-还会映射`2280-2285`端口供使用 OneBot 协议的消息平台适配器反向连接。
-
-完成 LangBot 部署后，请继续阅读：
-
-- [配置机器人文档](/zh/usage/platforms/readme)。
-- [配置模型文档](/zh/usage/models/readme)。
-- [沙箱文档](/zh/usage/sandbox/readme)。
-- [技能系统文档](/zh/usage/skills/readme)。
+需要进一步配置时，再查看[沙箱](/zh/usage/sandbox/readme)和[技能系统](/zh/usage/skills/readme)文档。
