@@ -20,6 +20,10 @@ git clone https://github.com/langbot-app/LangBot
 cd LangBot/docker
 ```
 
+<Warning>
+  プロジェクトを `/root` 配下に置く場合は、起動前に下の「サンドボックスのデータディレクトリ」に従って `LANGBOT_BOX_ROOT` を設定してください。デフォルトのパスは安全規則により拒否されます。
+</Warning>
+
 推奨の `all` profile でコンテナを起動します。これにより、サンドボックス、stdio MCP ホスティング、Skill の追加/編集など Box Runtime に依存する機能がデフォルトで有効になります:
 
 ```bash
@@ -47,6 +51,26 @@ docker compose up
 ## SeekDB サポート
 
 公式 Docker イメージにはオプションの SeekDB 依存関係がすでに含まれており、追加のビルド引数は不要です。コンテナは対応する Linux アーキテクチャの `pylibseekdb` wheel を使用するため、ホストの macOS バージョンはコンテナ内の組み込みモードを制限しません。SeekDB を使用しない場合は、デフォルトの `vdb.use: chroma` のまま使用できます。
+
+## サンドボックスのデータディレクトリ
+
+`all` または `box` profile を有効にすると、サンドボックスのデータはデフォルトで `${PWD}/data/box` に保存されます。`/root/LangBot/docker` で Compose を実行すると保存先も `/root` 配下になるため、サンドボックス作成時に `host_path ... is blocked for security` が発生し、stdio MCP などの機能が使えなくなります。
+
+**`/opt/langbot-box` や `/data/langbot-box` など、専用の絶対パスを推奨します。** LangBot 本体は `/root` 配下のままで構いません。サンドボックスのデータだけを別の場所に置きます。`LangBot/docker/.env` の既存設定を残し、次の行を追加または変更してください：
+
+```dotenv
+LANGBOT_BOX_ROOT=/opt/langbot-box
+```
+
+`/root`、`/etc`、`/proc`、`/sys`、`/dev`、`/boot`、`/run` などの保護されたディレクトリとその配下、およびそれらを指すシンボリックリンクは使用しないでください。
+
+既存のサンドボックスデータがある場合は、先に関連サービスを停止し、バックアップとデータ移行を済ませてください。パスを変更してもデータは自動で移動しません。準備ができたら、`LangBot/docker` で次を実行します：
+
+```bash
+docker compose --profile all up -d --force-recreate langbot langbot_box
+```
+
+`langbot` と `langbot_box` の両方を再作成する必要があります。`restart` だけでは環境変数やマウントは更新されません。また、Compose の環境変数が `config.yaml` より優先されるため、設定ファイルだけを編集しても反映されません。
 
 `langbot_box` はホスト Docker socket 経由でサンドボックスコンテナを作成するため、Box root のホスト側パスとコンテナ内パスは同一である必要があります：
 
@@ -81,7 +105,7 @@ docker info
 `docker info` が正常に出力される場合は、LangBot を再起動してください。
 
 <Warning>
-`langbot_box` は `LANGBOT_BOX_*` や `BOX__*` 環境変数を直接読み取りません。`BOX__LOCAL__*` は `langbot` に設定し、LangBot が INIT RPC 経由で Box Runtime に渡します。Box root を変更する場合は `LANGBOT_BOX_ROOT=/var/lib/langbot/box docker compose --profile all up` のように絶対パスを指定してください。
+`langbot_box` は `LANGBOT_BOX_*` や `BOX__*` 環境変数を直接読み取りません。LangBot が `BOX__LOCAL__*` を読み取り、INIT RPC 経由で Box Runtime に渡します。`langbot_box` の環境変数だけを変更せず、上記の手順で `LANGBOT_BOX_ROOT` を設定してください。
 </Warning>
 
 コンテナはWebUIアクセス用にポート`5300`をマッピングします。`http://127.0.0.1:5300`にアクセスしてWebUIを表示できます。
