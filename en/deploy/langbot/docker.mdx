@@ -14,22 +14,13 @@ description: "Deploy LangBot with Docker and Docker Compose. Run an open-source 
   - Please ensure Git, Docker, and Docker Compose are installed
 </Info>
 
-Clone the project:
+We recommend installing LangBot at `/opt/LangBot`. Avoid restricted directories such as `/root` and `/etc`, where security rules can block sandbox features. With an account that can write to `/opt`, run:
 
 ```bash
-git clone https://github.com/langbot-app/LangBot
-cd LangBot/docker
+git clone https://github.com/langbot-app/LangBot /opt/LangBot && cd /opt/LangBot/docker && docker compose --profile all up -d
 ```
 
-<Warning>
-  If the project is under `/root`, configure `LANGBOT_BOX_ROOT` as described in “Sandbox data directory” below before starting. Otherwise, security rules will reject the default sandbox path.
-</Warning>
-
-Start the containers with the recommended `all` profile, which enables Box Runtime-dependent features by default, including the sandbox, stdio MCP hosting, and Skill add/edit:
-
-```bash
-docker compose --profile all up
-```
+This enables the sandbox, stdio MCP, and Skill editing by default. No separate data directory configuration is needed.
 
 ## Runtime tokens for Internet-accessible deployments
 
@@ -56,62 +47,6 @@ no additional build argument is required. The container uses the matching
 Linux `pylibseekdb` wheel, so the host macOS version does not limit embedded
 mode inside the container. Keep the default `vdb.use: chroma` when SeekDB is
 not needed.
-
-## Sandbox data directory
-
-With the `all` or `box` profile, sandbox data defaults to `${PWD}/data/box`. Running Compose from `/root/LangBot/docker` puts this path under `/root`, so sandbox creation fails with `host_path ... is blocked for security`. Features that depend on the sandbox, such as stdio MCP, will not work.
-
-**Use a dedicated absolute path, such as `/opt/langbot-box` or `/data/langbot-box`.** The LangBot project can stay under `/root`; only the sandbox data directory needs to be elsewhere. Add or update this entry in `LangBot/docker/.env`, keeping any existing settings:
-
-```dotenv
-LANGBOT_BOX_ROOT=/opt/langbot-box
-```
-
-Avoid protected directories such as `/root`, `/etc`, `/proc`, `/sys`, `/dev`, `/boot`, and `/run`, their subdirectories, and symlinks pointing into them.
-
-If you already have sandbox data, stop the related services, back up and migrate the data first; changing the path does not move existing data. When ready, run from `LangBot/docker`:
-
-```bash
-docker compose --profile all up -d --force-recreate langbot langbot_box
-```
-
-Recreate both `langbot` and `langbot_box`: `restart` alone does not update environment variables or mounts. Compose environment variables override `config.yaml`, so editing that file alone will not help.
-
-`langbot_box` creates sandbox containers through the host Docker socket, so the Box root path must be identical on the host and inside the container:
-
-```yaml
-services:
-  langbot:
-    environment:
-      - BOX__LOCAL__HOST_ROOT=${LANGBOT_BOX_ROOT:-${PWD}/data/box}
-      - BOX__LOCAL__DEFAULT_WORKSPACE=default
-      - BOX__LOCAL__SKILLS_ROOT=skills
-      - BOX__LOCAL__ALLOWED_MOUNT_ROOTS=${LANGBOT_BOX_ROOT:-${PWD}/data/box}
-
-  langbot_box:
-    profiles: ["box", "all"]
-    volumes:
-      - ${LANGBOT_BOX_ROOT:-${PWD}/data/box}:${LANGBOT_BOX_ROOT:-${PWD}/data/box}
-      - /var/run/docker.sock:/var/run/docker.sock
-```
-
-<Note>
-  **The Box control plane's transport depends on the deployment method.** In Docker deployments it runs as the standalone `langbot_box` **container**, and `langbot` connects to it over WebSocket (`ws://langbot_box:5410`). In manual / `uvx` deployments, `langbot` instead spawns a stdio subprocess as the Box control plane. `langbot_box` creates sandbox sibling containers on the host Docker through the mounted `docker.sock`; the LangBot image already bundles the `docker` client, so no extra installation is required.
-</Note>
-
-If you see `No sandbox backend (Docker/nsjail/E2B) is ready`, first make sure the current user can access Docker:
-
-```bash
-sudo usermod -aG docker $USER
-newgrp docker
-docker info
-```
-
-If `docker info` works, restart LangBot.
-
-<Warning>
-`langbot_box` does not read `LANGBOT_BOX_*` or `BOX__*` variables directly. LangBot reads `BOX__LOCAL__*` and forwards the effective Box config to Box Runtime through INIT RPC. Set `LANGBOT_BOX_ROOT` as described above rather than changing only the environment of `langbot_box`.
-</Warning>
 
 The container maps port `5300` for WebUI access. You can visit `http://127.0.0.1:5300` to view the WebUI.\
 It also maps ports `2280-2285` reserved for message platform adapters.
