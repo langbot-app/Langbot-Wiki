@@ -13,22 +13,13 @@ description: "Docker と Docker Compose で LangBot をデプロイ。Discord・
 - Git、Docker、Docker Composeがインストールされていることを確認してください
 </Info>
 
-プロジェクトをクローンします:
+インストール先は `/opt/LangBot` を推奨します。`/root` や `/etc` などの制限されたディレクトリでは、安全規則によりサンドボックス機能が使えなくなるため避けてください。`/opt` に書き込めるアカウントで、次を実行します：
 
 ```bash
-git clone https://github.com/langbot-app/LangBot
-cd LangBot/docker
+git clone https://github.com/langbot-app/LangBot /opt/LangBot && cd /opt/LangBot/docker && docker compose --profile all up -d
 ```
 
-<Warning>
-  プロジェクトを `/root` 配下に置く場合は、起動前に下の「サンドボックスのデータディレクトリ」に従って `LANGBOT_BOX_ROOT` を設定してください。デフォルトのパスは安全規則により拒否されます。
-</Warning>
-
-推奨の `all` profile でコンテナを起動します。これにより、サンドボックス、stdio MCP ホスティング、Skill の追加/編集など Box Runtime に依存する機能がデフォルトで有効になります:
-
-```bash
-docker compose --profile all up
-```
+サンドボックス、stdio MCP、Skill の編集がデフォルトで有効になります。データディレクトリを別途設定する必要はありません。
 
 ## インターネット公開時の Runtime Token
 
@@ -51,62 +42,6 @@ docker compose up
 ## SeekDB サポート
 
 公式 Docker イメージにはオプションの SeekDB 依存関係がすでに含まれており、追加のビルド引数は不要です。コンテナは対応する Linux アーキテクチャの `pylibseekdb` wheel を使用するため、ホストの macOS バージョンはコンテナ内の組み込みモードを制限しません。SeekDB を使用しない場合は、デフォルトの `vdb.use: chroma` のまま使用できます。
-
-## サンドボックスのデータディレクトリ
-
-`all` または `box` profile を有効にすると、サンドボックスのデータはデフォルトで `${PWD}/data/box` に保存されます。`/root/LangBot/docker` で Compose を実行すると保存先も `/root` 配下になるため、サンドボックス作成時に `host_path ... is blocked for security` が発生し、stdio MCP などの機能が使えなくなります。
-
-**`/opt/langbot-box` や `/data/langbot-box` など、専用の絶対パスを推奨します。** LangBot 本体は `/root` 配下のままで構いません。サンドボックスのデータだけを別の場所に置きます。`LangBot/docker/.env` の既存設定を残し、次の行を追加または変更してください：
-
-```dotenv
-LANGBOT_BOX_ROOT=/opt/langbot-box
-```
-
-`/root`、`/etc`、`/proc`、`/sys`、`/dev`、`/boot`、`/run` などの保護されたディレクトリとその配下、およびそれらを指すシンボリックリンクは使用しないでください。
-
-既存のサンドボックスデータがある場合は、先に関連サービスを停止し、バックアップとデータ移行を済ませてください。パスを変更してもデータは自動で移動しません。準備ができたら、`LangBot/docker` で次を実行します：
-
-```bash
-docker compose --profile all up -d --force-recreate langbot langbot_box
-```
-
-`langbot` と `langbot_box` の両方を再作成する必要があります。`restart` だけでは環境変数やマウントは更新されません。また、Compose の環境変数が `config.yaml` より優先されるため、設定ファイルだけを編集しても反映されません。
-
-`langbot_box` はホスト Docker socket 経由でサンドボックスコンテナを作成するため、Box root のホスト側パスとコンテナ内パスは同一である必要があります：
-
-```yaml
-services:
-  langbot:
-    environment:
-      - BOX__LOCAL__HOST_ROOT=${LANGBOT_BOX_ROOT:-${PWD}/data/box}
-      - BOX__LOCAL__DEFAULT_WORKSPACE=default
-      - BOX__LOCAL__SKILLS_ROOT=skills
-      - BOX__LOCAL__ALLOWED_MOUNT_ROOTS=${LANGBOT_BOX_ROOT:-${PWD}/data/box}
-
-  langbot_box:
-    profiles: ["box", "all"]
-    volumes:
-      - ${LANGBOT_BOX_ROOT:-${PWD}/data/box}:${LANGBOT_BOX_ROOT:-${PWD}/data/box}
-      - /var/run/docker.sock:/var/run/docker.sock
-```
-
-<Note>
-  **Box コントロールプレーンの起動方式はデプロイ方法によって異なります。** Docker デプロイでは独立した `langbot_box` **コンテナ**として動作し、`langbot` は WebSocket（`ws://langbot_box:5410`）で接続します。手動起動 / `uvx` デプロイでは、`langbot` が Box コントロールプレーンとして stdio サブプロセスを直接起動します。`langbot_box` はマウントされた `docker.sock` を介してホスト Docker 上にサンドボックスの兄弟コンテナを作成します。LangBot イメージには `docker` クライアントが同梱されているため、追加のインストールは不要です。
-</Note>
-
-`No sandbox backend (Docker/nsjail/E2B) is ready` と表示される場合は、まず現在のユーザーが Docker にアクセスできるか確認してください:
-
-```bash
-sudo usermod -aG docker $USER
-newgrp docker
-docker info
-```
-
-`docker info` が正常に出力される場合は、LangBot を再起動してください。
-
-<Warning>
-`langbot_box` は `LANGBOT_BOX_*` や `BOX__*` 環境変数を直接読み取りません。LangBot が `BOX__LOCAL__*` を読み取り、INIT RPC 経由で Box Runtime に渡します。`langbot_box` の環境変数だけを変更せず、上記の手順で `LANGBOT_BOX_ROOT` を設定してください。
-</Warning>
 
 コンテナはWebUIアクセス用にポート`5300`をマッピングします。`http://127.0.0.1:5300`にアクセスしてWebUIを表示できます。
 また、メッセージプラットフォームアダプター用に予約されたポート`2280-2285`もマッピングします。
