@@ -21,6 +21,10 @@ git clone https://github.com/langbot-app/LangBot
 cd LangBot/docker
 ```
 
+<Warning>
+  如果项目放在 `/root` 下，请先按下方「沙箱数据目录」设置 `LANGBOT_BOX_ROOT`，否则默认沙箱路径会被安全规则拒绝。
+</Warning>
+
 启动容器（推荐启用 `all` profile，以默认启用沙箱、stdio MCP 托管、Skill 添加/编辑等依赖 Box Runtime 的功能）：
 
 ```bash
@@ -48,6 +52,26 @@ docker compose up
 ## SeekDB 支持
 
 官方 Docker 镜像已经包含可选的 SeekDB 依赖，无需额外构建参数。容器会使用对应 Linux 架构的 `pylibseekdb` wheel，因此宿主机的 macOS 版本不会限制容器内的 embedded 模式；不使用 SeekDB 时保持默认 `vdb.use: chroma` 即可。
+
+## 沙箱数据目录
+
+启用 `all` 或 `box` profile 时，沙箱数据默认放在 `${PWD}/data/box`。若在 `/root/LangBot/docker` 下运行 Compose，默认路径也会落在 `/root` 下，创建沙箱时会报 `host_path ... is blocked for security`，导致 stdio MCP 等依赖沙箱的功能不可用。
+
+**建议使用独立的绝对路径，例如 `/opt/langbot-box` 或 `/data/langbot-box`。** LangBot 项目本身可以留在 `/root`，只需把沙箱数据目录放到外面。在 `LangBot/docker/.env` 中添加或修改（保留已有配置）：
+
+```dotenv
+LANGBOT_BOX_ROOT=/opt/langbot-box
+```
+
+不要使用 `/root`、`/etc`、`/proc`、`/sys`、`/dev`、`/boot`、`/run` 等受保护目录及其子目录，也不要通过符号链接指向这些目录。
+
+已有沙箱数据时，请先停止相关服务、备份并迁移数据；更改路径不会自动搬迁旧数据。准备好后，在 `LangBot/docker` 目录执行：
+
+```bash
+docker compose --profile all up -d --force-recreate langbot langbot_box
+```
+
+需要同时重建 `langbot` 和 `langbot_box`，仅 `restart` 不会更新环境变量或挂载。Compose 环境变量会覆盖 `config.yaml`，因此只改配置文件无效。
 
 `langbot_box` 通过主机 Docker socket 创建沙箱容器，因此 Box 根目录的宿主机路径和容器内路径必须一致：
 
@@ -82,7 +106,7 @@ docker info
 若 `docker info` 正常输出，请重启 LangBot。
 
 <Warning>
-`langbot_box` 不直接读取 `LANGBOT_BOX_*` 或 `BOX__*` 环境变量；Box 配置由 `langbot` 读取 `BOX__LOCAL__*` 后通过 INIT RPC 传给 Box Runtime。若要改 Box 根目录，请使用绝对路径设置 `LANGBOT_BOX_ROOT`，例如 `LANGBOT_BOX_ROOT=/var/lib/langbot/box docker compose --profile all up`。
+`langbot_box` 不直接读取 `LANGBOT_BOX_*` 或 `BOX__*` 环境变量；Box 配置由 `langbot` 读取 `BOX__LOCAL__*` 后通过 INIT RPC 传给 Box Runtime。请按上文设置 `LANGBOT_BOX_ROOT`，不要只修改 `langbot_box` 的环境变量。
 </Warning>
 
 <Info>
