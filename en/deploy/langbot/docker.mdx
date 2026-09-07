@@ -3,57 +3,72 @@ title: "Docker Deployment"
 description: "Deploy LangBot with Docker and Docker Compose. Run an open-source multi-platform AI chatbot for Discord, Telegram, WeChat and more in minutes."
 ---
 
-<Warning>
-  Before you start, you may learn about in advanced:
+## 1. Prepare your environment
 
-  - Usage of `Docker` and `Docker Compose`
-  - Docker container network communication configuration methods
-</Warning>
+Install Git, Docker, and Docker Compose, and make sure your account can run Docker commands.
 
-<Info>
-  - Please ensure Git, Docker, and Docker Compose are installed
-</Info>
+## 2. Download the project
 
-We recommend installing LangBot at `/opt/LangBot`. Avoid restricted directories such as `/root` and `/etc`, where security rules can block sandbox features. With an account that can write to `/opt`, run:
+We recommend `/opt/LangBot`. Avoid restricted directories such as `/root` and `/etc`, where security rules can block sandbox features. The example below uses `/opt`; you can choose another deployment directory that your account can write to.
 
 ```bash
-git clone https://github.com/langbot-app/LangBot /opt/LangBot && cd /opt/LangBot/docker && docker compose --profile all up -d
+cd /opt
+git clone https://github.com/langbot-app/LangBot
+cd LangBot/docker
 ```
 
-This enables the sandbox, stdio MCP, and Skill editing by default. No separate data directory configuration is needed.
+### Mainland China: optional image mirror
 
-## Runtime tokens for Internet-accessible deployments
+If pulling images from Docker Hub is slow, edit `docker-compose.yaml` in the current directory **before starting the services**. Replace every occurrence of `rockchin/langbot:latest` with:
 
-The open-source edition skips token verification only when **both LangBot and the corresponding Runtime leave the token unset**. If the deployment is accessible from the Internet, strongly protect Plugin Runtime and Box Runtime with separate strong tokens:
+```text
+docker.langbot.app/langbot-public/rockchin/langbot:latest
+```
+
+Save the file, then continue to the next step.
+
+## 3. Start the services
+
+<Accordion title="Public servers: set access tokens before starting">
+  On a public server, set access tokens for the supporting services and avoid exposing runtime ports directly to the Internet.
+
+  Run this command twice to generate two different random values:
+
+  ```bash
+  openssl rand -hex 32
+  ```
+
+  Add the following settings to `.env` in the current directory, replacing the placeholders with the generated values. If either setting already exists, update it instead:
+
+  ```dotenv
+  LANGBOT_PLUGIN_RUNTIME_CONTROL_TOKEN=<first-random-value>
+  LANGBOT_BOX_CONTROL_TOKEN=<second-random-value>
+  ```
+
+  Compose passes the tokens to the matching services automatically; no other configuration changes are needed. Keep `.env` safe and do not commit it to a repository.
+</Accordion>
+
+Run from `LangBot/docker`:
 
 ```bash
-export LANGBOT_PLUGIN_RUNTIME_CONTROL_TOKEN="$(openssl rand -hex 32)"
-export LANGBOT_BOX_CONTROL_TOKEN="$(openssl rand -hex 32)"
 docker compose --profile all up -d
 ```
 
-The official Compose file passes each variable to both ends of its connection. Setting only one end, using different values, or using a weak token causes the connection to be rejected. Store tokens in your deployment platform's secret manager and never commit them.
+This starts LangBot and its supporting services in the background, including sandbox, stdio MCP, and skill features.
 
-This starts `langbot`, `langbot_plugin_runtime`, and `langbot_box`. If you only need the basic services and do not want to enable Box Runtime, run:
+## 4. Open the dashboard
+
+Visit the appropriate address in your browser:
+
+- **Local installation**: `http://127.0.0.1:5300`
+- **Server installation**: `http://YOUR_SERVER_IP:5300`. Make sure the firewall allows your access to port `5300`.
+
+Follow the on-screen initialization steps, then add a [model](/en/usage/models/readme) and a [bot](/en/usage/platforms/readme).
+
+If the page does not open, check the startup logs from the deployment directory:
 
 ```bash
-docker compose up
+docker compose --profile all logs --tail=100
 ```
 
-## SeekDB support
-
-The official Docker image already includes the optional SeekDB dependencies;
-no additional build argument is required. The container uses the matching
-Linux `pylibseekdb` wheel, so the host macOS version does not limit embedded
-mode inside the container. Keep the default `vdb.use: chroma` when SeekDB is
-not needed.
-
-The container maps port `5300` for WebUI access. You can visit `http://127.0.0.1:5300` to view the WebUI.\
-It also maps ports `2280-2285` reserved for message platform adapters.
-
-After completing the LangBot deployment, please continue reading:
-
-- [Bot Configuration Documentation](/en/usage/platforms/readme).
-- [Model Configuration Documentation](/en/usage/models/readme).
-- [Sandbox Documentation](/en/usage/sandbox/readme).
-- [Skills Documentation](/en/usage/skills/readme).
+For further configuration, see the [sandbox](/en/usage/sandbox/readme) and [skills](/en/usage/skills/readme) guides.
