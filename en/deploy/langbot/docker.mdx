@@ -1,74 +1,52 @@
 ---
 title: "Docker Deployment"
-description: "Deploy LangBot with Docker and Docker Compose. Run an open-source multi-platform AI chatbot for Discord, Telegram, WeChat and more in minutes."
+description: "Deploy LangBot with Docker Compose on Windows, Linux, or macOS."
 ---
 
 ## 1. Prepare your environment
 
-Install Git, Docker, and Docker Compose, and make sure your account can run Docker commands.
+- Install Git.
+- **Windows / macOS**: install and start Docker Desktop.
+- **Linux**: install Docker and Docker Compose.
 
 ## 2. Download the project
 
-We recommend `/opt/LangBot`. Avoid restricted directories such as `/root` and `/etc`, where security rules can block sandbox features. The example below uses `/opt`; you can choose another deployment directory that your account can write to.
+Choose a regular directory that you can write to. On Linux, avoid system directories such as `/root` and `/etc`; we recommend a location under `/opt` so sandbox features are not blocked by security rules.
+
+Open a terminal in the directory where you want to store the project (PowerShell works on Windows), then run each line:
 
 ```bash
-cd /opt
 git clone https://github.com/langbot-app/LangBot
 cd LangBot/docker
 ```
 
-### Mainland China: optional image mirror
+### Mainland China: change the image source before startup (optional)
 
-If pulling images from Docker Hub is slow, edit `docker-compose.yaml` in the current directory **before starting the services**. Replace every occurrence of `rockchin/langbot:latest` with:
+If Docker Hub downloads are slow, edit `LangBot/docker/docker-compose.yaml` first. Replace every occurrence of `rockchin/langbot:latest` with:
 
 ```text
 docker.langbot.app/langbot-public/rockchin/langbot:latest
 ```
 
-Save the file, then continue to the next step.
+Save the file before starting. No other configuration changes are needed.
 
-## 3. Start the services
+## 3. Start LangBot
 
-<Accordion title="Public servers: set access tokens before starting">
-  On a public server, set access tokens for the supporting services and avoid exposing runtime ports directly to the Internet.
+<Note>
+  On a server, use a firewall to restrict dashboard and runtime ports to trusted sources only.
+</Note>
 
-  Run this command twice to generate two different random values:
-
-  ```bash
-  openssl rand -hex 32
-  ```
-
-  Add the following settings to `.env` in the current directory, replacing the placeholders with the generated values. If either setting already exists, update it instead:
-
-  ```dotenv
-  LANGBOT_PLUGIN_RUNTIME_CONTROL_TOKEN=<first-random-value>
-  LANGBOT_BOX_CONTROL_TOKEN=<second-random-value>
-  ```
-
-  Compose passes the tokens to the matching services automatically; no other configuration changes are needed. Keep `.env` safe and do not commit it to a repository.
-</Accordion>
-
-Run from `LangBot/docker`:
+In the same terminal, run:
 
 ```bash
 docker compose --profile all up -d
 ```
 
-This starts LangBot and its supporting services in the background, including sandbox, stdio MCP, and skill features.
+The first startup downloads the container images. On Windows / macOS, keep Docker Desktop running.
 
 ## 4. Open the dashboard
 
-Visit the appropriate address in your browser:
-
-- **Local installation**: `http://127.0.0.1:5300`
-- **Server installation**: `http://YOUR_SERVER_IP:5300`. Make sure the firewall allows your access to port `5300`.
+- **Local installation**: open `http://localhost:5300`.
+- **Server installation**: open `http://YOUR_SERVER_IP:5300` and make sure the firewall allows your device to access this port.
 
 Follow the on-screen initialization steps, then add a [model](/en/usage/models/readme) and a [bot](/en/usage/platforms/readme).
-
-If the page does not open, check the startup logs from the deployment directory:
-
-```bash
-docker compose --profile all logs --tail=100
-```
-
-For further configuration, see the [sandbox](/en/usage/sandbox/readme) and [skills](/en/usage/skills/readme) guides.

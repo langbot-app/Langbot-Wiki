@@ -1,74 +1,52 @@
 ---
 title: "Dockerデプロイ"
-description: "Docker と Docker Compose で LangBot をデプロイ。Discord・Telegram・WeChat 対応のオープンソース AI チャットボットを数分で起動。"
+description: "Windows、Linux、macOS で Docker Compose を使って LangBot を起動します。"
 ---
 
 ## 1. 環境を準備する
 
-Git、Docker、Docker Compose をインストールし、現在のアカウントで Docker コマンドを実行できることを確認してください。
+- Git をインストールします。
+- **Windows / macOS**：Docker Desktop をインストールして起動します。
+- **Linux**：Docker と Docker Compose をインストールします。
 
 ## 2. プロジェクトをダウンロードする
 
-インストール先は `/opt/LangBot` を推奨します。`/root` や `/etc` などの制限されたディレクトリでは、安全規則によりサンドボックス機能が使えなくなるため避けてください。以下は `/opt` を使う例です。書き込み権限のある別のデプロイ先に変更しても構いません。
+書き込み権限のある通常のディレクトリを選んでください。Linux では `/root` や `/etc` などのシステムディレクトリを避け、`/opt` 配下を推奨します。これにより、安全規則によるサンドボックス機能の拒否を避けられます。
+
+プロジェクトを保存したいディレクトリでターミナルを開き（Windows では PowerShell を使用できます）、1 行ずつ実行します：
 
 ```bash
-cd /opt
 git clone https://github.com/langbot-app/LangBot
 cd LangBot/docker
 ```
 
-### 中国本土のネットワーク：任意のミラー設定
+### 中国本土：起動前にミラーへ変更する（任意）
 
-Docker Hub からのイメージ取得が遅い場合は、**サービスを起動する前に**現在のディレクトリの `docker-compose.yaml` を編集してください。すべての `rockchin/langbot:latest` を次の値に置き換えます：
+Docker Hub からのダウンロードが遅い場合は、先に `LangBot/docker/docker-compose.yaml` を編集し、すべての `rockchin/langbot:latest` を次の値に置き換えてください：
 
 ```text
 docker.langbot.app/langbot-public/rockchin/langbot:latest
 ```
 
-保存してから次の手順へ進んでください。
+保存してから起動してください。ほかの設定変更は不要です。
 
-## 3. サービスを起動する
+## 3. LangBot を起動する
 
-<Accordion title="公開サーバー：起動前にアクセストークンを設定する">
-  公開サーバーでは、関連サービスにアクセストークンを設定し、ランタイムのポートをインターネットへ直接公開しないでください。
+<Note>
+  サーバーに設置する場合は、管理画面とランタイムのポートをファイアウォールで制限し、信頼できる接続元だけを許可してください。
+</Note>
 
-  次のコマンドを 2 回実行し、異なるランダムな値を 2 つ生成します：
-
-  ```bash
-  openssl rand -hex 32
-  ```
-
-  現在のディレクトリの `.env` に次の設定を追加し、プレースホルダーを生成した値に置き換えてください。同じ設定がすでにある場合は、既存の値を変更します：
-
-  ```dotenv
-  LANGBOT_PLUGIN_RUNTIME_CONTROL_TOKEN=<1つ目のランダムな値>
-  LANGBOT_BOX_CONTROL_TOKEN=<2つ目のランダムな値>
-  ```
-
-  Compose が対応するサービスへ自動で渡すため、ほかの設定変更は不要です。`.env` は安全に保管し、リポジトリにコミットしないでください。
-</Accordion>
-
-`LangBot/docker` で次を実行します：
+同じターミナルで実行します：
 
 ```bash
 docker compose --profile all up -d
 ```
 
-LangBot と関連サービスがバックグラウンドで起動し、サンドボックス、stdio MCP、スキル機能が有効になります。
+初回はコンテナイメージをダウンロードします。Windows / macOS では Docker Desktop を起動したままにしてください。
 
 ## 4. 管理画面を開く
 
-ブラウザーで次の URL にアクセスします：
-
-- **ローカルにインストールした場合**：`http://127.0.0.1:5300`
-- **サーバーにインストールした場合**：`http://サーバーのIP:5300`。ファイアウォールで自分からポート `5300` へのアクセスが許可されていることを確認してください。
+- **ローカルにインストールした場合**：`http://localhost:5300` を開きます。
+- **サーバーにインストールした場合**：`http://サーバーのIP:5300` を開きます。ファイアウォールで自分の端末からこのポートへのアクセスを許可してください。
 
 画面の案内に従って初期設定を完了し、[モデル](/ja/usage/models/readme)と[ボット](/ja/usage/platforms/readme)を追加してください。
-
-ページが開かない場合は、デプロイ先のディレクトリで起動ログを確認します：
-
-```bash
-docker compose --profile all logs --tail=100
-```
-
-追加の設定が必要になったら、[サンドボックス](/ja/usage/sandbox/readme)と[スキル](/ja/usage/skills/readme)のドキュメントを参照してください。

@@ -1,74 +1,52 @@
 ---
 title: "Docker部署"
-description: "使用 Docker 和 Docker Compose 部署 LangBot，几分钟内运行支持 Discord、Telegram、微信等多平台的开源 AI 聊天机器人。"
+description: "在 Windows、Linux 或 macOS 上使用 Docker Compose 部署 LangBot。"
 ---
 
 ## 1. 准备环境
 
-请先安装 Git、Docker 和 Docker Compose，并确保当前账号可以运行 Docker 命令。
+- 安装 Git。
+- **Windows / macOS**：安装并启动 Docker Desktop。
+- **Linux**：安装 Docker 和 Docker Compose。
 
 ## 2. 下载项目
 
-建议安装到 `/opt/LangBot`，避免 `/root`、`/etc` 等受限制目录，以免沙箱功能被安全规则拦截。下面以 `/opt` 为例，你可以换成其他有写入权限的部署目录。
+请选择有写入权限的普通目录。Linux 用户请避开 `/root`、`/etc` 等系统目录，建议放在 `/opt` 下，以免沙箱功能被安全规则拦截。
+
+在准备存放项目的目录打开终端（Windows 可用 PowerShell），逐行执行：
 
 ```bash
-cd /opt
 git clone https://github.com/langbot-app/LangBot
 cd LangBot/docker
 ```
 
-### 中国大陆网络：可选镜像源
+### 中国大陆用户：启动前更换镜像源（可选）
 
-如果拉取 Docker Hub 镜像较慢，**请在启动前**编辑当前目录下的 `docker-compose.yaml`，将所有 `rockchin/langbot:latest` 替换为：
+如果 Docker Hub 下载较慢，先编辑 `LangBot/docker/docker-compose.yaml`，将文件中的所有 `rockchin/langbot:latest` 替换为：
 
 ```text
 docker.langbot.app/langbot-public/rockchin/langbot:latest
 ```
 
-保存文件后，继续下一步。
+保存后再启动，无需更改其他配置。
 
-## 3. 启动服务
+## 3. 启动 LangBot
 
-<Accordion title="公网服务器：启动前设置访问令牌">
-  如果部署在公网服务器上，建议先为配套服务设置访问令牌，不要直接向公网开放运行时端口。
+<Note>
+  如果部署在服务器上，请通过防火墙限制管理页面和运行时端口的访问，仅允许可信来源连接。
+</Note>
 
-  运行两次以下命令，生成两个不同的随机值：
-
-  ```bash
-  openssl rand -hex 32
-  ```
-
-  在当前目录的 `.env` 文件中添加以下配置，将占位内容替换为生成的值；如已有同名配置，请修改原值：
-
-  ```dotenv
-  LANGBOT_PLUGIN_RUNTIME_CONTROL_TOKEN=<第一个随机值>
-  LANGBOT_BOX_CONTROL_TOKEN=<第二个随机值>
-  ```
-
-  Compose 会自动将令牌传给对应服务，无需修改其他配置。请妥善保存 `.env`，不要提交到仓库。
-</Accordion>
-
-在 `LangBot/docker` 目录执行：
+在刚才的终端中执行：
 
 ```bash
 docker compose --profile all up -d
 ```
 
-这会在后台启动 LangBot 及配套服务，包含沙箱、stdio MCP 和技能功能。
+首次启动需要下载镜像。Windows / macOS 用户请保持 Docker Desktop 运行。
 
 ## 4. 打开管理页面
 
-在浏览器中访问：
+- **本机部署**：打开 `http://localhost:5300`。
+- **服务器部署**：打开 `http://你的服务器IP:5300`，确保防火墙允许你的设备访问该端口。
 
-- **本机部署**：`http://127.0.0.1:5300`
-- **服务器部署**：`http://你的服务器IP:5300`，并确保防火墙允许你访问 `5300` 端口。
-
-按照页面提示完成初始化，然后添加[模型](/zh/usage/models/readme)和[机器人](/zh/usage/platforms/readme)。
-
-如果页面无法打开，可在部署目录查看启动日志：
-
-```bash
-docker compose --profile all logs --tail=100
-```
-
-需要进一步配置时，再查看[沙箱](/zh/usage/sandbox/readme)和[技能系统](/zh/usage/skills/readme)文档。
+按照页面提示完成初始化，再添加[模型](/zh/usage/models/readme)和[机器人](/zh/usage/platforms/readme)。
