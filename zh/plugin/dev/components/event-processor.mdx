@@ -1,0 +1,158 @@
+---
+title: "组件：事件处理器"
+---
+
+事件处理器（EventProcessor）组件用于处理机器人收到的消息、成员入群等事件。用户安装插件后，可在 LangBot 中创建「插件处理器」并选择该组件，再绑定机器人的事件。
+
+环境准备见[插件开发教程](/zh/plugin/dev/tutor)。
+
+## 添加事件处理器组件
+
+单个插件中可以添加多个事件处理器。请在插件目录执行命令 `lbp comp EventProcessor`，名称填写 `welcome`，描述填写 `Welcome new members`。
+
+```bash
+lbp comp EventProcessor
+```
+
+生成的 `components/event_processor/welcome.yaml` 定义组件信息，`welcome.py` 是处理程序。
+
+## 清单文件：事件处理器
+
+将 `welcome.yaml` 修改为：
+
+```yaml
+apiVersion: langbot/v1
+kind: EventProcessor
+metadata:
+  name: welcome
+  label:
+    en_US: Welcome members
+    zh_Hans: 欢迎新成员
+    ja_JP: 新しいメンバーを歓迎
+  description:
+    en_US: Welcome new members and respond to /hello.
+    zh_Hans: 欢迎新成员，并响应 /hello 消息。
+    ja_JP: 新しいメンバーを歓迎し、/hello に返信します。
+spec:
+  events:
+    - group.member_joined
+    - message.received
+  capabilities:
+    tool_calling: true
+  permissions:
+    tools: [detail, call]
+  config:
+    - name: greeting
+      type: string
+      label:
+        en_US: Greeting
+        zh_Hans: 欢迎语
+        ja_JP: 歓迎メッセージ
+      required: true
+      default: Welcome aboard!
+    - name: reply_enabled
+      type: boolean
+      label:
+        en_US: Send replies
+        zh_Hans: 发送回复
+        ja_JP: 返信する
+      default: true
+execution:
+  python:
+    path: ./welcome.py
+    attr: Welcome
+```
+
+`spec.events` 指定支持的事件，`spec.config` 定义用户可在处理器详情页修改的配置。本例支持成员入群和收到消息，并提供欢迎语、回复开关两个配置项。回复消息需要上面的 `tool_calling` 和 `permissions.tools` 配置。
+
+## 插件处理
+
+在 `Welcome` 类的 `initialize` 方法中注册事件处理函数。将 `welcome.py` 修改为：
+
+```python
+from langbot_plugin.api.definition.components.event_processor import (
+    EventProcessor,
+    EventProcessorContext,
+)
+from langbot_plugin.api.entities.builtin.platform.events import (
+    MemberJoinedEvent,
+    MessageReceivedEvent,
+)
+from langbot_plugin.api.entities.builtin.platform.message import Plain
+
+
+class Welcome(EventProcessor):
+    async def initialize(self):
+        await super().initialize()
+
+        @self.handler(MemberJoinedEvent)
+        async def on_join(ctx: EventProcessorContext):
+            name = ctx.event.member.nickname or str(ctx.event.member.id)
+            await ctx.log(f"Member joined: {name}")
+            if not ctx.config.get("reply_enabled", True):
+                await ctx.log("Replies are disabled for this processor")
+                return
+            greeting = ctx.config.get("greeting", "Welcome aboard!")
+            await ctx.reply(f"{name}, {greeting}")
+            await ctx.log("Welcome action completed")
+
+        @self.handler(MessageReceivedEvent)
+        async def on_message(ctx: EventProcessorContext):
+            text = "".join(
+                item.text for item in ctx.event.message_chain if isinstance(item, Plain)
+            ).strip()
+            if text != "/hello":
+                await ctx.log("Message ignored: expected /hello")
+                return
+            if ctx.config.get("reply_enabled", True):
+                await ctx.reply(ctx.config.get("greeting", "Welcome aboard!"))
+            else:
+                await ctx.log("Replies are disabled for this processor")
+```
+
+`on_join` 在成员入群时发送欢迎语，`on_message` 回复 `/hello`。关闭「发送回复」后，只记录日志。
+
+处理函数中，`ctx.event` 保存当前事件的数据，`ctx.config` 是当前处理器的配置。调用 `ctx.reply()` 回复消息，`ctx.log()` 记录日志。函数执行完毕，本次处理即结束。
+
+## 事件注册
+
+通过 `@self.handler(事件类)` 注册处理函数，并将对应事件标识加入清单的 `spec.events`。例如，`MemberJoinedEvent` 对应 `group.member_joined`。
+
+| 事件 | 清单中的标识 | SDK 事件类 |
+| --- | --- | --- |
+| 收到消息 | `message.received` | `MessageReceivedEvent` |
+| 消息被编辑 | `message.edited` | `MessageEditedEvent` |
+| 消息被删除 | `message.deleted` | `MessageDeletedEvent` |
+| 消息表情回应 | `message.reaction` | `MessageReactionEvent` |
+| 收到反馈 | `feedback.received` | `FeedbackReceivedEvent` |
+| 成员加入群组 | `group.member_joined` | `MemberJoinedEvent` |
+| 成员离开群组 | `group.member_left` | `MemberLeftEvent` |
+| 成员被禁言 | `group.member_banned` | `MemberBannedEvent` |
+| 群组信息更新 | `group.info_updated` | `GroupInfoUpdatedEvent` |
+| 收到好友申请 | `friend.request_received` | `FriendRequestReceivedEvent` |
+| 添加好友 | `friend.added` | `FriendAddedEvent` |
+| 删除好友 | `friend.removed` | `FriendRemovedEvent` |
+| 机器人被邀请入群 | `bot.invited_to_group` | `BotInvitedToGroupEvent` |
+| 机器人被移出群组 | `bot.removed_from_group` | `BotRemovedFromGroupEvent` |
+| 机器人被禁言 | `bot.muted` | `BotMutedEvent` |
+| 机器人被解除禁言 | `bot.unmuted` | `BotUnmutedEvent` |
+| 平台自定义事件 | `platform.specific` | `PlatformSpecificEvent` |
+
+可用事件及字段见 SDK 的 [events.py](https://github.com/langbot-app/langbot-plugin-sdk/blob/main/src/langbot_plugin/api/entities/builtin/platform/events.py)。各平台支持的事件有所不同。
+
+## 测试事件处理器
+
+按[插件开发教程](/zh/plugin/dev/tutor)配置调试连接，在插件目录执行 `lbp run`。然后在 LangBot 中：
+
+1. 创建「插件处理器」，在详情页选择「欢迎新成员」组件，填写配置并保存。
+2. 在左侧选择「成员加入群组」，填写成员昵称、ID 和群组 ID，点击「运行测试」。
+3. 查看回复和日志。也可以选择「收到消息」，输入 `/hello` 测试回复。
+
+调试中的平台回复使用 Mock，不发送真实消息。修改组件 YAML 后，请重启 `lbp run`。
+
+安装插件后，在机器人中将「成员加入群组」和「收到消息」绑定到该处理器，即可处理实际事件。
+
+## 接下来做什么
+
+- 查看 [EventProcessorDemo](https://github.com/langbot-app/langbot-plugin-demo/tree/main/EventProcessorDemo) 中的更多示例。
+- 如果要扩展流水线的预处理、模型调用完成等步骤，请使用[事件监听器](/zh/plugin/dev/components/event-listener)。

@@ -1,0 +1,158 @@
+---
+title: "Component: Event Processor"
+---
+
+The EventProcessor component handles Bot events such as incoming messages and new group members. After installing the plugin, users create a **Plugin processor** in LangBot, select the component, and bind Bot events to it.
+
+For environment setup, see the [plugin development tutorial](/en/plugin/dev/tutor).
+
+## Adding an Event Processor Component
+
+A plugin can contain several event processors. Run `lbp comp EventProcessor` in the plugin directory. Enter `welcome` as the name and `Welcome new members` as the description.
+
+```bash
+lbp comp EventProcessor
+```
+
+The generated `components/event_processor/welcome.yaml` defines the component, and `welcome.py` contains its implementation.
+
+## Manifest File: Event Processor
+
+Replace `welcome.yaml` with:
+
+```yaml
+apiVersion: langbot/v1
+kind: EventProcessor
+metadata:
+  name: welcome
+  label:
+    en_US: Welcome members
+    zh_Hans: 欢迎新成员
+    ja_JP: 新しいメンバーを歓迎
+  description:
+    en_US: Welcome new members and respond to /hello.
+    zh_Hans: 欢迎新成员，并响应 /hello 消息。
+    ja_JP: 新しいメンバーを歓迎し、/hello に返信します。
+spec:
+  events:
+    - group.member_joined
+    - message.received
+  capabilities:
+    tool_calling: true
+  permissions:
+    tools: [detail, call]
+  config:
+    - name: greeting
+      type: string
+      label:
+        en_US: Greeting
+        zh_Hans: 欢迎语
+        ja_JP: 歓迎メッセージ
+      required: true
+      default: Welcome aboard!
+    - name: reply_enabled
+      type: boolean
+      label:
+        en_US: Send replies
+        zh_Hans: 发送回复
+        ja_JP: 返信する
+      default: true
+execution:
+  python:
+    path: ./welcome.py
+    attr: Welcome
+```
+
+`spec.events` lists supported events, and `spec.config` defines settings users can edit on the processor detail page. This example handles new members and incoming messages, with a greeting and a reply switch. Sending replies requires the `tool_calling` and `permissions.tools` settings shown above.
+
+## Plugin Implementation
+
+Register handlers in the `Welcome` class's `initialize` method. Replace `welcome.py` with:
+
+```python
+from langbot_plugin.api.definition.components.event_processor import (
+    EventProcessor,
+    EventProcessorContext,
+)
+from langbot_plugin.api.entities.builtin.platform.events import (
+    MemberJoinedEvent,
+    MessageReceivedEvent,
+)
+from langbot_plugin.api.entities.builtin.platform.message import Plain
+
+
+class Welcome(EventProcessor):
+    async def initialize(self):
+        await super().initialize()
+
+        @self.handler(MemberJoinedEvent)
+        async def on_join(ctx: EventProcessorContext):
+            name = ctx.event.member.nickname or str(ctx.event.member.id)
+            await ctx.log(f"Member joined: {name}")
+            if not ctx.config.get("reply_enabled", True):
+                await ctx.log("Replies are disabled for this processor")
+                return
+            greeting = ctx.config.get("greeting", "Welcome aboard!")
+            await ctx.reply(f"{name}, {greeting}")
+            await ctx.log("Welcome action completed")
+
+        @self.handler(MessageReceivedEvent)
+        async def on_message(ctx: EventProcessorContext):
+            text = "".join(
+                item.text for item in ctx.event.message_chain if isinstance(item, Plain)
+            ).strip()
+            if text != "/hello":
+                await ctx.log("Message ignored: expected /hello")
+                return
+            if ctx.config.get("reply_enabled", True):
+                await ctx.reply(ctx.config.get("greeting", "Welcome aboard!"))
+            else:
+                await ctx.log("Replies are disabled for this processor")
+```
+
+`on_join` welcomes new members, and `on_message` replies to `/hello`. With **Send replies** turned off, they only write logs.
+
+`ctx.event` contains the event data, and `ctx.config` contains this processor's settings. Use `ctx.reply()` to reply and `ctx.log()` to write logs. Processing finishes when the handlers return.
+
+## Registering Events
+
+Register a handler with `@self.handler(EventClass)` and add the event identifier to `spec.events`. For example, `MemberJoinedEvent` corresponds to `group.member_joined`.
+
+| Event | Manifest identifier | SDK event class |
+| --- | --- | --- |
+| Message received | `message.received` | `MessageReceivedEvent` |
+| Message edited | `message.edited` | `MessageEditedEvent` |
+| Message deleted | `message.deleted` | `MessageDeletedEvent` |
+| Message reaction | `message.reaction` | `MessageReactionEvent` |
+| Feedback received | `feedback.received` | `FeedbackReceivedEvent` |
+| Member joined | `group.member_joined` | `MemberJoinedEvent` |
+| Member left | `group.member_left` | `MemberLeftEvent` |
+| Member muted | `group.member_banned` | `MemberBannedEvent` |
+| Group information updated | `group.info_updated` | `GroupInfoUpdatedEvent` |
+| Friend request received | `friend.request_received` | `FriendRequestReceivedEvent` |
+| Friend added | `friend.added` | `FriendAddedEvent` |
+| Friend removed | `friend.removed` | `FriendRemovedEvent` |
+| Bot invited to group | `bot.invited_to_group` | `BotInvitedToGroupEvent` |
+| Bot removed from group | `bot.removed_from_group` | `BotRemovedFromGroupEvent` |
+| Bot muted | `bot.muted` | `BotMutedEvent` |
+| Bot unmuted | `bot.unmuted` | `BotUnmutedEvent` |
+| Platform-specific event | `platform.specific` | `PlatformSpecificEvent` |
+
+See the SDK's [events.py](https://github.com/langbot-app/langbot-plugin-sdk/blob/main/src/langbot_plugin/api/entities/builtin/platform/events.py) for available events and fields. Event support varies by platform.
+
+## Testing the Event Processor
+
+Configure the debug connection following the [plugin development tutorial](/en/plugin/dev/tutor), then run `lbp run` in the plugin directory. In LangBot:
+
+1. Create a **Plugin processor**, select **Welcome members** on its detail page, configure it, and save.
+2. Select **Member joined** on the left, enter the member nickname, member ID, and group ID, then click **Run test**.
+3. Inspect the reply and logs. You can also select **Message received** and enter `/hello` to test replies.
+
+Platform replies use Mock during debugging and send no real messages. Restart `lbp run` after editing component YAML.
+
+After installing the plugin, bind the Bot's **Member joined** and **Message received** events to this processor to handle actual events.
+
+## Next Steps
+
+- Explore more examples in [EventProcessorDemo](https://github.com/langbot-app/langbot-plugin-demo/tree/main/EventProcessorDemo).
+- To extend Pipeline steps such as preprocessing or completion of a model call, use [Event Listener](/en/plugin/dev/components/event-listener).
