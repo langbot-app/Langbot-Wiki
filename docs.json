@@ -560,6 +560,7 @@
                   "en/usage/platforms/discord",
                   "en/usage/platforms/telegram",
                   "en/usage/platforms/slack",
+                  "en/usage/platforms/mattermost",
                   "en/usage/platforms/line",
                   "en/usage/platforms/webpage",
                   "en/usage/platforms/http-bot",
@@ -892,6 +893,7 @@
                   "zh/usage/platforms/discord",
                   "zh/usage/platforms/telegram",
                   "zh/usage/platforms/slack",
+                  "zh/usage/platforms/mattermost",
                   "zh/usage/platforms/line",
                   "zh/usage/platforms/webpage",
                   "zh/usage/platforms/http-bot"
@@ -1159,6 +1161,7 @@
                   "ja/usage/platforms/discord",
                   "ja/usage/platforms/telegram",
                   "ja/usage/platforms/slack",
+                  "ja/usage/platforms/mattermost",
                   "ja/usage/platforms/line",
                   "ja/usage/platforms/webpage",
                   "ja/usage/platforms/http-bot",
