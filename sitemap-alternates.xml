@@ -2731,6 +2731,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://langbot.app/docs/en/usage/platforms/line" />
   </url>
   <url>
+    <loc>https://langbot.app/docs/en/usage/platforms/mattermost</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://langbot.app/docs/en/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://langbot.app/docs/zh/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://langbot.app/docs/ja/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://langbot.app/docs/en/usage/platforms/mattermost" />
+  </url>
+  <url>
+    <loc>https://langbot.app/docs/zh/usage/platforms/mattermost</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://langbot.app/docs/en/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://langbot.app/docs/zh/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://langbot.app/docs/ja/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://langbot.app/docs/en/usage/platforms/mattermost" />
+  </url>
+  <url>
+    <loc>https://langbot.app/docs/ja/usage/platforms/mattermost</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://langbot.app/docs/en/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://langbot.app/docs/zh/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://langbot.app/docs/ja/usage/platforms/mattermost" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://langbot.app/docs/en/usage/platforms/mattermost" />
+  </url>
+  <url>
     <loc>https://langbot.app/docs/en/usage/platforms/qq/aiocqhttp/lagrange</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://langbot.app/docs/en/usage/platforms/qq/aiocqhttp/lagrange" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://langbot.app/docs/zh/usage/platforms/qq/aiocqhttp/lagrange" />
